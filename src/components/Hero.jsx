@@ -18,6 +18,9 @@ const Hero = () => {
             <div className="absolute top-0 left-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-primary-600 rounded-full mix-blend-multiply filter blur-[96px] opacity-20 animate-blob"></div>
             <div className="absolute bottom-0 right-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[96px] opacity-20 animate-blob animation-delay-2000"></div>
 
+            {/* Hidden Anchor for Navigation */}
+            <div id="about" className="absolute top-0 left-0 w-full h-1"></div>
+
             {/* Content - Compact formatting for laptops */}
             <div className="container mx-auto px-6 max-w-[1200px] z-10 relative">
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
