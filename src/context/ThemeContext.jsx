@@ -91,11 +91,11 @@ export const ThemeProvider = ({ children }) => {
         // Check localStorage first
         const savedMode = localStorage.getItem('themeMode')
         if (savedMode) return savedMode
-        // Check system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark'
-        }
-        return 'dark' // Default to dark
+        // Check system preference (Disabled to force Light Mode default)
+        // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        //     return 'dark'
+        // }
+        return 'light' // Default to light
     })
 
     useEffect(() => {
