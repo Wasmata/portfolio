@@ -47,7 +47,9 @@ export const translations = {
       send: "Envoyer le message",
       placeholder_firstname: "Jean",
       placeholder_lastname: "Dupont",
-      placeholder_msg: "Parlez-moi de votre projet..."
+      placeholder_msg: "Parlez-moi de votre projet...",
+      success_msg: "Message envoyé ! Je vous répondrai sous 24h.",
+      error_msg: "Une erreur est survenue."
     },
     card: {
       my_card: "Ma Carte",
@@ -105,7 +107,9 @@ export const translations = {
       send: "Send Message",
       placeholder_firstname: "John",
       placeholder_lastname: "Doe",
-      placeholder_msg: "Tell me about your project..."
+      placeholder_msg: "Tell me about your project...",
+      success_msg: "Message sent! I'll get back to you within 24h.",
+      error_msg: "Something went wrong."
     },
     card: {
       my_card: "My Card",
