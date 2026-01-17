@@ -119,9 +119,15 @@ const Contact = () => {
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg mb-6 flex items-center gap-2"
+                            className="bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 px-4 py-3 rounded-lg mb-6 text-sm"
                         >
-                            <span className="font-bold">Error:</span> {t.contact.error_msg}
+                            <div className="font-bold flex items-center gap-2 mb-1">
+                                ⚠️ {t.contact.error_msg || "Oups, une erreur est survenue."}
+                            </div>
+                            <p>
+                                Pas de panique ! Vous pouvez me contacter directement par mail :<br />
+                                <a href="mailto:contact@wassidev.fr" className="underline font-bold hover:text-red-700 dark:hover:text-red-300">contact@wassidev.fr</a>
+                            </p>
                         </motion.div>
                     )}
 
