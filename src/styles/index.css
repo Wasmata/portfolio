@@ -63,19 +63,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 9999;
-  filter: contrast(150%) brightness(100%);
-}
+/* Removed global body::before noise to rely on toggleable component */
 
 a {
   color: inherit;
@@ -133,4 +121,52 @@ button {
 
 .glow-text {
   text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+/* --- V3 VISUAL EFFECTS --- */
+
+/* Wireframe Mode */
+.wireframe-mode * {
+  border: 1px solid #00f0ff !important;
+  background: rgba(0, 20, 40, 0.95) !important;
+  color: #00f0ff !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.wireframe-mode img {
+  opacity: 0.5;
+  filter: grayscale(100%) sepia(100%) hue-rotate(180deg);
+}
+
+/* Focus Mode */
+.focus-mode .animate-blob,
+.focus-mode .gradient-text,
+.focus-mode .bg-gradient-to-r,
+.focus-mode .bg-gradient-to-br,
+.focus-mode img {
+  opacity: 0.1 !important;
+  transition: opacity 0.5s ease;
+  filter: blur(8px) grayscale(100%);
+}
+
+.focus-mode main {
+  backdrop-filter: blur(0px);
+}
+
+/* Mono Mode */
+.mono-mode {
+  filter: grayscale(100%) !important;
+}
+
+.mono-mode img {
+  filter: grayscale(100%) contrast(1.2) !important;
+}
+
+/* Low Power Mode */
+.low-power * {
+  animation: none !important;
+  transition: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
 }
