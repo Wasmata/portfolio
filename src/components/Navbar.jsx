@@ -147,7 +147,7 @@ const Navbar = ({ onOpenCard }) => {
                                 onMouseEnter={playHover}
                                 className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                             >
-                                <PaletteIcon size={18} />
+                                <Settings size={18} />
                             </button>
                             <AnimatePresence>
                                 {showThemes && (
@@ -155,7 +155,7 @@ const Navbar = ({ onOpenCard }) => {
                                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                                         animate={{ opacity: 1, scale: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                        className="absolute top-full right-0 mt-6 p-6 glass rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-white/20 dark:border-white/10"
+                                        className="absolute top-full right-0 mt-6 p-6 bg-white/90 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-slate-200 dark:border-white/10"
                                     >
                                         <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10">
                                             <span className="text-sm font-bold uppercase tracking-widest text-slate-500">Control Center</span>
@@ -164,7 +164,6 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* Themes */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Appearance</p>
                                             <div className="grid grid-cols-5 gap-3">
                                                 {Object.entries(themes).map(([key, theme]) => (
                                                     <button
