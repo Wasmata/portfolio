@@ -73,7 +73,7 @@ const ProjectDetails = () => {
                 {/* Back Button - Positioned safely */}
                 <Link
                     to="/#projects"
-                    className="absolute top-24 left-4 md:top-10 md:left-20 z-50 flex items-center gap-2 text-slate-700 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors uppercase tracking-widest text-xs font-bold bg-white/50 dark:bg-black/20 p-2 rounded-lg backdrop-blur-md"
+                    className="absolute top-24 left-6 md:top-32 md:left-20 z-50 flex items-center gap-2 text-slate-700 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors uppercase tracking-widest text-xs font-bold bg-white/50 dark:bg-black/20 p-2 rounded-lg backdrop-blur-md hover:bg-white/80 dark:hover:bg-black/40"
                 >
                     <ArrowLeft size={16} /> {t.project_details.back}
                 </Link>
