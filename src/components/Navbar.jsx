@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Code, Send, Palette as PaletteIcon, Moon, Sun, Menu, X, Terminal as TerminalIcon,
     Volume2, VolumeX, Settings, Type,
-    Activity, Battery, Monitor, Film, Grid, Cpu // New Icons
+    Activity, Battery, Monitor, Film, Grid, Cpu, Eye, Tv // New Icons
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
@@ -24,7 +24,9 @@ const Navbar = ({ onOpenCard }) => {
         showFPS, toggleFPS,
         lowPowerMode, toggleLowPower,
         filmGrain, toggleGrain,
+        scanlines, toggleScanlines,
         wireframeMode, toggleWireframe,
+        focusMode, toggleFocus,
         debugGrid, toggleHelper
     } = useTheme();
 
@@ -216,8 +218,14 @@ const Navbar = ({ onOpenCard }) => {
                                                 <button onClick={() => { playClick(); toggleGrain(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${filmGrain ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Film size={14} /> Grain
                                                 </button>
+                                                <button onClick={() => { playClick(); toggleScanlines(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${scanlines ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Tv size={14} /> CRT
+                                                </button>
+                                                <button onClick={() => { playClick(); toggleFocus(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${focusMode ? 'bg-indigo-500/10 border-indigo-500 text-indigo-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Eye size={14} /> Focus
+                                                </button>
                                                 <button onClick={() => { playClick(); toggleWireframe(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${wireframeMode ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
-                                                    <Cpu size={14} /> Wireframe
+                                                    <Cpu size={14} /> Matrix
                                                 </button>
                                                 <button onClick={() => { playClick(); toggleHelper(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${debugGrid ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Grid size={14} /> Grid
