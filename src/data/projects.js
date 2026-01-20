@@ -5,7 +5,7 @@ export const projectsData = {
             title: "SMA Anime",
             category: "Streaming & Lecture",
             image: {
-                light: "/projects/sma_light.png",
+                light: "/projects/sma_dark.png",
                 dark: "/projects/sma_dark.png"
             },
             tags: ["Django", "Tailwind CSS", "Python"],
@@ -49,7 +49,7 @@ export const projectsData = {
             title: "SMA Anime",
             category: "Streaming & Reading",
             image: {
-                light: "/projects/sma_light.png",
+                light: "/projects/sma_dark.png",
                 dark: "/projects/sma_dark.png"
             },
             tags: ["Django", "Tailwind CSS", "Python"],
