@@ -59,6 +59,16 @@ export const translations = {
       role: "Développeur Full Stack",
       scan_me: "Scannez-moi"
     },
+    project_details: {
+      back: "Retour",
+      about: "À propos du projet",
+      challenge: "Challenge",
+      solution: "Solution",
+      tech_stack: "Technologies",
+      cta_title: "Besoin d'un projet similaire ?",
+      cta_desc: "Je peux vous aider à construire des applications web performantes comme celle-ci.",
+      cta_btn: "Discutons-en"
+    },
     footer: {
       made_by: "Fait avec"
     }
@@ -118,6 +128,16 @@ export const translations = {
       copied: "Copied!",
       role: "Full Stack Developer",
       scan_me: "Scan Me"
+    },
+    project_details: {
+      back: "Back",
+      about: "About the Project",
+      challenge: "Challenge",
+      solution: "Solution",
+      tech_stack: "Tech Stack",
+      cta_title: "Need a similar project?",
+      cta_desc: "I can help you build high-performance web applications like this one.",
+      cta_btn: "Let's Talk"
     },
     footer: {
       made_by: "Made with"
