@@ -112,7 +112,7 @@ const Navbar = ({ onOpenCard }) => {
 
                         {/* Mobile Menu Toggle */}
                         <button
-                            className="md:hidden text-slate-600 dark:text-gray-300 hover:text-primary-500 transition-colors"
+                            className="md:hidden text-slate-600 dark:text-white hover:text-primary-500 transition-colors relative z-[60]"
                             onClick={() => { playClick(); setIsMobileMenuOpen(!isMobileMenuOpen); }}
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -155,17 +155,51 @@ const Navbar = ({ onOpenCard }) => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className="absolute top-full right-0 mt-6 p-4 glass rounded-xl flex flex-col gap-4 min-w-[240px] shadow-2xl z-50"
+                                        className="absolute top-full right-0 mt-6 p-5 glass rounded-2xl flex flex-col gap-6 min-w-[280px] shadow-2xl z-50"
                                     >
-                                        <div className="grid grid-cols-5 gap-2">
-                                            {Object.entries(themes).map(([key, theme]) => (
-                                                <button
-                                                    key={key}
-                                                    onClick={() => { playClick(); setCurrentTheme(key); }}
-                                                    className={`w-6 h-6 rounded-full border-2 transition-transform hover:scale-110 ${currentTheme === key ? 'border-white ring-2 ring-primary-500' : 'border-transparent'}`}
-                                                    style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
-                                                />
-                                            ))}
+                                        {/* Themes */}
+                                        <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Themes</p>
+                                            <div className="grid grid-cols-5 gap-2">
+                                                {Object.entries(themes).map(([key, theme]) => (
+                                                    <button
+                                                        key={key}
+                                                        onClick={() => { playClick(); setCurrentTheme(key); }}
+                                                        className={`w-8 h-8 rounded-full border-2 transition-transform hover:scale-110 ${currentTheme === key ? 'border-white ring-2 ring-primary-500' : 'border-transparent'}`}
+                                                        style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
+                                                        title={theme.name}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Fonts */}
+                                        <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Typography</p>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                {Object.entries(fonts).map(([key, font]) => (
+                                                    <button
+                                                        key={key}
+                                                        onClick={() => { playClick(); setCurrentFont(key); }}
+                                                        className={`px-3 py-2 rounded-lg text-xs font-medium border transition-colors ${currentFont === key ? 'bg-primary-500 text-white border-primary-500' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-gray-400 border-transparent hover:bg-slate-200 dark:hover:bg-white/10'}`}
+                                                        style={{ fontFamily: font.value }}
+                                                    >
+                                                        {font.name}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Toggles */}
+                                        <div className="space-y-2">
+                                            <button onClick={() => { playClick(); toggleCursor(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${enableCursor ? 'text-primary-500 bg-primary-500/10' : 'text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                <span className="text-sm font-medium">Custom Cursor</span>
+                                                <div className={`w-2 h-2 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                            </button>
+                                            <button onClick={() => { playClick(); toggleSmoothScroll(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${enableSmoothScroll ? 'text-primary-500 bg-primary-500/10' : 'text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                <span className="text-sm font-medium">Smooth Scroll</span>
+                                                <div className={`w-2 h-2 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                            </button>
                                         </div>
                                     </motion.div>
                                 )}
@@ -191,17 +225,17 @@ const Navbar = ({ onOpenCard }) => {
                         animate="visible"
                         exit="exit"
                         variants={containerVariants}
-                        className="fixed inset-0 z-40 bg-white/95 dark:bg-[#030303]/98 backdrop-blur-2xl md:hidden flex flex-col pt-32 p-8"
+                        className="fixed inset-0 z-40 bg-white dark:bg-[#050505] md:hidden flex flex-col pt-32 p-6 overflow-y-auto"
                     >
                         {/* MAIN LINKS */}
-                        <div className="flex-1 flex flex-col justify-center gap-8">
+                        <div className="flex-1 flex flex-col justify-start gap-6">
                             {['hero', 'about', 'projects', 'services', 'contact'].map((item) => (
                                 <motion.a
                                     key={item}
                                     href={`#${item}`}
                                     variants={itemVariants}
                                     onClick={(e) => handleNavClick(e, `#${item}`)}
-                                    className={`text-4xl sm:text-5xl font-black uppercase tracking-tight ${item === 'contact' ? 'text-primary-500' : 'text-slate-900 dark:text-white hover:text-slate-500 dark:hover:text-gray-400'} transition-colors`}
+                                    className={`text-4xl xs:text-5xl font-black uppercase tracking-tighter ${item === 'contact' ? 'text-primary-500' : 'text-slate-900 dark:text-white'} transition-colors`}
                                 >
                                     {t.nav[item === 'cta' ? 'contact' : item] || (item === 'hero' ? 'Home' : item)}
                                 </motion.a>
@@ -209,27 +243,24 @@ const Navbar = ({ onOpenCard }) => {
                         </div>
 
                         {/* FOOTER CONTROLS */}
-                        <motion.div variants={itemVariants} className="mt-8 pt-8 border-t border-slate-200 dark:border-white/10">
+                        <motion.div variants={itemVariants} className="mt-8 pt-8 border-t border-slate-100 dark:border-white/10 pb-10">
 
                             {/* Primary Controls Row */}
-                            <div className="flex items-center justify-between mb-8">
-                                <div className="flex gap-4">
-                                    <button onClick={toggleMode} className="p-3 bg-slate-100 dark:bg-white/10 rounded-full text-slate-900 dark:text-white">
-                                        {mode === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex gap-3">
+                                    <button onClick={toggleMode} className="p-3 bg-slate-100 dark:bg-white/5 rounded-full text-slate-900 dark:text-white border border-slate-200 dark:border-white/10">
+                                        {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                                     </button>
-                                    <button onClick={toggleLanguage} className="w-12 h-12 flex items-center justify-center bg-slate-100 dark:bg-white/10 rounded-full font-bold text-slate-900 dark:text-white">
+                                    <button onClick={toggleLanguage} className="w-12 h-[46px] flex items-center justify-center bg-slate-100 dark:bg-white/5 rounded-full font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 text-sm">
                                         {language === 'fr' ? 'EN' : 'FR'}
-                                    </button>
-                                    <button onClick={toggleSounds} className="p-3 bg-slate-100 dark:bg-white/10 rounded-full text-slate-900 dark:text-white">
-                                        {enableSounds ? <Volume2 size={24} /> : <VolumeX size={24} />}
                                     </button>
                                 </div>
 
                                 <button
                                     onClick={() => setShowMobileSettings(!showMobileSettings)}
-                                    className={`flex items-center gap-2 text-sm font-bold uppercase tracking-widest ${showMobileSettings ? 'text-primary-500' : 'text-slate-500'}`}
+                                    className={`flex items-center gap-2 text-sm font-bold uppercase tracking-widest px-4 py-3 rounded-full border transition-colors ${showMobileSettings ? 'bg-primary-500 text-white border-primary-500' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-gray-400 border-slate-200 dark:border-white/10'}`}
                                 >
-                                    <Settings size={18} /> Customize
+                                    <Settings size={16} /> Customize
                                 </button>
                             </div>
 
@@ -240,17 +271,17 @@ const Navbar = ({ onOpenCard }) => {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: 'auto', opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        className="overflow-hidden space-y-6"
+                                        className="overflow-hidden space-y-8 bg-slate-50 dark:bg-white/5 p-6 rounded-2xl border border-slate-100 dark:border-white/5"
                                     >
                                         {/* Themes */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase">Theme Active</p>
-                                            <div className="flex gap-3 overflow-x-auto pb-2 noscroll">
+                                            <p className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">Themes</p>
+                                            <div className="flex flex-wrap gap-3">
                                                 {Object.entries(themes).map(([key, theme]) => (
                                                     <button
                                                         key={key}
                                                         onClick={() => setCurrentTheme(key)}
-                                                        className={`w-10 h-10 rounded-full border-2 flex-shrink-0 ${currentTheme === key ? 'border-white ring-2 ring-primary-500' : 'border-transparent'}`}
+                                                        className={`w-10 h-10 rounded-full border-2 ${currentTheme === key ? 'border-white ring-2 ring-primary-500 scale-110' : 'border-transparent'} shadow-sm`}
                                                         style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
                                                     />
                                                 ))}
@@ -259,13 +290,13 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* Fonts */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase">Typography</p>
-                                            <div className="flex gap-3 overflow-x-auto pb-2 noscroll">
+                                            <p className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">Typography</p>
+                                            <div className="flex flex-wrap gap-2">
                                                 {Object.entries(fonts).map(([key, font]) => (
                                                     <button
                                                         key={key}
                                                         onClick={() => setCurrentFont(key)}
-                                                        className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap border ${currentFont === key ? 'bg-primary-500 text-white border-primary-500' : 'bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-300 border-transparent'}`}
+                                                        className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${currentFont === key ? 'bg-primary-500 text-white border-primary-500 shadow-lg' : 'bg-white dark:bg-white/10 text-slate-700 dark:text-gray-300 border-transparent'}`}
                                                         style={{ fontFamily: font.value }}
                                                     >
                                                         {font.name}
@@ -275,14 +306,10 @@ const Navbar = ({ onOpenCard }) => {
                                         </div>
 
                                         {/* Toggles */}
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <button onClick={toggleCursor} className={`flex items-center justify-between p-3 rounded-xl border ${enableCursor ? 'border-primary-500 text-primary-500 bg-primary-500/10' : 'border-slate-200 dark:border-white/10'}`}>
+                                        <div className="grid grid-cols-1 gap-3">
+                                            <button onClick={toggleCursor} className={`flex items-center justify-between p-4 rounded-xl border transition-all ${enableCursor ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-white dark:bg-white/5 border-transparent text-slate-600 dark:text-gray-400'}`}>
                                                 <span className="text-sm font-bold">Custom Cursor</span>
-                                                <div className={`w-2 h-2 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300'}`}></div>
-                                            </button>
-                                            <button onClick={toggleSmoothScroll} className={`flex items-center justify-between p-3 rounded-xl border ${enableSmoothScroll ? 'border-primary-500 text-primary-500 bg-primary-500/10' : 'border-slate-200 dark:border-white/10'}`}>
-                                                <span className="text-sm font-bold">Smooth Scroll</span>
-                                                <div className={`w-2 h-2 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300'}`}></div>
+                                                <div className={`w-3 h-3 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
                                             </button>
                                         </div>
                                     </motion.div>
