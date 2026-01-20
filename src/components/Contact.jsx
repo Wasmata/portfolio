@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { Turnstile } from '@marsidev/react-turnstile'
 
 const Contact = () => {
-    const { t } = useLanguage()
+    const { t, language } = useLanguage()
 
 
     const [formData, setFormData] = React.useState({
@@ -63,7 +63,7 @@ const Contact = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ...formData, turnstileToken }),
+                body: JSON.stringify({ ...formData, turnstileToken, language }),
             });
 
             if (response.ok) {
