@@ -14,35 +14,50 @@ import FPSCounter from './components/Effects/FPSCounter'
 import VisualEffects from './components/Effects/VisualEffects'
 import { useTheme } from './context/ThemeContext'
 import Home from './pages/Home'
-const [isCardOpen, setIsCardOpen] = useState(false)
-const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
-const location = useLocation()
+import ProjectDetails from './pages/ProjectDetails'
 
-// ... existing useEffect
+function App() {
+  const [isCardOpen, setIsCardOpen] = useState(false)
+  const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
+  const location = useLocation()
 
-return (
-  <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>
-    <VisualEffects />
-    {showFPS && <FPSCounter />}
-    <CustomCursor />
-    {enableScrollProgress && <ScrollProgress />}
-    {enableSmoothScroll && <SmoothScroll />}
+  // Scroll to top or to hash on route change
+  useEffect(() => {
+    if (location.hash) {
+      const elem = document.querySelector(location.hash);
+      if (elem) {
+        setTimeout(() => {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash])
 
-    <Navbar onOpenCard={() => setIsCardOpen(true)} />
+  return (
+    <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>
+      <VisualEffects />
+      {showFPS && <FPSCounter />}
+      <CustomCursor />
+      {enableScrollProgress && <ScrollProgress />}
+      {enableSmoothScroll && <SmoothScroll />}
 
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/project/:id" element={<ProjectDetails />} />
-      </Routes>
-    </AnimatePresence>
+      <Navbar onOpenCard={() => setIsCardOpen(true)} />
 
-    <Footer />
-    <DigitalCard isOpen={isCardOpen} onClose={() => setIsCardOpen(false)} />
-    <Analytics />
-    <SpeedInsights />
-  </div>
-)
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
+        </Routes>
+      </AnimatePresence>
+
+      <Footer />
+      <DigitalCard isOpen={isCardOpen} onClose={() => setIsCardOpen(false)} />
+      <Analytics />
+      <SpeedInsights />
+    </div>
+  )
 }
 
 export default App
