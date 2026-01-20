@@ -51,11 +51,20 @@ const ProjectDetails = () => {
             <div className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-black">
 
                 {/* Background Image */}
+                {/* Background Image */}
                 <motion.div
-                    style={{ scale: heroScale, opacity: heroOpacity }}
+                    style={{ opacity: heroOpacity }}
                     className="absolute inset-0 z-0"
                 >
-                    <img
+                    <motion.img
+                        initial={{ scale: 1 }}
+                        animate={{ scale: 1.15 }}
+                        transition={{
+                            duration: 20,
+                            ease: "linear",
+                            repeat: Infinity,
+                            repeatType: "mirror"
+                        }}
                         src={mode === 'dark' ? project.image.dark : project.image.light}
                         alt={project.title}
                         className="w-full h-full object-cover opacity-80 dark:opacity-50 blur-sm brightness-90 dark:brightness-50"
