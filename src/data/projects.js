@@ -31,16 +31,16 @@ export const projectsData = {
         {
             id: "wassihost",
             title: "WassiHost",
-            category: "Hébergement & Réseaux",
+            category: "DevOps & Cloud",
             image: {
                 light: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop",
                 dark: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop"
             },
-            tags: ["Hosting", "Pterodactyl", "Linux", "Networking"],
+            tags: ["Docker", "Linux", "Networking", "Self-Hosting"],
             links: { demo: "https://panel.wassihost.com/", github: null },
-            description: "Hébergeur web et serveurs de jeux. Je gère tout de A à Z : création du site, hébergement, noms de domaine et infrastructure réseau.",
-            challenge: "Mettre en place une infrastructure d'hébergement sécurisée, automatisée et capable d'isoler les environnements des clients (serveurs de jeux) pour éviter les interférences.",
-            solution: "Utilisation de Pterodactyl pour la gestion des conteneurs de jeux (Docker). Configuration de serveurs Linux avec des règles de sécurité strictes (pare-feu, isolation réseau) pour garantir la stabilité et la sécurité des services hébergés."
+            description: "Projet né d'une frustration : les limitations des hébergeurs classiques. Ce qui devait être une simple solution pour mes projets perso est devenu mon laboratoire d'apprentissage infrastructure.",
+            challenge: "S'émanciper des solutions clés en main (Vercel, Heroku) pour comprendre ce qui se passe sous le capot. Gérer la sécurité, les reverse-proxies, les certificats SSL et l'orchestration de conteneurs manuellement.",
+            solution: "J'ai acquis une maîtrise totale de la chaîne de mise en production : du serveur 'bare metal' à la configuration réseau avancée, transformant une contrainte en une véritable expertise DevOps aujourd'hui applicable à n'importe quel projet."
         }
     ],
     en: [
@@ -75,16 +75,16 @@ export const projectsData = {
         {
             id: "wassihost",
             title: "WassiHost",
-            category: "Hosting & Networking",
+            category: "DevOps & Cloud",
             image: {
                 light: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop",
                 dark: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop"
             },
-            tags: ["Hosting", "Pterodactyl", "Linux", "Networking"],
+            tags: ["Docker", "Linux", "Networking", "Self-Hosting"],
             links: { demo: "https://panel.wassihost.com/", github: null },
-            description: "Web and game server hosting provider. I handle everything from A to Z: website creation, hosting, domain names, and network infrastructure.",
-            challenge: "Setting up a secure, automated hosting infrastructure capable of isolating client environments (game servers) to prevent interference.",
-            solution: "Used Pterodactyl for game container management (Docker). Configured Linux servers with strict security rules (firewall, network isolation) to ensure the stability and security of hosted services."
+            description: "Born from frustration with classic hosting limitations. What started as a personal solution for my own apps became my infrastructure learning lab.",
+            challenge: "Breaking free from turnkey solutions (Vercel, Heroku) to truly understand what happens under the hood. Managing security, reverse-proxies, SSL certificates, and container orchestration manually.",
+            solution: "I gained complete mastery of the production pipeline: from 'bare metal' servers to advanced network configuration, turning a constraint into real DevOps expertise now applicable to any project."
         }
     ]
 }
