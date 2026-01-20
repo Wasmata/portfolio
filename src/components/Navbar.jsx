@@ -141,14 +141,6 @@ const Navbar = ({ onOpenCard }) => {
                             {mode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                         </button>
 
-                        <button
-                            onClick={() => { playClick(); toggleSounds(); }}
-                            onMouseEnter={playHover}
-                            className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
-                        >
-                            {enableSounds ? <Volume2 size={18} /> : <VolumeX size={18} />}
-                        </button>
-
                         <div className="relative">
                             <button
                                 onClick={() => { playClick(); setShowThemes(!showThemes); }}
@@ -160,20 +152,25 @@ const Navbar = ({ onOpenCard }) => {
                             <AnimatePresence>
                                 {showThemes && (
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        className="absolute top-full right-0 mt-6 p-5 glass rounded-2xl flex flex-col gap-6 min-w-[280px] shadow-2xl z-50"
+                                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                                        className="absolute top-full right-0 mt-6 p-6 glass rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-white/20 dark:border-white/10"
                                     >
+                                        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10">
+                                            <span className="text-sm font-bold uppercase tracking-widest text-slate-500">Control Center</span>
+                                            <span className="text-xs text-slate-400">V2.0</span>
+                                        </div>
+
                                         {/* Themes */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Themes</p>
-                                            <div className="grid grid-cols-5 gap-2">
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Appearance</p>
+                                            <div className="grid grid-cols-5 gap-3">
                                                 {Object.entries(themes).map(([key, theme]) => (
                                                     <button
                                                         key={key}
                                                         onClick={() => { playClick(); setCurrentTheme(key); }}
-                                                        className={`w-8 h-8 rounded-full border-2 transition-transform hover:scale-110 ${currentTheme === key ? 'border-white ring-2 ring-primary-500' : 'border-transparent'}`}
+                                                        className={`w-10 h-10 rounded-full border-2 transition-transform hover:scale-110 ${currentTheme === key ? 'border-white ring-2 ring-primary-500 shadow-lg scale-110' : 'border-transparent'}`}
                                                         style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
                                                         title={theme.name}
                                                     />
@@ -181,7 +178,7 @@ const Navbar = ({ onOpenCard }) => {
                                             </div>
                                         </div>
 
-                                        {/* Fonts */}
+                                        {/* Typography */}
                                         <div>
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Typography</p>
                                             <div className="grid grid-cols-2 gap-2">
@@ -198,16 +195,39 @@ const Navbar = ({ onOpenCard }) => {
                                             </div>
                                         </div>
 
-                                        {/* Toggles */}
-                                        <div className="space-y-2">
-                                            <button onClick={() => { playClick(); toggleCursor(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${enableCursor ? 'text-primary-500 bg-primary-500/10' : 'text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
-                                                <span className="text-sm font-medium">Custom Cursor</span>
-                                                <div className={`w-2 h-2 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
-                                            </button>
-                                            <button onClick={() => { playClick(); toggleSmoothScroll(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors ${enableSmoothScroll ? 'text-primary-500 bg-primary-500/10' : 'text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
-                                                <span className="text-sm font-medium">Smooth Scroll</span>
-                                                <div className={`w-2 h-2 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
-                                            </button>
+                                        {/* System/Interface Toggles */}
+                                        <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Interface & UX</p>
+                                            <div className="space-y-2">
+                                                <button onClick={() => { playClick(); toggleSounds(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableSounds ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                    <div className="flex items-center gap-3">
+                                                        {enableSounds ? <Volume2 size={16} /> : <VolumeX size={16} />}
+                                                        <span className="text-sm font-medium">Sound Effects</span>
+                                                    </div>
+                                                    <div className={`w-2 h-2 rounded-full ${enableSounds ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                </button>
+
+                                                <button onClick={() => { playClick(); toggleCursor(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableCursor ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-sm font-medium">Custom Cursor</span>
+                                                    </div>
+                                                    <div className={`w-2 h-2 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                </button>
+
+                                                <button onClick={() => { playClick(); toggleSmoothScroll(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableSmoothScroll ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-sm font-medium">Smooth Scroll</span>
+                                                    </div>
+                                                    <div className={`w-2 h-2 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                </button>
+
+                                                <button onClick={() => { playClick(); toggleScrollProgress(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableScrollProgress ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-sm font-medium">Scroll Progress</span>
+                                                    </div>
+                                                    <div className={`w-2 h-2 rounded-full ${enableScrollProgress ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                </button>
+                                            </div>
                                         </div>
                                     </motion.div>
                                 )}
