@@ -32,7 +32,7 @@ const VisualEffects = () => {
         <>
             {/* FILM GRAIN - Increased Opacity / Changed Blend */}
             {filmGrain && !lowPowerMode && (
-                <div className="fixed inset-0 z-[9990] pointer-events-none opacity-[0.20] mix-blend-hard-light w-full h-full overflow-hidden">
+                <div className="fixed inset-0 z-40 pointer-events-none opacity-[0.20] mix-blend-hard-light w-full h-full overflow-hidden">
                     <svg className="w-full h-full">
                         <filter id="noise">
                             <feTurbulence
@@ -49,12 +49,12 @@ const VisualEffects = () => {
 
             {/* CRT SCANLINES - Boosted Visibility */}
             {scanlines && !lowPowerMode && (
-                <div className="fixed inset-0 z-[9990] pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-80" />
+                <div className="fixed inset-0 z-40 pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-80" />
             )}
 
             {/* DEBUG GRID */}
             {debugGrid && (
-                <div className="fixed inset-0 z-[9991] pointer-events-none w-full h-full flex justify-center opacity-30">
+                <div className="fixed inset-0 z-40 pointer-events-none w-full h-full flex justify-center opacity-30">
                     <div className="w-full max-w-[1400px] grid grid-cols-4 md:grid-cols-12 gap-4 px-4 h-full">
                         {Array.from({ length: 12 }).map((_, i) => (
                             <div key={i} className="h-full bg-red-500/10 dark:bg-cyan-500/10 border-x border-red-500/20 dark:border-cyan-500/20"></div>
