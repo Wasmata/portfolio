@@ -57,21 +57,52 @@ export default async function handler(req, res) {
             ? `Confirmation de réception - Wassim Maataoui`
             : `Message Received - Wassim Maataoui`;
 
-        const userHtml = isFr
-            ? `
-                <h3>Bonjour ${firstName},</h3>
-                <p>Merci de m'avoir contacté. J'ai bien reçu votre message et je vous répondrai dans les meilleurs délais (généralement sous 24h).</p>
-                <p>Cordialement,<br><strong>Wassim Maataoui</strong></p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                <p style="color: #666; font-size: 12px;">Ceci est un message automatique, merci de ne pas y répondre directement.</p>
-            `
-            : `
-                <h3>Hello ${firstName},</h3>
-                <p>Thank you for contacting me. I have received your message and will get back to you as soon as possible (usually within 24h).</p>
-                <p>Best regards,<br><strong>Wassim Maataoui</strong></p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                <p style="color: #666; font-size: 12px;">This is an automated message, please do not reply directly.</p>
-            `;
+        // Modern Email Template
+        const userHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body { margin: 0; padding: 0; background-color: #f4f4f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+                .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+                .header { background: #18181b; padding: 32px 20px; text-align: center; }
+                .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px; }
+                .content { padding: 40px 32px; color: #3f3f46; line-height: 1.6; font-size: 16px; }
+                .button { display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; margin-top: 24px; }
+                .footer { background: #fafafa; padding: 24px; text-align: center; color: #a1a1aa; font-size: 12px; border-top: 1px solid #f4f4f5; }
+                .info-item { margin-bottom: 8px; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>Wassim Maataoui</h1>
+                </div>
+                <div class="content">
+                    ${isFr ? `
+                        <h2 style="margin-top: 0; color: #18181b;">Bonjour ${firstName},</h2>
+                        <p>Merci de m'avoir contacté ! 👋</p>
+                        <p>J'ai bien reçu votre message. Je suis actuellement en train de le lire et je reviendrai vers vous très rapidement (généralement sous 24h).</p>
+                        <p>En attendant, n'hésitez pas à jeter un œil à mes derniers projets.</p>
+                        <center><a href="https://wassidev.fr" class="button">Voir mon Portfolio</a></center>
+                    ` : `
+                        <h2 style="margin-top: 0; color: #18181b;">Hello ${firstName},</h2>
+                        <p>Thanks for reaching out! 👋</p>
+                        <p>I have received your message safely. I am currently reading it and will get back to you very soon (usually within 24h).</p>
+                        <p>In the meantime, feel free to check out my latest projects.</p>
+                        <center><a href="https://wassidev.fr" class="button">Visit Portfolio</a></center>
+                    `}
+                </div>
+                <div class="footer">
+                    <p>&copy; ${new Date().getFullYear()} Wassim Maataoui. All rights reserved.</p>
+                    <p>Paris, France • contact@wassidev.fr</p>
+                </div>
+            </div>
+        </body>
+        </html>
+        `;
 
         // Send both emails in parallel
         const [adminSend, userSend] = await Promise.allSettled([
