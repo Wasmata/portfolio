@@ -147,7 +147,12 @@ const Navbar = ({ onOpenCard }) => {
                                 onMouseEnter={playHover}
                                 className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                             >
-                                <Settings size={18} />
+                                <motion.div
+                                    animate={{ rotate: showThemes ? 180 : 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                >
+                                    <Settings size={18} />
+                                </motion.div>
                             </button>
                             <AnimatePresence>
                                 {showThemes && (
@@ -305,7 +310,6 @@ const Navbar = ({ onOpenCard }) => {
                                     >
                                         {/* Themes */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">Themes</p>
                                             <div className="flex flex-wrap gap-3">
                                                 {Object.entries(themes).map(([key, theme]) => (
                                                     <button
