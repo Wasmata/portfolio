@@ -1,44 +1,61 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useSpring, useMotionTemplate, useMotionValue } from 'framer-motion'
-import { ArrowLeft, ExternalLink, Github, Zap, Target, Cpu, ArrowUpRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Github, Zap, Target, Cpu, ArrowUpRight, Sparkles, Layers } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { projectsData } from '../data/projects'
 
-// --- SPOTLIGHT CARD COMPONENT (Inline for specialized usage) ---
-const BentoCard = ({ children, className = "", delay = 0 }) => {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+// --- 3D TILT INFO CARD (Ultra Premium) ---
+const TiltBentoCard = ({ children, className = "", delay = 0 }) => {
+    const ref = useRef(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
 
-    function handleMouseMove({ currentTarget, clientX, clientY }) {
-        let { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
+    const xSpring = useSpring(x);
+    const ySpring = useSpring(y);
+
+    const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
+
+    const handleMouseMove = (e) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+        x.set(yPct * -10); // Tilt strength
+        y.set(xPct * 10);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay }}
-            className={`group relative border border-slate-200 dark:border-white/10 bg-white dark:bg-black overflow-hidden rounded-3xl ${className}`}
+            ref={ref}
             onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay, type: "spring", stiffness: 100 }}
+            style={{ transformStyle: "preserve-3d", transform }}
+            className={`relative group rounded-3xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-black/50 backdrop-blur-xl overflow-hidden shadow-2xl hover:shadow-primary-500/20 transition-shadow ${className}`}
         >
-            <motion.div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
-                style={{
-                    background: useMotionTemplate`
-            radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              rgba(14, 165, 233, 0.15),
-              transparent 80%
-            )
-          `,
-                }}
-            />
-            <div className="relative h-full">{children}</div>
+            {/* Grain Texture Overlay */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+
+            {/* Glossy Reflection Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+            <div style={{ transform: "translateZ(20px)" }} className="relative h-full">
+                {children}
+            </div>
         </motion.div>
     );
 };
@@ -50,8 +67,9 @@ const ProjectDetails = () => {
     const { scrollY } = useScroll()
 
     // Parallax & Scale effects
-    const heroScale = useTransform(scrollY, [0, 500], [1, 1.1])
-    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.3])
+    const heroScale = useTransform(scrollY, [0, 500], [1, 1.2])
+    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0])
+    const textY = useTransform(scrollY, [0, 500], [0, 200])
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -62,12 +80,12 @@ const ProjectDetails = () => {
     if (!project) return null;
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-black transition-colors selection:bg-primary-500 selection:text-white">
+        <div className="min-h-screen bg-[#030303] text-white selection:bg-primary-500 selection:text-white overflow-hidden perspective-1000">
 
-            {/* --- 1. HUGE HERO SECTION --- */}
-            <div className="relative h-screen w-full flex items-center overflow-hidden">
+            {/* --- 1. CINEMATIC HERO SECTION --- */}
+            <div className="relative h-[110vh] w-full flex items-center justify-center overflow-hidden">
 
-                {/* Dynamic Background */}
+                {/* Dynamic Background Image */}
                 <motion.div
                     style={{ scale: heroScale, opacity: heroOpacity }}
                     className="absolute inset-0 z-0"
@@ -75,135 +93,148 @@ const ProjectDetails = () => {
                     <img
                         src={mode === 'dark' ? project.image.dark : project.image.light}
                         alt={project.title}
-                        className="w-full h-full object-cover filter blur-sm scale-110 opacity-30 dark:opacity-40"
+                        className="w-full h-full object-cover opacity-40 brightness-50"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-transparent to-slate-50 dark:from-black/80 dark:to-black"></div>
+                    {/* Vignette & Gradient Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-[#030303]"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#030303_100%)]"></div>
+                    {/* Animated Grain */}
+                    <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-pulse"></div>
                 </motion.div>
 
-                <div className="container mx-auto px-6 relative z-10 pt-20">
+                <div className="container mx-auto px-6 relative z-10 text-center">
                     <Link
                         to="/#projects"
-                        className="inline-flex items-center gap-2 text-slate-500 hover:text-black dark:text-gray-400 dark:hover:text-white mb-8 transition-colors uppercase tracking-widest text-xs font-bold"
+                        className="absolute top-10 left-6 md:left-20 flex items-center gap-2 text-white/50 hover:text-white transition-colors uppercase tracking-[0.2em] text-xs font-bold"
                     >
-                        <ArrowLeft size={16} /> {t.project_details.back}
+                        <ArrowLeft size={14} /> {t.project_details.back}
                     </Link>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        {/* Category Badge */}
-                        <span className="inline-block px-4 py-2 bg-gradient-to-r from-primary-500 to-purple-600 text-white rounded-full text-sm font-bold shadow-lg shadow-primary-500/30 mb-6">
-                            {project.category}
-                        </span>
+                    <motion.div style={{ y: textY }}>
+                        {/* Floating Badge */}
+                        <motion.div
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                            <span className="text-sm font-medium tracking-widest uppercase text-white/80">{project.category}</span>
+                        </motion.div>
 
-                        {/* Massive Title */}
-                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-slate-900 dark:text-white tracking-tighter mb-8 leading-[0.9]">
+                        {/* MASSIVE 3D TITLE */}
+                        <motion.h1
+                            initial={{ opacity: 0, scale: 0.8, rotateX: 20 }}
+                            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                            className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mix-blend-overlay"
+                            style={{ textShadow: "0px 20px 50px rgba(0,0,0,0.5)" }}
+                        >
                             {project.title.toUpperCase()}
-                        </h1>
+                        </motion.h1>
 
-                        {/* Action Buttons */}
-                        <div className="flex flex-wrap gap-4 mt-8">
-                            <a
-                                href={project.links.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group bg-slate-900 dark:bg-white text-white dark:text-black px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 hover:scale-105 transition-transform"
-                            >
-                                Live Demo <ArrowUpRight size={24} className="group-hover:rotate-45 transition-transform" />
+                        {/* Hero Buttons */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            className="flex justify-center gap-6"
+                        >
+                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden hover:scale-110 transition-transform duration-300">
+                                <span className="relative z-10 flex items-center gap-2">Live Site <ArrowUpRight size={20} /></span>
+                                <div className="absolute inset-0 bg-primary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
                             </a>
                             {project.links.github && (
-                                <a
-                                    href={project.links.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="px-8 py-4 rounded-full font-bold text-lg border-2 border-slate-900 dark:border-white text-slate-900 dark:text-white flex items-center gap-3 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
-                                >
-                                    <Github size={24} /> Code
+                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full font-bold text-lg border border-white/20 text-white hover:bg-white/10 transition-colors backdrop-blur-sm flex items-center gap-2">
+                                    <Github size={20} /> Code
                                 </a>
                             )}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* --- 2. THE BENTO GRID (The "WOW" Part) --- */}
-            <div className="container mx-auto px-6 pb-32 -mt-32 relative z-20">
-                <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6">
+            {/* --- 2. THE TILT BENTO GRID (The "MAX WOW" Part) --- */}
+            <div className="container mx-auto px-6 py-20 relative z-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    {/* A. DESCRIPTION (Big Card) - Cols 8 */}
-                    <BentoCard className="md:col-span-6 lg:col-span-8 p-10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border-white/20">
-                        <Sparkles className="text-amber-400 mb-6 h-10 w-10" />
-                        <h2 className="text-3xl font-bold mb-6 text-slate-900 dark:text-white">{t.project_details.about}</h2>
-                        <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-300 leading-relaxed font-light">
-                            {project.description}
-                        </p>
-                    </BentoCard>
+                    {/* A. DESCRIPTION (Wide Card) */}
+                    <div className="lg:col-span-2">
+                        <TiltBentoCard className="h-full p-10 bg-gradient-to-br from-zinc-900/80 to-black/80 border-white/10">
+                            <Sparkles className="text-yellow-400 mb-6 w-12 h-12" />
+                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">{t.project_details.about}</h2>
+                            <p className="text-xl text-gray-300 leading-relaxed font-light">
+                                {project.description}
+                            </p>
+                        </TiltBentoCard>
+                    </div>
 
-                    {/* B. TECH STACK (Tall Card) - Cols 4 */}
-                    <BentoCard className="md:col-span-6 lg:col-span-4 p-8 bg-slate-100/50 dark:bg-zinc-900/50" delay={0.1}>
-                        <div className="flex items-center gap-3 mb-6">
-                            <Cpu className="text-primary-500" />
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t.project_details.tech_stack}</h3>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag, i) => (
-                                <span key={i} className="px-4 py-2 bg-white dark:bg-black border border-slate-200 dark:border-white/10 rounded-xl text-sm font-semibold text-slate-700 dark:text-gray-300 shadow-sm">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </BentoCard>
+                    {/* B. TECH STACK (Tall Card) */}
+                    <div className="lg:row-span-2">
+                        <TiltBentoCard className="h-full p-8 bg-zinc-900/40 border-primary-500/20" delay={0.2}>
+                            <div className="w-12 h-12 bg-primary-500/20 rounded-2xl flex items-center justify-center mb-6">
+                                <Layers className="text-primary-400" size={24} />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-6 text-white">{t.project_details.tech_stack}</h3>
+                            <div className="flex flex-col gap-3">
+                                {project.tags.map((tag, i) => (
+                                    <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-default">
+                                        <span className="font-mono text-primary-200">{tag}</span>
+                                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </TiltBentoCard>
+                    </div>
 
-                    {/* C. CHALLENGE (Medium Card) - Cols 6 */}
-                    <BentoCard className="md:col-span-6 p-8 bg-red-50/50 dark:bg-red-900/10 border-red-200 dark:border-red-500/20" delay={0.2}>
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="p-3 bg-red-500 rounded-xl text-white shadow-lg shadow-red-500/30">
-                                <Target size={24} />
-                            </span>
-                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.project_details.challenge}</h3>
-                        </div>
-                        <p className="text-slate-600 dark:text-gray-300 text-lg leading-relaxed mt-4">
+                    {/* C. CHALLENGE */}
+                    <TiltBentoCard className="p-8 bg-zinc-900/60 border-red-500/20" delay={0.3}>
+                        <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-3">
+                            <Target size={24} /> {t.project_details.challenge}
+                        </h3>
+                        <p className="text-gray-400 leading-relaxed">
                             {project.challenge}
                         </p>
-                    </BentoCard>
+                    </TiltBentoCard>
 
-                    {/* D. SOLUTION (Medium Card) - Cols 6 */}
-                    <BentoCard className="md:col-span-6 p-8 bg-emerald-50/50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-500/20" delay={0.3}>
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="p-3 bg-emerald-500 rounded-xl text-white shadow-lg shadow-emerald-500/30">
-                                <Zap size={24} />
-                            </span>
-                            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{t.project_details.solution}</h3>
-                        </div>
-                        <p className="text-slate-600 dark:text-gray-300 text-lg leading-relaxed mt-4">
+                    {/* D. SOLUTION */}
+                    <TiltBentoCard className="p-8 bg-zinc-900/60 border-emerald-500/20" delay={0.4}>
+                        <h3 className="text-xl font-bold text-emerald-400 mb-4 flex items-center gap-3">
+                            <Zap size={24} /> {t.project_details.solution}
+                        </h3>
+                        <p className="text-gray-400 leading-relaxed">
                             {project.solution}
                         </p>
-                    </BentoCard>
+                    </TiltBentoCard>
 
-                    {/* E. CTA (Full Width) - Cols 12 */}
-                    <BentoCard className="col-span-1 md:col-span-12 p-12 bg-gradient-to-r from-slate-900 to-slate-800 text-white overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8" delay={0.4}>
-                        {/* Abstract Shape */}
-                        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+                    {/* E. CTA (Full Width) */}
+                    <div className="lg:col-span-3 mt-8">
+                        <TiltBentoCard className="relative p-12 overflow-hidden bg-white text-black" delay={0.5}>
+                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary-400 to-purple-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
 
-                        <div className="relative z-10 max-w-2xl">
-                            <h3 className="text-3xl md:text-4xl font-bold mb-4">{t.project_details.cta_title}</h3>
-                            <p className="text-slate-300 text-lg">{t.project_details.cta_desc}</p>
-                        </div>
+                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                                <div>
+                                    <h3 className="text-4xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-black to-slate-600">
+                                        {t.project_details.cta_title}
+                                    </h3>
+                                    <p className="text-slate-600 text-lg font-medium">{t.project_details.cta_desc}</p>
+                                </div>
 
-                        <div className="relative z-10">
-                            <Link
-                                to="/#contact"
-                                className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-50 transition-colors hover:scale-105 transform duration-300"
-                            >
-                                {t.project_details.cta_btn} <ArrowUpRight size={20} />
-                            </Link>
-                        </div>
-                    </BentoCard>
+                                <Link
+                                    to="/#contact"
+                                    className="px-10 py-5 bg-black text-white rounded-full font-bold text-xl hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/20 transition-all flex items-center gap-3"
+                                >
+                                    {t.project_details.cta_btn} <ArrowUpRight />
+                                </Link>
+                            </div>
+                        </TiltBentoCard>
+                    </div>
 
                 </div>
             </div>
+
+            {/* Footer space */}
+            <div className="h-20"></div>
         </div>
     )
 }
