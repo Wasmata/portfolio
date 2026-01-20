@@ -16,9 +16,9 @@ export const translations = {
       headline_1: "Création d'Expériences",
       headline_2: "Digitales Uniques",
       description_pre: "Bonjour, je suis",
-      description_post: ". Je conçois des applications web innovantes, performantes et esthétiques.",
-      cta_projects: "Voir mes projets",
-      cta_contact: "Me contacter"
+      description_post: ". J'accompagne les entreprises et créateurs dans la conception de solutions web performantes et sur-mesure.",
+      cta_projects: "Voir mes réalisations",
+      cta_contact: "Discuter de votre projet"
     },
     projects: {
       title: "Projets",
@@ -30,10 +30,10 @@ export const translations = {
       title_highlight: "Expertise",
       description: "Expertise complète de A à Z : du Backend au Frontend, en passant par le SEO, le déploiement et la gestion de trafic à grande échelle (plusieurs millions de visiteurs).",
       items: [
-        { title: "Développement Full Stack", desc: "Maîtrise totale de la stack (React, Node, Django) pour des applications robustes." },
-        { title: "Haute Performance & Scale", desc: "Gestion d'infrastructures capables de supporter des millions d'utilisateurs simultanés." },
-        { title: "SEO & Visibilité", desc: "Stratégies avancées pour placer vos projets en tête des moteurs de recherche." },
-        { title: "Déploiement & DevOps", desc: "Mise en production sécurisée, serveurs Linux, Docker et CI/CD." }
+        { title: "Sites & Apps Sur-Mesure", desc: "Pas de templates génériques. Une solution unique, codée pour répondre exactement à vos besoins business." },
+        { title: "Performance & Rapidité", desc: "Des sites ultra-rapides qui améliorent votre SEO et convertissent mieux vos visiteurs." },
+        { title: "Visibilité & SEO", desc: "Structure optimisée pour que votre entreprise soit trouvée facilement sur Google." },
+        { title: "Hébergement & Sérénité", desc: "Je gère toute la technique (Serveurs, Sécurité, Mises à jour). Dormez tranquille, le site tourne." }
       ]
     },
     contact: {
@@ -86,9 +86,9 @@ export const translations = {
       headline_1: "Crafting Digital",
       headline_2: "Experiences That Matter",
       description_pre: "Hi, I'm",
-      description_post: ". I build pixel-perfect, innovative web applications with a focus on motion and UX.",
-      cta_projects: "View Work",
-      cta_contact: "Contact Me"
+      description_post: ". I help businesses and creators build high-performance, custom web solutions.",
+      cta_projects: "View My Work",
+      cta_contact: "Discuss Your Project"
     },
     projects: {
       title: "Selected",
@@ -100,10 +100,10 @@ export const translations = {
       title_highlight: "Expertise",
       description: "End-to-end expertise: from Backend to Frontend, including SEO, deployment, and managing high-traffic platforms (millions of visitors).",
       items: [
-        { title: "Full Stack Development", desc: "Complete mastery of the stack (React, Node, Django) for robust applications." },
-        { title: "High Performance & Scale", desc: "Managing infrastructures capable of supporting millions of concurrent users." },
-        { title: "SEO & Visibility", desc: "Advanced strategies to rank your projects at the top of search engines." },
-        { title: "Deployment & DevOps", desc: "Secure production deployment, Linux servers, Docker, and CI/CD." }
+        { title: "Custom Websites & Apps", desc: "No generic templates. A unique solution, coded to meet your specific business goals." },
+        { title: "Speed & Performance", desc: "Ultra-fast websites that boost your SEO and convert more visitors into customers." },
+        { title: "SEO & Visibility", desc: "Optimized structure to ensure your business is easily found on Google." },
+        { title: "Hosting & Peace of Mind", desc: "I handle all the tech (Servers, Security, Updates). Sleep tight, your site is running." }
       ]
     },
     contact: {
