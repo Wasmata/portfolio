@@ -1,4 +1,6 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
     if (req.method === 'OPTIONS') {
@@ -42,46 +44,44 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'CAPTCHA verification error.' });
     }
 
-    // 3. Configure Nodemailer
-    // Note: Vercel environment variables must be set in the Vercel Dashboard
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.ionos.fr',
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
-
+    // 3. Send Email with Resend
     try {
-        const userIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         const fullName = `${firstName} ${lastName}`;
+        const userIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-        await transporter.sendMail({
-            from: `"${fullName}" <${process.env.EMAIL_USER}>`,
+        const { data, error } = await resend.emails.send({
+            from: 'Portfolio Contact <contact@wassidev.fr>',
+            to: ['contact@wassidev.fr'],
             replyTo: email,
-            to: 'contact@wassidev.fr',
             subject: `New Contact from Portfolio: ${fullName}`,
-            text: `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\nIP: ${userIp}\n\nMessage:\n${message}`,
             html: `
                 <h3>New Contact Message</h3>
-                <p><strong>First Name:</strong> ${firstName}</p>
-                <p><strong>Last Name:</strong> ${lastName}</p>
+                <p><strong>Name:</strong> ${fullName}</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>IP Address:</strong> ${userIp}</p>
+                <p><strong>IP:</strong> ${userIp}</p>
+                <hr />
                 <p><strong>Message:</strong></p>
                 <p>${message.replace(/\n/g, '<br>')}</p>
-            `
+            `,
         });
 
-        return res.status(200).json({ success: 'Message sent successfully!' });
+        if (error) {
+            console.error('Resend API Error:', error);
+            // Return the specific Resend error message to the client for debugging
+            return res.status(500).json({
+                error: 'Failed to send message via Resend.',
+                details: error.message
+            });
+        }
+
+        return res.status(200).json({ success: 'Message sent successfully!', id: data.id });
+
     } catch (error) {
-        console.error('Email Send Error:', error);
+        console.error('Unexpected Error:', error);
         return res.status(500).json({
-            error: 'Failed to send message.',
-            details: error.message // Exposing error details for debugging
+            error: 'An unexpected error occurred.',
+            details: error.message
         });
     }
 }
