@@ -17,16 +17,16 @@ export const projectsData = {
         {
             id: "jeux-cracks",
             title: "JeuxCracks",
-            category: "Gaming & Téléchargement",
+            category: "Gaming & Infrastructure",
             image: {
                 light: "/projects/jeuxcracks_light.png",
                 dark: "/projects/jeuxcracks_dark.png"
             },
-            tags: ["Django", "Vue.js", "Nuxt", "Vite"],
+            tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
             links: { demo: "https://jeuxcracks.fr/", github: null },
-            description: "Catalogue de jeux PC gratuits. Interface moderne et rapide utilisant la puissance de Nuxt et Django.",
-            challenge: "Offrir une navigation ultra-rapide et un référencement (SEO) optimal pour un catalogue contenant des centaines de jeux, tout en sécurisant les liens de téléchargement.",
-            solution: "L'adoption de Nuxt.js (Vue.js) en mode SSR (Server Side Rendering) a permis d'obtenir un SEO excellent et un chargement initial instantané. Django expose une API REST performante pour servir les données dynamiquement."
+            description: "Mon projet de cœur, débuté au collège (en 3ème) et maintes fois réitéré jusqu'à cette version ultime (V3.5). C'est aujourd'hui une référence avec plus de 10 000 jeux gratuits.",
+            challenge: "Le défi technique était colossal : servir une base de données de 10 000+ jeux avec des mises à jour constantes, tout en garantissant un accès fluide et gratuit à des milliers d'utilisateurs quotidiens, sans exploser les coûts d'infrastructure.",
+            solution: "Hébergé sur mes propres serveurs (WassiHost), le site utilise Nuxt (SSR) pour le SEO et la fluidité. L'API backend est un hybride Node.js/Express et Django, optimisée avec du cache Redis et protégée par Cloudflare pour encaisser le trafic."
         },
         {
             id: "wassihost",
@@ -61,16 +61,16 @@ export const projectsData = {
         {
             id: "jeux-cracks",
             title: "JeuxCracks",
-            category: "Gaming & Downloads",
+            category: "Gaming & Infrastructure",
             image: {
                 light: "/projects/jeuxcracks_light.png",
                 dark: "/projects/jeuxcracks_dark.png"
             },
-            tags: ["Django", "Vue.js", "Nuxt", "Vite"],
+            tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
             links: { demo: "https://jeuxcracks.fr/", github: null },
-            description: "Catalog of free PC games. Modern and fast interface leveraging Nuxt and Django.",
-            challenge: "To offer ultra-fast navigation and optimal SEO for a catalog containing hundreds of games, while securing download links.",
-            solution: "Adopting Nuxt.js (Vue.js) in SSR (Server Side Rendering) mode allowed for excellent SEO and instant initial loading. Django exposes a high-performance REST API to serve data dynamically."
+            description: "My passion project, started in middle school (9th grade) and iterated many times until this ultimate version (V3.5). It is now a reference with over 10,000 free games.",
+            challenge: "The technical challenge was colossal: serving a database of 10,000+ games with constant updates, while ensuring fluid and free access to thousands of daily users, without exploding infrastructure costs.",
+            solution: "Hosted on my own servers (WassiHost), the site uses Nuxt (SSR) for SEO and fluidity. The backend API is a Node.js/Express and Django hybrid, optimized with Redis caching and protected by Cloudflare to handle the traffic."
         },
         {
             id: "wassihost",
