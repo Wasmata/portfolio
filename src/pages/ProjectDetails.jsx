@@ -6,7 +6,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { projectsData } from '../data/projects'
 
-// --- STANDARD PREMIUM CARD (No Tilt, Clean) ---
+// --- STANDARD PREMIUM CARD (Clean Hover) ---
 const BentoCard = ({ children, className = "", delay = 0 }) => {
     return (
         <motion.div
@@ -14,7 +14,7 @@ const BentoCard = ({ children, className = "", delay = 0 }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay }}
-            className={`relative rounded-3xl border overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 ${className}`}
+            className={`relative rounded-3xl border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${className}`}
         >
             {/* Subtle Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
@@ -33,7 +33,6 @@ const ProjectDetails = () => {
     const { scrollY } = useScroll()
 
     // Parallax & Fade
-    const heroScale = useTransform(scrollY, [0, 500], [1, 1.1])
     const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.4])
 
     useEffect(() => {
@@ -47,10 +46,9 @@ const ProjectDetails = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-[#030303] transition-colors duration-500 selection:bg-primary-500 selection:text-white">
 
-            {/* --- 1. HERO SECTION (Light & Dark Compatible) --- */}
-            <div className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-black">
+            {/* --- 1. HERO SECTION (Responsive & Safe) --- */}
+            <div className="relative min-h-[60vh] md:h-[80vh] w-full flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-black pt-20 md:pt-0">
 
-                {/* Background Image */}
                 {/* Background Image */}
                 <motion.div
                     style={{ opacity: heroOpacity }}
@@ -72,38 +70,39 @@ const ProjectDetails = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/50 dark:from-[#030303] dark:via-transparent dark:to-black/50"></div>
                 </motion.div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
-                    <Link
-                        to="/#projects"
-                        className="absolute top-10 left-6 md:left-20 flex items-center gap-2 text-slate-700 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors uppercase tracking-widest text-xs font-bold bg-white/50 dark:bg-black/20 p-2 rounded-lg backdrop-blur-md"
-                    >
-                        <ArrowLeft size={16} /> {t.project_details.back}
-                    </Link>
+                {/* Back Button - Positioned safely */}
+                <Link
+                    to="/#projects"
+                    className="absolute top-24 left-4 md:top-10 md:left-20 z-50 flex items-center gap-2 text-slate-700 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors uppercase tracking-widest text-xs font-bold bg-white/50 dark:bg-black/20 p-2 rounded-lg backdrop-blur-md"
+                >
+                    <ArrowLeft size={16} /> {t.project_details.back}
+                </Link>
 
+                <div className="container mx-auto px-4 md:px-6 relative z-10 text-center pb-10 md:pb-0">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
                         {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md mb-8 shadow-sm">
-                            <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
-                            <span className="text-sm font-bold tracking-widest uppercase text-slate-800 dark:text-white/90">{project.category}</span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md mb-6 md:mb-8 shadow-sm">
+                            <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                            <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-slate-800 dark:text-white/90">{project.category}</span>
                         </div>
 
-                        {/* Title - Adaptive Color */}
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 text-slate-900 dark:text-white drop-shadow-sm dark:drop-shadow-lg leading-[1.1]">
+                        {/* Title - Fully Responsive */}
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 text-slate-900 dark:text-white drop-shadow-sm dark:drop-shadow-lg leading-tight md:leading-[1.1] break-words">
                             {project.title.toUpperCase()}
                         </h1>
 
-                        {/* Buttons */}
-                        <div className="flex justify-center gap-4 mt-4">
-                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-lg hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg hover:shadow-xl">
-                                Live Site <ArrowUpRight size={20} />
+                        {/* Buttons - Stacked on Mobile */}
+                        <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-2 px-4 md:px-0">
+                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-base md:text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+                                Live Site <ArrowUpRight size={18} />
                             </a>
                             {project.links.github && (
-                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full font-bold text-lg bg-white dark:bg-black border border-slate-200 dark:border-white/20 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10 transition-colors flex items-center gap-2">
-                                    <Github size={20} /> Code
+                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-base md:text-lg bg-white dark:bg-black border border-slate-200 dark:border-white/20 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+                                    <Github size={18} /> Code
                                 </a>
                             )}
                         </div>
