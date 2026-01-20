@@ -12,38 +12,37 @@ import ScrollProgress from './components/Showcase/ScrollProgress'
 import SmoothScroll from './components/Showcase/SmoothScroll'
 import FPSCounter from './components/Effects/FPSCounter'
 import VisualEffects from './components/Effects/VisualEffects'
-// ... existing imports
+import { useTheme } from './context/ThemeContext'
+import Home from './pages/Home'
+const [isCardOpen, setIsCardOpen] = useState(false)
+const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
+const location = useLocation()
 
-function App() {
-  const [isCardOpen, setIsCardOpen] = useState(false)
-  const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
-  const location = useLocation()
+// ... existing useEffect
 
-  // ... existing useEffect
+return (
+  <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>
+    <VisualEffects />
+    {showFPS && <FPSCounter />}
+    <CustomCursor />
+    {enableScrollProgress && <ScrollProgress />}
+    {enableSmoothScroll && <SmoothScroll />}
 
-  return (
-    <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>
-      <VisualEffects />
-      {showFPS && <FPSCounter />}
-      <CustomCursor />
-      {enableScrollProgress && <ScrollProgress />}
-      {enableSmoothScroll && <SmoothScroll />}
+    <Navbar onOpenCard={() => setIsCardOpen(true)} />
 
-      <Navbar onOpenCard={() => setIsCardOpen(true)} />
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/project/:id" element={<ProjectDetails />} />
+      </Routes>
+    </AnimatePresence>
 
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
-        </Routes>
-      </AnimatePresence>
-
-      <Footer />
-      <DigitalCard isOpen={isCardOpen} onClose={() => setIsCardOpen(false)} />
-      <Analytics />
-      <SpeedInsights />
-    </div>
-  )
+    <Footer />
+    <DigitalCard isOpen={isCardOpen} onClose={() => setIsCardOpen(false)} />
+    <Analytics />
+    <SpeedInsights />
+  </div>
+)
 }
 
 export default App
