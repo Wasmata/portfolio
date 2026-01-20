@@ -141,6 +141,14 @@ const Navbar = ({ onOpenCard }) => {
                             {mode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                         </button>
 
+                        <button
+                            onClick={() => { playClick(); toggleSounds(); }}
+                            onMouseEnter={playHover}
+                            className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
+                        >
+                            {enableSounds ? <Volume2 size={18} /> : <VolumeX size={18} />}
+                        </button>
+
                         <div className="relative">
                             <button
                                 onClick={() => { playClick(); setShowThemes(!showThemes); }}
@@ -253,6 +261,9 @@ const Navbar = ({ onOpenCard }) => {
                                     </button>
                                     <button onClick={toggleLanguage} className="w-12 h-[46px] flex items-center justify-center bg-slate-100 dark:bg-white/5 rounded-full font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 text-sm">
                                         {language === 'fr' ? 'EN' : 'FR'}
+                                    </button>
+                                    <button onClick={toggleSounds} className="p-3 bg-slate-100 dark:bg-white/5 rounded-full text-slate-900 dark:text-white border border-slate-200 dark:border-white/10">
+                                        {enableSounds ? <Volume2 size={20} /> : <VolumeX size={20} />}
                                     </button>
                                 </div>
 
