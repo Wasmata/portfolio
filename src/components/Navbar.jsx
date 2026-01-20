@@ -184,7 +184,6 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* Typography */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Typography</p>
                                             <div className="grid grid-cols-2 gap-2">
                                                 {Object.entries(fonts).map(([key, font]) => (
                                                     <button
@@ -201,7 +200,6 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* System/Interface Toggles */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Interface & UX</p>
                                             <div className="space-y-2">
                                                 <button onClick={() => { playClick(); toggleSounds(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableSounds ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
                                                     <div className="flex items-center gap-3">
@@ -324,7 +322,6 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* Fonts */}
                                         <div>
-                                            <p className="text-xs font-bold text-slate-400 mb-4 uppercase tracking-wider">Typography</p>
                                             <div className="flex flex-wrap gap-2">
                                                 {Object.entries(fonts).map(([key, font]) => (
                                                     <button
