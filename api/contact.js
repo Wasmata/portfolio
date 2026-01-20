@@ -14,9 +14,9 @@ export default async function handler(req, res) {
 
     const { firstName, lastName, email, phone, message, turnstileToken } = req.body;
 
-    // 1. Validate Form Fields
-    if (!firstName || !lastName || !email || !phone || !message) {
-        return res.status(400).json({ error: 'Please fill in all fields.' });
+    // 1. Validate Form Fields (Phone is now optional)
+    if (!firstName || !lastName || !email || !message) {
+        return res.status(400).json({ error: 'Please fill in all required fields.' });
     }
 
     // 2. Validate Turnstile Token (Backend Verification)
@@ -48,6 +48,7 @@ export default async function handler(req, res) {
     try {
         const fullName = `${firstName} ${lastName}`;
         const userIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        const displayPhone = phone || 'Not provided';
 
         // Prepare content based on language
         const lang = req.body.language || 'fr';
@@ -116,7 +117,7 @@ export default async function handler(req, res) {
                     <h3>New Contact Message</h3>
                     <p><strong>Name:</strong> ${fullName}</p>
                     <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
+                    <p><strong>Phone:</strong> ${displayPhone}</p>
                     <p><strong>IP:</strong> ${userIp}</p>
                     <hr />
                     <p><strong>Message:</strong></p>

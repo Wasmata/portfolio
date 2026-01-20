@@ -173,13 +173,12 @@ const Contact = () => {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm text-slate-600 dark:text-gray-400">Téléphone / Phone</label>
+                                <label className="text-sm text-slate-600 dark:text-gray-400">Téléphone / Phone <span className="text-xs text-gray-400">(Optional)</span></label>
                                 <input
                                     type="tel"
                                     name="phone"
                                     value={formData.phone}
                                     onChange={handleChange}
-                                    required
                                     className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-primary-500 transition-colors"
                                     placeholder="+33 6 12 34 56 78"
                                 />
