@@ -167,20 +167,7 @@ const Navbar = ({ onOpenCard }) => {
                                             <span className="text-xs text-slate-400">V2.0</span>
                                         </div>
 
-                                        {/* Themes */}
-                                        <div>
-                                            <div className="grid grid-cols-5 gap-3">
-                                                {Object.entries(themes).map(([key, theme]) => (
-                                                    <button
-                                                        key={key}
-                                                        onClick={() => { playClick(); setCurrentTheme(key); }}
-                                                        className={`w-10 h-10 rounded-full border-2 transition-transform hover:scale-110 ${currentTheme === key ? 'border-white ring-2 ring-primary-500 shadow-lg scale-110' : 'border-transparent'}`}
-                                                        style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
-                                                        title={theme.name}
-                                                    />
-                                                ))}
-                                            </div>
-                                        </div>
+
 
                                         {/* Typography */}
                                         <div>
@@ -306,19 +293,7 @@ const Navbar = ({ onOpenCard }) => {
                                         exit={{ height: 0, opacity: 0 }}
                                         className="overflow-hidden space-y-8 bg-slate-50 dark:bg-white/5 p-6 rounded-2xl border border-slate-100 dark:border-white/5"
                                     >
-                                        {/* Themes */}
-                                        <div>
-                                            <div className="flex flex-wrap gap-3">
-                                                {Object.entries(themes).map(([key, theme]) => (
-                                                    <button
-                                                        key={key}
-                                                        onClick={() => setCurrentTheme(key)}
-                                                        className={`w-10 h-10 rounded-full border-2 ${currentTheme === key ? 'border-white ring-2 ring-primary-500 scale-110' : 'border-transparent'} shadow-sm`}
-                                                        style={{ backgroundColor: `rgb(${theme.colors[500]})` }}
-                                                    />
-                                                ))}
-                                            </div>
-                                        </div>
+
 
                                         {/* Fonts */}
                                         <div>
