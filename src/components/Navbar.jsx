@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Code, Send, Palette as PaletteIcon, Moon, Sun, Menu, X, Terminal as TerminalIcon,
     Volume2, VolumeX, Settings, Type,
-    Activity, Battery, Monitor, Film, Grid, Cpu, Eye, Tv // New Icons
+    Activity, Battery, Monitor, Film, Grid, Cpu, Eye, Tv, Aperture // New Icons
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
@@ -27,6 +27,7 @@ const Navbar = ({ onOpenCard }) => {
         scanlines, toggleScanlines,
         wireframeMode, toggleWireframe,
         focusMode, toggleFocus,
+        monoMode, toggleMono,
         debugGrid, toggleHelper
     } = useTheme();
 
@@ -215,20 +216,23 @@ const Navbar = ({ onOpenCard }) => {
                                         <div>
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Visual Engine</p>
                                             <div className="grid grid-cols-3 gap-2">
-                                                <button onClick={() => { playClick(); toggleGrain(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${filmGrain ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                <button title="Adds cinematic grain noise" onClick={() => { playClick(); toggleGrain(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${filmGrain ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Film size={14} /> Grain
                                                 </button>
-                                                <button onClick={() => { playClick(); toggleScanlines(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${scanlines ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                <button title="Retro CRT monitor scanlines" onClick={() => { playClick(); toggleScanlines(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${scanlines ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Tv size={14} /> CRT
                                                 </button>
-                                                <button onClick={() => { playClick(); toggleFocus(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${focusMode ? 'bg-indigo-500/10 border-indigo-500 text-indigo-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                <button title="Dim distractions for reading" onClick={() => { playClick(); toggleFocus(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${focusMode ? 'bg-indigo-500/10 border-indigo-500 text-indigo-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Eye size={14} /> Focus
                                                 </button>
-                                                <button onClick={() => { playClick(); toggleWireframe(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${wireframeMode ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                <button title="Developer wireframe view" onClick={() => { playClick(); toggleWireframe(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${wireframeMode ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Cpu size={14} /> Matrix
                                                 </button>
-                                                <button onClick={() => { playClick(); toggleHelper(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${debugGrid ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                <button title="Alignment grid" onClick={() => { playClick(); toggleHelper(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${debugGrid ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Grid size={14} /> Grid
+                                                </button>
+                                                <button title="Black & White artistic mode" onClick={() => { playClick(); toggleMono(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${monoMode ? 'bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-black dark:border-white' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Aperture size={14} /> Mono
                                                 </button>
                                             </div>
                                         </div>

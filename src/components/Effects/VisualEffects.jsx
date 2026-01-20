@@ -2,21 +2,27 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect } from 'react';
 
 const VisualEffects = () => {
-    const { filmGrain, scanlines, wireframeMode, focusMode, debugGrid, lowPowerMode } = useTheme();
+    const { filmGrain, scanlines, wireframeMode, focusMode, monoMode, debugGrid, lowPowerMode } = useTheme();
 
-    // Wireframe Mode Logic
+    // Wireframe logic
     useEffect(() => {
         if (wireframeMode) document.body.classList.add('wireframe-mode');
         else document.body.classList.remove('wireframe-mode');
     }, [wireframeMode]);
 
-    // Focus Mode Logic: Dims decorative elements to focus on content
+    // Focus Mode logic
     useEffect(() => {
         if (focusMode) document.body.classList.add('focus-mode');
         else document.body.classList.remove('focus-mode');
     }, [focusMode]);
 
-    // Low Power Mode Logic
+    // Mono Mode Logic
+    useEffect(() => {
+        if (monoMode) document.body.classList.add('mono-mode');
+        else document.body.classList.remove('mono-mode');
+    }, [monoMode]);
+
+    // Low Power logic
     useEffect(() => {
         if (lowPowerMode) document.body.classList.add('low-power');
         else document.body.classList.remove('low-power');
@@ -24,14 +30,14 @@ const VisualEffects = () => {
 
     return (
         <>
-            {/* FILM GRAIN - Fixed Visibility */}
+            {/* FILM GRAIN - Increased Opacity / Changed Blend */}
             {filmGrain && !lowPowerMode && (
-                <div className="fixed inset-0 z-[9990] pointer-events-none opacity-[0.15] mix-blend-overlay w-full h-full overflow-hidden">
+                <div className="fixed inset-0 z-[9990] pointer-events-none opacity-[0.20] mix-blend-hard-light w-full h-full overflow-hidden">
                     <svg className="w-full h-full">
                         <filter id="noise">
                             <feTurbulence
                                 type="fractalNoise"
-                                baseFrequency="0.65"
+                                baseFrequency="0.80"
                                 numOctaves="3"
                                 stitchTiles="stitch"
                             />
@@ -41,9 +47,9 @@ const VisualEffects = () => {
                 </div>
             )}
 
-            {/* CRT SCANLINES */}
+            {/* CRT SCANLINES - Boosted Visibility */}
             {scanlines && !lowPowerMode && (
-                <div className="fixed inset-0 z-[9990] pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%] pointer-events-none" />
+                <div className="fixed inset-0 z-[9990] pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-80" />
             )}
 
             {/* DEBUG GRID */}
@@ -57,7 +63,7 @@ const VisualEffects = () => {
                 </div>
             )}
 
-            {/* GLOBAL CSS INJECTIONS */}
+            {/* CSS INJECTIONS */}
             <style>{`
                 ${wireframeMode ? `
                     .wireframe-mode * {
@@ -74,13 +80,27 @@ const VisualEffects = () => {
                 ` : ''}
 
                 ${focusMode ? `
-                    .focus-mode .decorative-blob,
-                    .focus-mode .background-pattern {
-                        opacity: 0 !important;
+                    /* Updates to dim backgrounds */
+                    .focus-mode .animate-blob, 
+                    .focus-mode .gradient-text,
+                    .focus-mode .bg-gradient-to-r,
+                    .focus-mode .bg-gradient-to-br,
+                    .focus-mode img {
+                        opacity: 0.2 !important;
                         transition: opacity 0.5s ease;
+                        filter: blur(5px) grayscale(100%);
                     }
                     .focus-mode main {
-                        backdrop-filter: blur(0px);
+                        backdrop-filter: blur(0px); /* Clear main content */
+                    }
+                ` : ''}
+
+                ${monoMode ? `
+                    .mono-mode {
+                        filter: grayscale(100%) !important;
+                    }
+                    .mono-mode img {
+                        filter: grayscale(100%) contrast(1.2) !important;
                     }
                 ` : ''}
 
