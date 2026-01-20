@@ -112,15 +112,15 @@ const ProjectDetails = () => {
             </div>
 
             {/* --- 2. CLEAN BENTO GRID (Stable, No 3D) --- */}
-            <div className="container mx-auto px-6 py-20 relative z-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative z-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 
                     {/* A. DESCRIPTION */}
                     <div className="lg:col-span-2">
-                        <BentoCard className="h-full p-8 md:p-10 bg-white dark:bg-zinc-900 border-slate-100 dark:border-white/5 shadow-slate-200/50 dark:shadow-none">
-                            <Sparkles className="text-amber-500 mb-6 w-8 h-8 md:w-10 md:h-10" />
-                            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-900 dark:text-white">{t.project_details.about}</h2>
-                            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-light">
+                        <BentoCard className="h-full p-6 md:p-10 bg-white dark:bg-zinc-900 border-slate-100 dark:border-white/5 shadow-slate-200/50 dark:shadow-none">
+                            <Sparkles className="text-amber-500 mb-4 md:mb-6 w-8 h-8 md:w-10 md:h-10" />
+                            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-slate-900 dark:text-white">{t.project_details.about}</h2>
+                            <p className="text-base md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-light">
                                 {project.description}
                             </p>
                         </BentoCard>
@@ -128,15 +128,15 @@ const ProjectDetails = () => {
 
                     {/* B. TECH STACK */}
                     <div className="lg:row-span-2">
-                        <BentoCard className="h-full p-8 bg-slate-50 dark:bg-zinc-900/50 border-slate-200 dark:border-white/10" delay={0.1}>
-                            <div className="w-12 h-12 bg-primary-100 dark:bg-primary-500/20 rounded-xl flex items-center justify-center mb-6">
-                                <Layers className="text-primary-600 dark:text-primary-400" size={24} />
+                        <BentoCard className="h-full p-6 md:p-8 bg-slate-50 dark:bg-zinc-900/50 border-slate-200 dark:border-white/10" delay={0.1}>
+                            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary-100 dark:bg-primary-500/20 rounded-xl flex items-center justify-center mb-4 md:mb-6">
+                                <Layers className="text-primary-600 dark:text-primary-400" size={20} />
                             </div>
-                            <h3 className="text-xl md:text-2xl font-bold mb-6 text-slate-900 dark:text-white">{t.project_details.tech_stack}</h3>
-                            <div className="flex flex-col gap-3">
+                            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-slate-900 dark:text-white">{t.project_details.tech_stack}</h3>
+                            <div className="flex flex-col gap-2 md:gap-3">
                                 {project.tags.map((tag, i) => (
-                                    <div key={i} className="flex items-center justify-between p-4 bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
-                                        <span className="font-semibold text-slate-700 dark:text-slate-200">{tag}</span>
+                                    <div key={i} className="flex items-center justify-between p-3 md:p-4 bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+                                        <span className="font-semibold text-sm md:text-base text-slate-700 dark:text-slate-200">{tag}</span>
                                         <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                                     </div>
                                 ))}
@@ -145,11 +145,11 @@ const ProjectDetails = () => {
                     </div>
 
                     {/* C. CHALLENGE */}
-                    <BentoCard className="p-8 bg-white dark:bg-zinc-900 border-red-100 dark:border-red-500/20" delay={0.2}>
-                        <h3 className="text-xl font-bold text-red-500 dark:text-red-400 mb-4 flex items-center gap-3">
-                            <Target size={24} /> {t.project_details.challenge}
+                    <BentoCard className="p-6 md:p-8 bg-white dark:bg-zinc-900 border-red-100 dark:border-red-500/20" delay={0.2}>
+                        <h3 className="text-lg md:text-xl font-bold text-red-500 dark:text-red-400 mb-4 flex items-center gap-3">
+                            <Target size={20} /> {t.project_details.challenge}
                         </h3>
-                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
                             {project.challenge}
                         </p>
                     </BentoCard>
