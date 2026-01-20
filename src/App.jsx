@@ -10,32 +10,21 @@ import DigitalCard from './components/DigitalCard'
 import CustomCursor from './components/Showcase/CustomCursor'
 import ScrollProgress from './components/Showcase/ScrollProgress'
 import SmoothScroll from './components/Showcase/SmoothScroll'
-import { useTheme } from './context/ThemeContext'
-import Home from './pages/Home'
-import ProjectDetails from './pages/ProjectDetails'
+import FPSCounter from './components/Effects/FPSCounter'
+import VisualEffects from './components/Effects/VisualEffects'
+// ... existing imports
 
 function App() {
   const [isCardOpen, setIsCardOpen] = useState(false)
-  const { enableCursor, enableSmoothScroll, enableScrollProgress } = useTheme()
+  const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
   const location = useLocation()
 
-  // Scroll to top on route change
-  // Scroll to top or to hash on route change
-  useEffect(() => {
-    if (location.hash) {
-      const elem = document.querySelector(location.hash);
-      if (elem) {
-        setTimeout(() => {
-          elem.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname, location.hash])
+  // ... existing useEffect
 
   return (
     <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>
+      <VisualEffects />
+      {showFPS && <FPSCounter />}
       <CustomCursor />
       {enableScrollProgress && <ScrollProgress />}
       {enableSmoothScroll && <SmoothScroll />}

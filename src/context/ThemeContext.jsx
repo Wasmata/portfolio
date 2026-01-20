@@ -170,37 +170,33 @@ export const ThemeProvider = ({ children }) => {
         localStorage.setItem('currentFont', currentFont);
     }, [currentFont]);
 
-    const toggleCursor = () => {
-        setEnableCursor(prev => {
+    // --- V3 Feature Toggles ---
+    const [showFPS, setShowFPS] = useState(() => localStorage.getItem('showFPS') === 'true');
+    const [lowPowerMode, setLowPowerMode] = useState(() => localStorage.getItem('lowPowerMode') === 'true');
+    const [filmGrain, setFilmGrain] = useState(() => localStorage.getItem('filmGrain') === 'true');
+    const [wireframeMode, setWireframeMode] = useState(() => localStorage.getItem('wireframeMode') === 'true');
+    const [debugGrid, setDebugGrid] = useState(() => localStorage.getItem('debugGrid') === 'true');
+
+    // Helper for toggling standard booleans
+    const toggleSetting = (key, setter) => {
+        setter(prev => {
             const newValue = !prev;
-            localStorage.setItem('enableCursor', String(newValue));
+            localStorage.setItem(key, String(newValue));
             return newValue;
         });
     };
 
-    const toggleSmoothScroll = () => {
-        setEnableSmoothScroll(prev => {
-            const newValue = !prev;
-            localStorage.setItem('enableSmoothScroll', String(newValue));
-            return newValue;
-        });
-    };
+    const toggleCursor = () => toggleSetting('enableCursor', setEnableCursor);
+    const toggleSmoothScroll = () => toggleSetting('enableSmoothScroll', setEnableSmoothScroll);
+    const toggleScrollProgress = () => toggleSetting('enableScrollProgress', setEnableScrollProgress);
+    const toggleSounds = () => toggleSetting('enableSounds', setEnableSounds);
 
-    const toggleScrollProgress = () => {
-        setEnableScrollProgress(prev => {
-            const newValue = !prev;
-            localStorage.setItem('enableScrollProgress', String(newValue));
-            return newValue;
-        });
-    };
-
-    const toggleSounds = () => {
-        setEnableSounds(prev => {
-            const newValue = !prev;
-            localStorage.setItem('enableSounds', String(newValue));
-            return newValue;
-        });
-    };
+    // V3 Toggles
+    const toggleFPS = () => toggleSetting('showFPS', setShowFPS);
+    const toggleLowPower = () => toggleSetting('lowPowerMode', setLowPowerMode);
+    const toggleGrain = () => toggleSetting('filmGrain', setFilmGrain);
+    const toggleWireframe = () => toggleSetting('wireframeMode', setWireframeMode);
+    const toggleHelper = () => toggleSetting('debugGrid', setDebugGrid);
 
     const value = {
         currentTheme,
@@ -218,7 +214,13 @@ export const ThemeProvider = ({ children }) => {
         toggleSounds,
         currentFont,
         setCurrentFont,
-        fonts
+        fonts,
+        // V3 Exports
+        showFPS, toggleFPS,
+        lowPowerMode, toggleLowPower,
+        filmGrain, toggleGrain,
+        wireframeMode, toggleWireframe,
+        debugGrid, toggleHelper
     };
 
     return (

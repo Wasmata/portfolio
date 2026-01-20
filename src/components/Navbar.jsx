@@ -1,6 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Code, Send, Palette as PaletteIcon, Moon, Sun, Menu, X, Terminal as TerminalIcon, Volume2, VolumeX, Settings, Type } from 'lucide-react';
+import {
+    Code, Send, Palette as PaletteIcon, Moon, Sun, Menu, X, Terminal as TerminalIcon,
+    Volume2, VolumeX, Settings, Type,
+    Activity, Battery, Monitor, Film, Grid, Cpu // New Icons
+} from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
 import { useState, useEffect } from 'react';
@@ -15,7 +19,13 @@ const Navbar = ({ onOpenCard }) => {
         enableSmoothScroll, toggleSmoothScroll,
         enableScrollProgress, toggleScrollProgress,
         enableSounds, toggleSounds,
-        currentFont, setCurrentFont, fonts
+        currentFont, setCurrentFont, fonts,
+        // V3 Values
+        showFPS, toggleFPS,
+        lowPowerMode, toggleLowPower,
+        filmGrain, toggleGrain,
+        wireframeMode, toggleWireframe,
+        debugGrid, toggleHelper
     } = useTheme();
 
     const [showThemes, setShowThemes] = useState(false); // Desktop Dropdown
@@ -171,6 +181,7 @@ const Navbar = ({ onOpenCard }) => {
 
                                         {/* Typography */}
                                         <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Typography</p>
                                             <div className="grid grid-cols-2 gap-2">
                                                 {Object.entries(fonts).map(([key, font]) => (
                                                     <button
@@ -185,36 +196,59 @@ const Navbar = ({ onOpenCard }) => {
                                             </div>
                                         </div>
 
-                                        {/* System/Interface Toggles */}
+                                        {/* Display & Performance */}
                                         <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">System</p>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                <button onClick={() => { playClick(); toggleFPS(); }} className={`flex items-center gap-2 p-2 rounded-lg border text-xs font-medium transition-colors ${showFPS ? 'bg-green-500/10 border-green-500 text-green-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Activity size={14} /> FPS Counter
+                                                </button>
+                                                <button onClick={() => { playClick(); toggleLowPower(); }} className={`flex items-center gap-2 p-2 rounded-lg border text-xs font-medium transition-colors ${lowPowerMode ? 'bg-yellow-500/10 border-yellow-500 text-yellow-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Battery size={14} /> Low Power
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {/* Visual FX */}
+                                        <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Visual Engine</p>
+                                            <div className="grid grid-cols-3 gap-2">
+                                                <button onClick={() => { playClick(); toggleGrain(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${filmGrain ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Film size={14} /> Grain
+                                                </button>
+                                                <button onClick={() => { playClick(); toggleWireframe(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${wireframeMode ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Cpu size={14} /> Wireframe
+                                                </button>
+                                                <button onClick={() => { playClick(); toggleHelper(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${debugGrid ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <Grid size={14} /> Grid
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {/* Interface */}
+                                        <div>
+                                            <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Interface</p>
                                             <div className="space-y-2">
-                                                <button onClick={() => { playClick(); toggleSounds(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableSounds ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                <button onClick={() => { playClick(); toggleSounds(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors border ${enableSounds ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
                                                     <div className="flex items-center gap-3">
-                                                        {enableSounds ? <Volume2 size={16} /> : <VolumeX size={16} />}
-                                                        <span className="text-sm font-medium">Sound Effects</span>
+                                                        {enableSounds ? <Volume2 size={14} /> : <VolumeX size={14} />}
+                                                        <span className="text-xs font-medium">Sounds</span>
                                                     </div>
-                                                    <div className={`w-2 h-2 rounded-full ${enableSounds ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${enableSounds ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
                                                 </button>
 
-                                                <button onClick={() => { playClick(); toggleCursor(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableCursor ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                <button onClick={() => { playClick(); toggleCursor(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors border ${enableCursor ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
                                                     <div className="flex items-center gap-3">
-                                                        <span className="text-sm font-medium">Custom Cursor</span>
+                                                        <span className="text-xs font-medium">Custom Cursor</span>
                                                     </div>
-                                                    <div className={`w-2 h-2 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${enableCursor ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
                                                 </button>
 
-                                                <button onClick={() => { playClick(); toggleSmoothScroll(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableSmoothScroll ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
+                                                <button onClick={() => { playClick(); toggleSmoothScroll(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors border ${enableSmoothScroll ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
                                                     <div className="flex items-center gap-3">
-                                                        <span className="text-sm font-medium">Smooth Scroll</span>
+                                                        <span className="text-xs font-medium">Smooth Scroll</span>
                                                     </div>
-                                                    <div className={`w-2 h-2 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
-                                                </button>
-
-                                                <button onClick={() => { playClick(); toggleScrollProgress(); }} className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors border ${enableScrollProgress ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="text-sm font-medium">Scroll Progress</span>
-                                                    </div>
-                                                    <div className={`w-2 h-2 rounded-full ${enableScrollProgress ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${enableSmoothScroll ? 'bg-primary-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
                                                 </button>
                                             </div>
                                         </div>
