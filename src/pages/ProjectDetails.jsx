@@ -1,59 +1,25 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useSpring, useMotionTemplate, useMotionValue } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ExternalLink, Github, Zap, Target, Cpu, ArrowUpRight, Sparkles, Layers } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { projectsData } from '../data/projects'
 
-// --- 3D TILT INFO CARD (Ultra Premium) ---
-const TiltBentoCard = ({ children, className = "", delay = 0 }) => {
-    const ref = useRef(null);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const xSpring = useSpring(x);
-    const ySpring = useSpring(y);
-
-    const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
-    const handleMouseMove = (e) => {
-        if (!ref.current) return;
-        const rect = ref.current.getBoundingClientRect();
-        const width = rect.width;
-        const height = rect.height;
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        x.set(yPct * -10); // Tilt strength
-        y.set(xPct * 10);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
-
+// --- STANDARD PREMIUM CARD (No Tilt, Clean) ---
+const BentoCard = ({ children, className = "", delay = 0 }) => {
     return (
         <motion.div
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay, type: "spring", stiffness: 100 }}
-            style={{ transformStyle: "preserve-3d", transform }}
-            className={`relative group rounded-3xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-black/50 backdrop-blur-xl overflow-hidden shadow-2xl hover:shadow-primary-500/20 transition-shadow ${className}`}
+            transition={{ duration: 0.5, delay }}
+            className={`relative rounded-3xl border overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 ${className}`}
         >
-            {/* Grain Texture Overlay */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none"></div>
 
-            {/* Glossy Reflection Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-
-            <div style={{ transform: "translateZ(20px)" }} className="relative h-full">
+            <div className="relative h-full z-10">
                 {children}
             </div>
         </motion.div>
@@ -66,10 +32,9 @@ const ProjectDetails = () => {
     const { mode } = useTheme()
     const { scrollY } = useScroll()
 
-    // Parallax & Scale effects
-    const heroScale = useTransform(scrollY, [0, 500], [1, 1.2])
-    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0])
-    const textY = useTransform(scrollY, [0, 500], [0, 200])
+    // Parallax & Fade
+    const heroScale = useTransform(scrollY, [0, 500], [1, 1.1])
+    const heroOpacity = useTransform(scrollY, [0, 500], [1, 0.4])
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -80,12 +45,12 @@ const ProjectDetails = () => {
     if (!project) return null;
 
     return (
-        <div className="min-h-screen bg-[#030303] text-white selection:bg-primary-500 selection:text-white overflow-hidden perspective-1000">
+        <div className="min-h-screen bg-white dark:bg-[#030303] transition-colors duration-500 selection:bg-primary-500 selection:text-white">
 
-            {/* --- 1. CINEMATIC HERO SECTION --- */}
-            <div className="relative h-[110vh] w-full flex items-center justify-center overflow-hidden">
+            {/* --- 1. HERO SECTION (Light & Dark Compatible) --- */}
+            <div className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden bg-slate-100 dark:bg-black">
 
-                {/* Dynamic Background Image */}
+                {/* Background Image */}
                 <motion.div
                     style={{ scale: heroScale, opacity: heroOpacity }}
                     className="absolute inset-0 z-0"
@@ -93,147 +58,127 @@ const ProjectDetails = () => {
                     <img
                         src={mode === 'dark' ? project.image.dark : project.image.light}
                         alt={project.title}
-                        className="w-full h-full object-cover opacity-40 brightness-50"
+                        className="w-full h-full object-cover opacity-80 dark:opacity-50 blur-sm brightness-90 dark:brightness-50"
                     />
-                    {/* Vignette & Gradient Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-[#030303]"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#030303_100%)]"></div>
-                    {/* Animated Grain */}
-                    <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/50 dark:from-[#030303] dark:via-transparent dark:to-black/50"></div>
                 </motion.div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
                     <Link
                         to="/#projects"
-                        className="absolute top-10 left-6 md:left-20 flex items-center gap-2 text-white/50 hover:text-white transition-colors uppercase tracking-[0.2em] text-xs font-bold"
+                        className="absolute top-10 left-6 md:left-20 flex items-center gap-2 text-slate-700 hover:text-black dark:text-white/60 dark:hover:text-white transition-colors uppercase tracking-widest text-xs font-bold bg-white/50 dark:bg-black/20 p-2 rounded-lg backdrop-blur-md"
                     >
-                        <ArrowLeft size={14} /> {t.project_details.back}
+                        <ArrowLeft size={16} /> {t.project_details.back}
                     </Link>
 
-                    <motion.div style={{ y: textY }}>
-                        {/* Floating Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.2 }}
-                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8"
-                        >
-                            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                            <span className="text-sm font-medium tracking-widest uppercase text-white/80">{project.category}</span>
-                        </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        {/* Badge */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-md mb-8 shadow-sm">
+                            <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></span>
+                            <span className="text-sm font-bold tracking-widest uppercase text-slate-800 dark:text-white/90">{project.category}</span>
+                        </div>
 
-                        {/* MASSIVE 3D TITLE */}
-                        <motion.h1
-                            initial={{ opacity: 0, scale: 0.8, rotateX: 20 }}
-                            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                            transition={{ duration: 1.2, ease: "easeOut" }}
-                            className="text-7xl md:text-9xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mix-blend-overlay"
-                            style={{ textShadow: "0px 20px 50px rgba(0,0,0,0.5)" }}
-                        >
+                        {/* Title - Adaptive Color */}
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 text-slate-900 dark:text-white drop-shadow-sm dark:drop-shadow-lg leading-[1.1]">
                             {project.title.toUpperCase()}
-                        </motion.h1>
+                        </h1>
 
-                        {/* Hero Buttons */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
-                            className="flex justify-center gap-6"
-                        >
-                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg overflow-hidden hover:scale-110 transition-transform duration-300">
-                                <span className="relative z-10 flex items-center gap-2">Live Site <ArrowUpRight size={20} /></span>
-                                <div className="absolute inset-0 bg-primary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                        {/* Buttons */}
+                        <div className="flex justify-center gap-4 mt-4">
+                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-lg hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg hover:shadow-xl">
+                                Live Site <ArrowUpRight size={20} />
                             </a>
                             {project.links.github && (
-                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full font-bold text-lg border border-white/20 text-white hover:bg-white/10 transition-colors backdrop-blur-sm flex items-center gap-2">
+                                <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full font-bold text-lg bg-white dark:bg-black border border-slate-200 dark:border-white/20 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10 transition-colors flex items-center gap-2">
                                     <Github size={20} /> Code
                                 </a>
                             )}
-                        </motion.div>
+                        </div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* --- 2. THE TILT BENTO GRID (The "MAX WOW" Part) --- */}
+            {/* --- 2. CLEAN BENTO GRID (Stable, No 3D) --- */}
             <div className="container mx-auto px-6 py-20 relative z-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    {/* A. DESCRIPTION (Wide Card) */}
+                    {/* A. DESCRIPTION */}
                     <div className="lg:col-span-2">
-                        <TiltBentoCard className="h-full p-10 bg-gradient-to-br from-zinc-900/80 to-black/80 border-white/10">
-                            <Sparkles className="text-yellow-400 mb-6 w-12 h-12" />
-                            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">{t.project_details.about}</h2>
-                            <p className="text-xl text-gray-300 leading-relaxed font-light">
+                        <BentoCard className="h-full p-8 md:p-10 bg-white dark:bg-zinc-900 border-slate-100 dark:border-white/5 shadow-slate-200/50 dark:shadow-none">
+                            <Sparkles className="text-amber-500 mb-6 w-8 h-8 md:w-10 md:h-10" />
+                            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-slate-900 dark:text-white">{t.project_details.about}</h2>
+                            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-light">
                                 {project.description}
                             </p>
-                        </TiltBentoCard>
+                        </BentoCard>
                     </div>
 
-                    {/* B. TECH STACK (Tall Card) */}
+                    {/* B. TECH STACK */}
                     <div className="lg:row-span-2">
-                        <TiltBentoCard className="h-full p-8 bg-zinc-900/40 border-primary-500/20" delay={0.2}>
-                            <div className="w-12 h-12 bg-primary-500/20 rounded-2xl flex items-center justify-center mb-6">
-                                <Layers className="text-primary-400" size={24} />
+                        <BentoCard className="h-full p-8 bg-slate-50 dark:bg-zinc-900/50 border-slate-200 dark:border-white/10" delay={0.1}>
+                            <div className="w-12 h-12 bg-primary-100 dark:bg-primary-500/20 rounded-xl flex items-center justify-center mb-6">
+                                <Layers className="text-primary-600 dark:text-primary-400" size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold mb-6 text-white">{t.project_details.tech_stack}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold mb-6 text-slate-900 dark:text-white">{t.project_details.tech_stack}</h3>
                             <div className="flex flex-col gap-3">
                                 {project.tags.map((tag, i) => (
-                                    <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-default">
-                                        <span className="font-mono text-primary-200">{tag}</span>
-                                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                                    <div key={i} className="flex items-center justify-between p-4 bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 shadow-sm">
+                                        <span className="font-semibold text-slate-700 dark:text-slate-200">{tag}</span>
+                                        <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
                                     </div>
                                 ))}
                             </div>
-                        </TiltBentoCard>
+                        </BentoCard>
                     </div>
 
                     {/* C. CHALLENGE */}
-                    <TiltBentoCard className="p-8 bg-zinc-900/60 border-red-500/20" delay={0.3}>
-                        <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-3">
+                    <BentoCard className="p-8 bg-white dark:bg-zinc-900 border-red-100 dark:border-red-500/20" delay={0.2}>
+                        <h3 className="text-xl font-bold text-red-500 dark:text-red-400 mb-4 flex items-center gap-3">
                             <Target size={24} /> {t.project_details.challenge}
                         </h3>
-                        <p className="text-gray-400 leading-relaxed">
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
                             {project.challenge}
                         </p>
-                    </TiltBentoCard>
+                    </BentoCard>
 
                     {/* D. SOLUTION */}
-                    <TiltBentoCard className="p-8 bg-zinc-900/60 border-emerald-500/20" delay={0.4}>
-                        <h3 className="text-xl font-bold text-emerald-400 mb-4 flex items-center gap-3">
+                    <BentoCard className="p-8 bg-white dark:bg-zinc-900 border-emerald-100 dark:border-emerald-500/20" delay={0.3}>
+                        <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-4 flex items-center gap-3">
                             <Zap size={24} /> {t.project_details.solution}
                         </h3>
-                        <p className="text-gray-400 leading-relaxed">
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">
                             {project.solution}
                         </p>
-                    </TiltBentoCard>
+                    </BentoCard>
 
-                    {/* E. CTA (Full Width) */}
+                    {/* E. CTA */}
                     <div className="lg:col-span-3 mt-8">
-                        <TiltBentoCard className="relative p-12 overflow-hidden bg-white text-black" delay={0.5}>
-                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-primary-400 to-purple-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
-
-                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                        <BentoCard className="relative p-10 md:p-12 overflow-hidden bg-primary-900 dark:bg-white text-white dark:text-black shadow-xl shadow-primary-900/20 dark:shadow-white/5" delay={0.4}>
+                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
                                 <div>
-                                    <h3 className="text-4xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-black to-slate-600">
+                                    <h3 className="text-3xl md:text-4xl font-bold mb-2">
                                         {t.project_details.cta_title}
                                     </h3>
-                                    <p className="text-slate-600 text-lg font-medium">{t.project_details.cta_desc}</p>
+                                    <p className="text-primary-100 dark:text-gray-600 text-lg">{t.project_details.cta_desc}</p>
                                 </div>
 
                                 <Link
                                     to="/#contact"
-                                    className="px-10 py-5 bg-black text-white rounded-full font-bold text-xl hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/20 transition-all flex items-center gap-3"
+                                    className="px-8 py-4 bg-white dark:bg-black text-primary-900 dark:text-white rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-lg"
                                 >
                                     {t.project_details.cta_btn} <ArrowUpRight />
                                 </Link>
                             </div>
-                        </TiltBentoCard>
+                        </BentoCard>
                     </div>
 
                 </div>
             </div>
 
-            {/* Footer space */}
             <div className="h-20"></div>
         </div>
     )
