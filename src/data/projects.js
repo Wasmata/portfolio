@@ -39,7 +39,7 @@ export const projectsData = {
             tags: ["Docker", "Linux", "Networking", "Self-Hosting"],
             links: { demo: "https://panel.wassihost.com/", github: null },
             description: "Projet né d'une frustration : les limitations des hébergeurs classiques. Ce qui devait être une simple solution pour mes projets perso est devenu mon laboratoire d'apprentissage infrastructure.",
-            challenge: "S'émanciper des solutions clés en main (Vercel, Heroku) pour comprendre ce qui se passe sous le capot. Gérer la sécurité, les reverse-proxies, les certificats SSL et l'orchestration de conteneurs manuellement.",
+            challenge: "S'émanciper des solutions clés en main pour comprendre ce qui se passe sous le capot. Gérer la sécurité, les reverse-proxies, les certificats SSL et l'orchestration de conteneurs manuellement.",
             solution: "J'ai acquis une maîtrise totale de la chaîne de mise en production : du serveur 'bare metal' à la configuration réseau avancée, transformant une contrainte en une véritable expertise DevOps aujourd'hui applicable à n'importe quel projet."
         }
     ],
