@@ -157,18 +157,18 @@ const ProjectDetails = () => {
 
                     {/* E. CTA */}
                     <div className="lg:col-span-3 mt-8">
-                        <BentoCard className="relative p-10 md:p-12 overflow-hidden bg-primary-900 dark:bg-white text-white dark:text-black shadow-xl shadow-primary-900/20 dark:shadow-white/5" delay={0.4}>
+                        <BentoCard className="relative p-10 md:p-12 overflow-hidden bg-primary-600 text-white shadow-xl shadow-primary-900/20" delay={0.4}>
                             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
                                 <div>
                                     <h3 className="text-3xl md:text-4xl font-bold mb-2">
                                         {t.project_details.cta_title}
                                     </h3>
-                                    <p className="text-primary-100 dark:text-gray-600 text-lg">{t.project_details.cta_desc}</p>
+                                    <p className="text-primary-100 text-lg">{t.project_details.cta_desc}</p>
                                 </div>
 
                                 <Link
                                     to="/#contact"
-                                    className="px-8 py-4 bg-white dark:bg-black text-primary-900 dark:text-white rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-lg"
+                                    className="px-8 py-4 bg-white text-primary-600 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-3 shadow-lg"
                                 >
                                     {t.project_details.cta_btn} <ArrowUpRight />
                                 </Link>

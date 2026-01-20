@@ -20,9 +20,19 @@ function App() {
   const location = useLocation()
 
   // Scroll to top on route change
+  // Scroll to top or to hash on route change
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+    if (location.hash) {
+      const elem = document.querySelector(location.hash);
+      if (elem) {
+        setTimeout(() => {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash])
 
   return (
     <div className={`app-container ${enableCursor ? 'cursor-none' : ''}`}>

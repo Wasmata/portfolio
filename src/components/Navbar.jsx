@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Code, Send, Palette as PaletteIcon, Moon, Sun, CreditCard, Menu, X, Terminal as TerminalIcon, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
@@ -20,6 +21,27 @@ const Navbar = ({ onOpenCard }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [showTerminal, setShowTerminal] = useState(false);
     const { playClick, playHover } = useSound();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleNavClick = (e, hash) => {
+        e.preventDefault();
+        if (location.pathname === '/') {
+            const elem = document.querySelector(hash);
+            if (elem) {
+                const headerOffset = 80;
+                const elementPosition = elem.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        } else {
+            navigate(`/${hash}`);
+        }
+        setIsMobileMenuOpen(false);
+    };
 
     // Close mobile menu on resize if screen becomes larger
     useEffect(() => {
@@ -54,16 +76,16 @@ const Navbar = ({ onOpenCard }) => {
 
                     {/* --- DESTKOP & MOBILE: Logo & Main Navigation Container --- */}
                     <div className="glass px-6 py-3 md:px-8 md:py-4 rounded-full flex items-center justify-between md:justify-start gap-8 flex-1 md:flex-none">
-                        <a href="#hero" onMouseEnter={playHover} onClick={playClick} className="text-xl font-bold flex items-center gap-2 text-slate-800 dark:text-white transition-colors">
+                        <a href="#hero" onClick={(e) => handleNavClick(e, '#hero')} onMouseEnter={playHover} className="text-xl font-bold flex items-center gap-2 text-slate-800 dark:text-white transition-colors">
                             <Code className="text-primary-500" />
                             <span>Wassidev<span className="text-primary-500">.</span>fr</span>
                         </a>
 
                         {/* Desktop Links */}
                         <div className="hidden md:flex gap-6 text-sm text-slate-600 dark:text-gray-300 font-medium">
-                            <a href="#about" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.about}</a>
-                            <a href="#projects" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.projects}</a>
-                            <a href="#services" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.services}</a>
+                            <a href="#about" onClick={(e) => handleNavClick(e, '#about')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.about}</a>
+                            <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.projects}</a>
+                            <a href="#services" onClick={(e) => handleNavClick(e, '#services')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.services}</a>
                         </div>
 
                         {/* Mobile Menu Toggle */}
@@ -74,7 +96,7 @@ const Navbar = ({ onOpenCard }) => {
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
 
-                        <a href="#contact" onMouseEnter={playHover} onClick={playClick} className="hidden md:flex bg-primary-600 hover:bg-primary-500 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors items-center gap-2 shadow-lg shadow-primary-600/20">
+                        <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} onMouseEnter={playHover} className="hidden md:flex bg-primary-600 hover:bg-primary-500 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors items-center gap-2 shadow-lg shadow-primary-600/20">
                             {t.nav.cta} <Send size={16} />
                         </a>
                     </div>
@@ -239,13 +261,13 @@ const Navbar = ({ onOpenCard }) => {
                                         initial="hidden"
                                         animate="visible"
                                         href={`#${item}`}
-                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        onClick={(e) => handleNavClick(e, `#${item}`)}
                                         className="text-lg font-bold text-slate-800 dark:text-white hover:text-primary-500 dark:hover:text-primary-400 py-3 border-b border-slate-100 dark:border-white/5"
                                     >
                                         {t.nav[item]}
                                     </motion.a>
                                 ))}
-                                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-2 w-full bg-primary-600 text-white py-3 rounded-xl font-bold text-center shadow-lg shadow-primary-500/20">
+                                <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="mt-2 w-full bg-primary-600 text-white py-3 rounded-xl font-bold text-center shadow-lg shadow-primary-500/20">
                                     {t.nav.cta}
                                 </a>
                             </nav>
