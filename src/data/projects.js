@@ -19,7 +19,7 @@ export const projectsData = {
             title: "JeuxCracks",
             category: "Gaming & Infrastructure",
             image: {
-                light: "/projects/jeuxcracks_light.png",
+                light: "/projects/jeuxcracks_dark.png",
                 dark: "/projects/jeuxcracks_dark.png"
             },
             tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
@@ -63,7 +63,7 @@ export const projectsData = {
             title: "JeuxCracks",
             category: "Gaming & Infrastructure",
             image: {
-                light: "/projects/jeuxcracks_light.png",
+                light: "/projects/jeuxcracks_dark.png",
                 dark: "/projects/jeuxcracks_dark.png"
             },
             tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
