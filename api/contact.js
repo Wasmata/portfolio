@@ -112,15 +112,17 @@ export default async function handler(req, res) {
                                         <p style="color: #e4e4e7; font-size: 16px; margin-bottom: 12px; font-family: 'Courier New', Courier, monospace;">
                                             > Message reçu.
                                         </p>
-                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 32px;">
-                                            Merci <strong>${firstName}</strong>. J'ai bien reçu ton message. Je réponds généralement sous 24h, sauf si je suis en train de debugger un truc impossible.
+                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">
+                                            Merci <strong>${firstName}</strong> pour votre message. J'ai bien reçu votre demande et je vais l'étudier avec attention.<br><br>
+                                            Que ce soit pour une collaboration, une mission freelance ou un simple échange tech, je reviendrai vers vous très rapidement (généralement sous 24h) pour en discuter de vive voix.
                                         </p>
                                     ` : `
                                         <p style="color: #e4e4e7; font-size: 16px; margin-bottom: 12px; font-family: 'Courier New', Courier, monospace;">
                                             > Message received.
                                         </p>
-                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 32px;">
-                                            Thanks <strong>${firstName}</strong>. I got your message. I usually reply within 24 hours, unless I'm stuck debugging something impossible.
+                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">
+                                            Thank you <strong>${firstName}</strong> for reaching out. I have received your inquiry and will review the details carefully.<br><br>
+                                            Whether it's for a potential collaboration, a freelance project, or a technical discussion, I will get back to you very soon (usually within 24 hours) to discuss the next steps.
                                         </p>
                                     `}
                                         
