@@ -171,7 +171,8 @@ const Navbar = ({ onOpenCard }) => {
                                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                                         animate={{ opacity: 1, scale: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                        className="absolute top-full right-0 mt-12 p-6 bg-white/90 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-slate-200 dark:border-white/10 max-h-[80vh] overflow-y-auto"
+                                        data-lenis-prevent
+                                        className="absolute top-full right-0 mt-12 p-6 bg-white/90 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-slate-200 dark:border-white/10 max-h-[80vh] overflow-y-auto overscroll-y-contain"
                                     >
                                         <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 shrink-0">
                                             <span className="text-sm font-bold uppercase tracking-widest text-slate-500">Control Center</span>
