@@ -16,7 +16,7 @@ const VisualEffects = () => {
         <>
             {/* FILM GRAIN */}
             {filmGrain && !lowPowerMode && (
-                <div className="fixed inset-0 z-30 pointer-events-none opacity-[0.10] w-full h-full overflow-hidden">
+                <div className="fixed inset-0 z-30 pointer-events-none opacity-[0.05] w-full h-full overflow-hidden">
                     <svg className="w-full h-full">
                         <filter id="noise">
                             <feTurbulence
@@ -33,7 +33,7 @@ const VisualEffects = () => {
 
             {/* CRT SCANLINES */}
             {scanlines && !lowPowerMode && (
-                <div className="fixed inset-0 z-30 pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-50" />
+                <div className="fixed inset-0 z-30 pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-20" />
             )}
 
             {/* DEBUG GRID */}

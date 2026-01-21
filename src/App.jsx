@@ -21,6 +21,11 @@ function App() {
   const { enableCursor, enableSmoothScroll, enableScrollProgress, showFPS } = useTheme()
   const location = useLocation()
 
+  // Force remove stuck classes on mount (Emergency Fix)
+  useEffect(() => {
+    document.body.classList.remove('mono-mode', 'wireframe-mode', 'focus-mode', 'low-power', 'scanlines-mode');
+  }, []);
+
   // Scroll to top or to hash on route change
   useEffect(() => {
     if (location.hash) {
