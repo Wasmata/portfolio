@@ -2,20 +2,19 @@ import { useTheme } from '../../context/ThemeContext';
 import { useEffect } from 'react';
 
 const VisualEffects = () => {
-    const { filmGrain, scanlines, wireframeMode, focusMode, monoMode, debugGrid, lowPowerMode } = useTheme();
+    const { filmGrain, wireframeMode, focusMode, readingMode, debugGrid } = useTheme();
 
     // Toggle Body Classes
     useEffect(() => {
         document.body.classList.toggle('wireframe-mode', wireframeMode);
         document.body.classList.toggle('focus-mode', focusMode);
-        document.body.classList.toggle('mono-mode', monoMode);
-        document.body.classList.toggle('low-power', lowPowerMode);
-    }, [wireframeMode, focusMode, monoMode, lowPowerMode]);
+        document.body.classList.toggle('reading-mode', readingMode);
+    }, [wireframeMode, focusMode, readingMode]);
 
     return (
         <>
             {/* FILM GRAIN */}
-            {filmGrain && !lowPowerMode && (
+            {filmGrain && (
                 <div className="fixed inset-0 z-30 pointer-events-none opacity-[0.05] w-full h-full overflow-hidden">
                     <svg className="w-full h-full">
                         <filter id="noise">
@@ -29,11 +28,6 @@ const VisualEffects = () => {
                         <rect width="100%" height="100%" filter="url(#noise)" />
                     </svg>
                 </div>
-            )}
-
-            {/* CRT SCANLINES */}
-            {scanlines && !lowPowerMode && (
-                <div className="fixed inset-0 z-30 pointer-events-none w-full h-full bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-20" />
             )}
 
             {/* DEBUG GRID */}

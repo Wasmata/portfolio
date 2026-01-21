@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Code, Send, Palette as PaletteIcon, Moon, Sun, Menu, X, Terminal as TerminalIcon,
     Volume2, VolumeX, Settings, Type,
-    Activity, Battery, Monitor, Film, Grid, Cpu, Eye, Tv, Aperture // New Icons
+    Activity, Battery, Monitor, Film, Grid, Cpu, Eye, Tv, Aperture, BookOpen // New Icons
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
@@ -22,12 +22,10 @@ const Navbar = ({ onOpenCard }) => {
         currentFont, setCurrentFont, fonts,
         // V3 Values
         showFPS, toggleFPS,
-        lowPowerMode, toggleLowPower,
+        readingMode, toggleReading,
         filmGrain, toggleGrain,
-        scanlines, toggleScanlines,
         wireframeMode, toggleWireframe,
         focusMode, toggleFocus,
-        monoMode, toggleMono,
         debugGrid, toggleHelper
     } = useTheme();
 
@@ -173,17 +171,15 @@ const Navbar = ({ onOpenCard }) => {
                                         initial={{ opacity: 0, scale: 0.95, y: 10 }}
                                         animate={{ opacity: 1, scale: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                        className="absolute top-full right-0 mt-6 p-6 bg-white/90 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-slate-200 dark:border-white/10"
+                                        className="absolute top-full right-0 mt-6 p-6 bg-white/90 dark:bg-[#0a0a0a]/95 backdrop-blur-2xl rounded-2xl flex flex-col gap-6 min-w-[320px] shadow-2xl z-50 border border-slate-200 dark:border-white/10 max-h-[80vh] overflow-y-auto"
                                     >
-                                        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10">
+                                        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 shrink-0">
                                             <span className="text-sm font-bold uppercase tracking-widest text-slate-500">Control Center</span>
-                                            <span className="text-xs text-slate-400">V2.0</span>
+                                            <span className="text-xs text-slate-400">V3.1</span>
                                         </div>
 
-
-
                                         {/* Typography */}
-                                        <div>
+                                        <div className="shrink-0">
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Typography</p>
                                             <div className="grid grid-cols-2 gap-2">
                                                 {Object.entries(fonts).map(([key, font]) => (
@@ -199,31 +195,31 @@ const Navbar = ({ onOpenCard }) => {
                                             </div>
                                         </div>
 
-                                        {/* Display & Performance */}
-                                        <div>
+                                        {/* System */}
+                                        <div className="shrink-0">
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">System</p>
-                                            <div className="grid grid-cols-2 gap-2">
-                                                <button onClick={() => { playClick(); toggleFPS(); }} className={`flex items-center gap-2 p-2 rounded-lg border text-xs font-medium transition-colors ${showFPS ? 'bg-green-500/10 border-green-500 text-green-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
-                                                    <Activity size={14} /> FPS Counter
-                                                </button>
-                                                <button onClick={() => { playClick(); toggleLowPower(); }} className={`flex items-center gap-2 p-2 rounded-lg border text-xs font-medium transition-colors ${lowPowerMode ? 'bg-yellow-500/10 border-yellow-500 text-yellow-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
-                                                    <Battery size={14} /> Low Power
+                                            <div className="grid grid-cols-1 gap-2">
+                                                <button onClick={() => { playClick(); toggleFPS(); }} className={`flex items-center justify-between px-3 py-2 rounded-lg border text-xs font-medium transition-colors ${showFPS ? 'bg-green-500/10 border-green-500 text-green-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <div className="flex items-center gap-2">
+                                                        <Activity size={14} /> <span>FPS Counter</span>
+                                                    </div>
+                                                    <div className={`w-1.5 h-1.5 rounded-full ${showFPS ? 'bg-green-500' : 'bg-slate-300 dark:bg-gray-600'}`}></div>
                                                 </button>
                                             </div>
                                         </div>
 
-                                        {/* Visual FX */}
-                                        <div>
+                                        {/* Visual Engine */}
+                                        <div className="shrink-0">
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Visual Engine</p>
                                             <div className="grid grid-cols-3 gap-2">
                                                 <button title="Adds cinematic grain noise" onClick={() => { playClick(); toggleGrain(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${filmGrain ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Film size={14} /> Grain
                                                 </button>
-                                                <button title="Retro CRT monitor scanlines" onClick={() => { playClick(); toggleScanlines(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${scanlines ? 'bg-primary-500/10 border-primary-500 text-primary-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
-                                                    <Tv size={14} /> CRT
-                                                </button>
                                                 <button title="Dim distractions for reading" onClick={() => { playClick(); toggleFocus(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${focusMode ? 'bg-indigo-500/10 border-indigo-500 text-indigo-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Eye size={14} /> Focus
+                                                </button>
+                                                <button title="Warm tint for reading" onClick={() => { playClick(); toggleReading(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${readingMode ? 'bg-amber-500/10 border-amber-500 text-amber-600 dark:text-amber-400' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
+                                                    <BookOpen size={14} /> Read
                                                 </button>
                                                 <button title="Developer wireframe view" onClick={() => { playClick(); toggleWireframe(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${wireframeMode ? 'bg-cyan-500/10 border-cyan-500 text-cyan-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Cpu size={14} /> Matrix
@@ -231,14 +227,11 @@ const Navbar = ({ onOpenCard }) => {
                                                 <button title="Alignment grid" onClick={() => { playClick(); toggleHelper(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${debugGrid ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
                                                     <Grid size={14} /> Grid
                                                 </button>
-                                                <button title="Black & White artistic mode" onClick={() => { playClick(); toggleMono(); }} className={`flex flex-col items-center justify-center gap-1 p-2 rounded-lg border text-[10px] font-medium transition-colors ${monoMode ? 'bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-black dark:border-white' : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-gray-400'}`}>
-                                                    <Aperture size={14} /> Mono
-                                                </button>
                                             </div>
                                         </div>
 
                                         {/* Interface */}
-                                        <div>
+                                        <div className="shrink-0">
                                             <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Interface</p>
                                             <div className="space-y-2">
                                                 <button onClick={() => { playClick(); toggleSounds(); }} className={`w-full flex items-center justify-between p-2 rounded-lg transition-colors border ${enableSounds ? 'border-primary-500/50 bg-primary-500/10 text-primary-600 dark:text-primary-400' : 'border-transparent text-slate-500 dark:text-gray-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}>

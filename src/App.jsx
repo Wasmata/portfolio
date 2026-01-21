@@ -23,7 +23,7 @@ function App() {
 
   // Force remove stuck classes on mount (Emergency Fix)
   useEffect(() => {
-    document.body.classList.remove('mono-mode', 'wireframe-mode', 'focus-mode', 'low-power', 'scanlines-mode');
+    document.body.classList.remove('mono-mode', 'wireframe-mode', 'focus-mode', 'low-power', 'scanlines-mode', 'reading-mode');
   }, []);
 
   // Scroll to top or to hash on route change
