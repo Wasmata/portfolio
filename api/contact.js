@@ -58,7 +58,11 @@ export default async function handler(req, res) {
             ? `Confirmation de réception - Wassidev`
             : `Message Received - Wassidev`;
 
-        // Modern Premium Email Template (Dark Mode / Wassidev Style)
+        // Ticket ID Simulation
+        const ticketId = 'REQ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        const timestamp = new Date().toISOString().replace('T', ' ').substr(0, 19);
+
+        // Ultimate Developer Email Template
         const userHtml = `
         <!DOCTYPE html>
         <html>
@@ -67,83 +71,127 @@ export default async function handler(req, res) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Wassidev Notification</title>
         </head>
-        <body style="margin: 0; padding: 0; background-color: #050505; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+        <body style="margin: 0; padding: 0; background-color: #000000; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; -webkit-font-smoothing: antialiased;">
             
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #050505; width: 100%; text-align: center;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #000000; width: 100%; text-align: center;">
                 <tr>
-                    <td align="center" style="padding: 40px 10px;">
+                    <td align="center" style="padding: 20px 10px;">
                         
-                        <!-- Main Card -->
-                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #0a0a0a; border: 1px solid #1f1f1f; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
-                            
-                            <!-- Header / Logo Area -->
+                        <!-- Gradient Border Wrapper -->
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%); border-radius: 2px; padding: 1px;">
                             <tr>
-                                <td style="padding: 40px 0 20px 0; text-align: center;">
-                                    <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -1px; color: #ffffff;">
-                                        Wassidev<span style="color: #6366f1;">.</span>fr
-                                    </h1>
-                                </td>
-                            </tr>
+                                <td>
+                                    <!-- Inner Black Card -->
+                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #050505; border-radius: 1px;">
+                                        
+                                        <!-- Terminal Header -->
+                                        <tr>
+                                            <td style="padding: 15px 20px; border-bottom: 1px solid #1f1f1f; background-color: #0a0a0a;">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td align="left">
+                                                            <span style="display: inline-block; width: 10px; height: 10px; background: #ef4444; border-radius: 50%; margin-right: 6px;"></span>
+                                                            <span style="display: inline-block; width: 10px; height: 10px; background: #eab308; border-radius: 50%; margin-right: 6px;"></span>
+                                                            <span style="display: inline-block; width: 10px; height: 10px; background: #22c55e; border-radius: 50%;"></span>
+                                                        </td>
+                                                        <td align="right" style="color: #52525b; font-size: 10px; font-family: monospace;">bash --login</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
 
-                            <!-- Content Area -->
-                            <tr>
-                                <td style="padding: 0 40px 40px 40px; text-align: left;">
-                                    ${isFr ? `
-                                        <p style="color: #a1a1aa; font-size: 16px; margin-bottom: 24px;">Bonjour <strong style="color: #ffffff;">${firstName}</strong>,</p>
-                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                                            Merci d'avoir pris le temps de me contacter. J'ai bien reçu votre message et je l'examine actuellement avec attention. ⚡️
-                                        </p>
-                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
-                                            Je m'efforce de répondre à toutes les demandes sous 24h. En attendant, n'hésitez pas à explorer mon portfolio pour voir mes dernières réalisations.
-                                        </p>
-                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
-                                            <tr>
-                                                <td align="center">
-                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 50px; font-size: 16px; letter-spacing: 0.5px;">Accéder au Site</a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    ` : `
-                                        <p style="color: #a1a1aa; font-size: 16px; margin-bottom: 24px;">Hello <strong style="color: #ffffff;">${firstName}</strong>,</p>
-                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                                            Thanks for reaching out! I have received your message safely and am currently reviewing it. ⚡️
-                                        </p>
-                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
-                                            I aim to get back to everyone within 24h. In the meantime, feel free to check out my latest work on my portfolio.
-                                        </p>
-                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
-                                            <tr>
-                                                <td align="center">
-                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 50px; font-size: 16px; letter-spacing: 0.5px;">Visit Portfolio</a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    `}
-                                </td>
-                            </tr>
+                                        <!-- Content -->
+                                        <tr>
+                                            <td style="padding: 40px 30px;">
+                                                <!-- Logo -->
+                                                <div style="margin-bottom: 30px; text-align: left;">
+                                                    <span style="color: #6366f1; font-weight: bold;">></span> <span style="color: #ffffff; font-weight: bold; font-size: 20px;">Wassidev.init()</span><span style="animation: blink 1s infinite; color: #6366f1;">_</span>
+                                                </div>
 
-                            <!-- Footer -->
-                            <tr>
-                                <td style="background-color: #0f0f0f; padding: 24px; text-align: center; border-top: 1px solid #1f1f1f;">
-                                    <p style="color: #52525b; font-size: 12px; margin: 0 0 8px 0;">
-                                        &copy; ${new Date().getFullYear()} Wassim Maataoui. All rights reserved.
-                                    </p>
-                                    <p style="color: #52525b; font-size: 12px; margin: 0;">
-                                        France • <a href="mailto:contact@wassidev.fr" style="color: #52525b; text-decoration: underline;">contact@wassidev.fr</a>
-                                    </p>
-                                    <div style="margin-top: 16px;">
-                                        <span style="display: inline-block; width: 4px; height: 4px; background: #27272a; border-radius: 50%; margin: 0 4px;"></span>
-                                        <span style="display: inline-block; width: 4px; height: 4px; background: #3f3f46; border-radius: 50%; margin: 0 4px;"></span>
-                                        <span style="display: inline-block; width: 4px; height: 4px; background: #27272a; border-radius: 50%; margin: 0 4px;"></span>
-                                    </div>
+                                                ${isFr ? `
+                                                    <!-- Status Badge -->
+                                                    <div style="margin-bottom: 20px;">
+                                                        <span style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); color: #22c55e; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">STATUS: REÇU 200 OK</span>
+                                                    </div>
+
+                                                    <p style="color: #d4d4d8; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+                                                        <span style="color: #6366f1;">const</span> visitor = <span style="color: #22c55e;">"${firstName}"</span>;<br>
+                                                        <span style="color: #6366f1;">console</span>.log(<span style="color: #eab308;">"Message bien transmis au serveur central."</span>);
+                                                    </p>
+
+                                                    <div style="background: #0f0f0f; border: 1px solid #27272a; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                                                        <p style="margin: 0; color: #a1a1aa; font-size: 12px; font-family: monospace;">
+                                                            // Ticket Details<br>
+                                                            ID: <span style="color: #ffffff;">${ticketId}</span><br>
+                                                            Time: <span style="color: #ffffff;">${timestamp}</span><br>
+                                                            Response-Time: <span style="color: #ffffff;">~24h</span>
+                                                        </p>
+                                                    </div>
+
+                                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+                                                        <tr>
+                                                            <td align="left">
+                                                                <a href="https://wassidev.fr" style="display: inline-block; padding: 12px 28px; background: #ffffff; color: #000000; text-decoration: none; font-weight: bold; font-size: 12px; text-transform: uppercase; border-radius: 2px; letter-spacing: 1px;">Retour au terminal</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                ` : `
+                                                    <!-- Status Badge -->
+                                                    <div style="margin-bottom: 20px;">
+                                                        <span style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); color: #22c55e; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">STATUS: RECEIVED 200 OK</span>
+                                                    </div>
+
+                                                    <p style="color: #d4d4d8; font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+                                                        <span style="color: #6366f1;">const</span> visitor = <span style="color: #22c55e;">"${firstName}"</span>;<br>
+                                                        <span style="color: #6366f1;">console</span>.log(<span style="color: #eab308;">"Message successfully transmitted to core server."</span>);
+                                                    </p>
+
+                                                    <div style="background: #0f0f0f; border: 1px solid #27272a; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                                                        <p style="margin: 0; color: #a1a1aa; font-size: 12px; font-family: monospace;">
+                                                            // Ticket Details<br>
+                                                            ID: <span style="color: #ffffff;">${ticketId}</span><br>
+                                                            Time: <span style="color: #ffffff;">${timestamp}</span><br>
+                                                            Response-Time: <span style="color: #ffffff;">~24h</span>
+                                                        </p>
+                                                    </div>
+
+                                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+                                                        <tr>
+                                                            <td align="left">
+                                                                <a href="https://wassidev.fr" style="display: inline-block; padding: 12px 28px; background: #ffffff; color: #000000; text-decoration: none; font-weight: bold; font-size: 12px; text-transform: uppercase; border-radius: 2px; letter-spacing: 1px;">Return to Terminal</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                `}
+                                            </td>
+                                        </tr>
+
+                                        <!-- Footer -->
+                                        <tr>
+                                            <td style="background-color: #0a0a0a; padding: 20px 30px; border-top: 1px solid #1f1f1f;">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td align="left">
+                                                            <p style="color: #52525b; font-size: 10px; margin: 0; font-family: monospace;">
+                                                                &copy; ${new Date().getFullYear()} Wassim Maataoui<br>
+                                                                France
+                                                            </p>
+                                                        </td>
+                                                        <td align="right">
+                                                            <p style="color: #52525b; font-size: 10px; margin: 0; font-family: monospace;">
+                                                                SECURED CONNECTION<br>
+                                                                <span style="color: #22c55e;">●</span> ENCRYPTED
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
-                        
-                        <!-- Mini Branding Bottom -->
-                        <p style="text-align: center; margin-top: 24px; color: #3f3f46; font-size: 12px; font-family: monospace;">
-                            SECURED BY WASSIDEV
-                        </p>
 
                     </td>
                 </tr>
@@ -171,7 +219,7 @@ export default async function handler(req, res) {
                     <p>${message.replace(/\n/g, '<br>')}</p>
                 `,
             }),
-            // 2. Auto-Reply (To User)
+            // 2. Auto-Reply (To User - V2 Developer Edition)
             resend.emails.send({
                 from: 'Wassidev <contact@wassidev.fr>',
                 to: [email],
