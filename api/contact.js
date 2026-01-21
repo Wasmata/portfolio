@@ -149,9 +149,21 @@ export default async function handler(req, res) {
                             <!-- Footer -->
                             <tr>
                                 <td style="background-color: #18181b; padding: 24px 32px; border-top: 1px solid #27272a;">
-                                    <p style="color: #52525b; font-size: 12px; margin: 0; font-family: 'Courier New', Courier, monospace;">
-                                        &copy; ${new Date().getFullYear()} Wassim Maataoui <span style="color: #3f3f46;">//</span> Dev
-                                    </p>
+                                    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left">
+                                                <p style="color: #52525b; font-size: 12px; margin: 0; font-family: 'Courier New', Courier, monospace;">
+                                                    &copy; ${new Date().getFullYear()} Wassim Maataoui <span style="color: #3f3f46;">//</span> Dev
+                                                </p>
+                                            </td>
+                                            <td align="right">
+                                                <p style="color: #15803d; font-size: 11px; margin: 0; font-family: 'Courier New', Courier, monospace; letter-spacing: 0.5px;">
+                                                    ${isFr ? 'CONNEXION SÉCURISÉE' : 'SECURED CONNECTION'}
+                                                    <span style="display: inline-block; width: 6px; height: 6px; background-color: #22c55e; border-radius: 50%; margin-left: 6px; vertical-align: middle; box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);"></span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
