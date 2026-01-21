@@ -55,52 +55,99 @@ export default async function handler(req, res) {
         const isFr = lang === 'fr';
 
         const userSubject = isFr
-            ? `Confirmation de réception - Wassim Maataoui`
-            : `Message Received - Wassim Maataoui`;
+            ? `Confirmation de réception - Wassidev`
+            : `Message Received - Wassidev`;
 
-        // Modern Email Template
+        // Modern Premium Email Template (Dark Mode / Wassidev Style)
         const userHtml = `
         <!DOCTYPE html>
         <html>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <style>
-                body { margin: 0; padding: 0; background-color: #f4f4f5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-                .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
-                .header { background: #18181b; padding: 32px 20px; text-align: center; }
-                .header h1 { color: #ffffff; margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px; }
-                .content { padding: 40px 32px; color: #3f3f46; line-height: 1.6; font-size: 16px; }
-                .button { display: inline-block; background: #2563eb; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; margin-top: 24px; }
-                .footer { background: #fafafa; padding: 24px; text-align: center; color: #a1a1aa; font-size: 12px; border-top: 1px solid #f4f4f5; }
-                .info-item { margin-bottom: 8px; }
-            </style>
+            <title>Wassidev Notification</title>
         </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <h1>Wassim Maataoui</h1>
-                </div>
-                <div class="content">
-                    ${isFr ? `
-                        <h2 style="margin-top: 0; color: #18181b;">Bonjour ${firstName},</h2>
-                        <p>Merci de m'avoir contacté ! 👋</p>
-                        <p>J'ai bien reçu votre message. Je suis actuellement en train de le lire et je reviendrai vers vous très rapidement (généralement sous 24h).</p>
-                        <p>En attendant, n'hésitez pas à jeter un œil à mes derniers projets.</p>
-                        <center><a href="https://wassidev.fr" class="button">Voir mon Portfolio</a></center>
-                    ` : `
-                        <h2 style="margin-top: 0; color: #18181b;">Hello ${firstName},</h2>
-                        <p>Thanks for reaching out! 👋</p>
-                        <p>I have received your message safely. I am currently reading it and will get back to you very soon (usually within 24h).</p>
-                        <p>In the meantime, feel free to check out my latest projects.</p>
-                        <center><a href="https://wassidev.fr" class="button">Visit Portfolio</a></center>
-                    `}
-                </div>
-                <div class="footer">
-                    <p>&copy; ${new Date().getFullYear()} Wassim Maataoui. All rights reserved.</p>
-                    <p>Paris, France • contact@wassidev.fr</p>
-                </div>
-            </div>
+        <body style="margin: 0; padding: 0; background-color: #050505; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+            
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #050505; width: 100%; text-align: center;">
+                <tr>
+                    <td align="center" style="padding: 40px 10px;">
+                        
+                        <!-- Main Card -->
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #0a0a0a; border: 1px solid #1f1f1f; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+                            
+                            <!-- Header / Logo Area -->
+                            <tr>
+                                <td style="padding: 40px 0 20px 0; text-align: center;">
+                                    <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -1px; color: #ffffff;">
+                                        Wassidev<span style="color: #6366f1;">.</span>fr
+                                    </h1>
+                                </td>
+                            </tr>
+
+                            <!-- Content Area -->
+                            <tr>
+                                <td style="padding: 0 40px 40px 40px; text-align: left;">
+                                    ${isFr ? `
+                                        <p style="color: #a1a1aa; font-size: 16px; margin-bottom: 24px;">Bonjour <strong style="color: #ffffff;">${firstName}</strong>,</p>
+                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                                            Merci d'avoir pris le temps de me contacter. J'ai bien reçu votre message et je l'examine actuellement avec attention. ⚡️
+                                        </p>
+                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
+                                            Je m'efforce de répondre à toutes les demandes sous 24h. En attendant, n'hésitez pas à explorer mon portfolio pour voir mes dernières réalisations.
+                                        </p>
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+                                            <tr>
+                                                <td align="center">
+                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 50px; font-size: 16px; letter-spacing: 0.5px;">Accéder au Site</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    ` : `
+                                        <p style="color: #a1a1aa; font-size: 16px; margin-bottom: 24px;">Hello <strong style="color: #ffffff;">${firstName}</strong>,</p>
+                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+                                            Thanks for reaching out! I have received your message safely and am currently reviewing it. ⚡️
+                                        </p>
+                                        <p style="color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 32px;">
+                                            I aim to get back to everyone within 24h. In the meantime, feel free to check out my latest work on my portfolio.
+                                        </p>
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="width: 100%;">
+                                            <tr>
+                                                <td align="center">
+                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 50px; font-size: 16px; letter-spacing: 0.5px;">Visit Portfolio</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    `}
+                                </td>
+                            </tr>
+
+                            <!-- Footer -->
+                            <tr>
+                                <td style="background-color: #0f0f0f; padding: 24px; text-align: center; border-top: 1px solid #1f1f1f;">
+                                    <p style="color: #52525b; font-size: 12px; margin: 0 0 8px 0;">
+                                        &copy; ${new Date().getFullYear()} Wassim Maataoui. All rights reserved.
+                                    </p>
+                                    <p style="color: #52525b; font-size: 12px; margin: 0;">
+                                        France • <a href="mailto:contact@wassidev.fr" style="color: #52525b; text-decoration: underline;">contact@wassidev.fr</a>
+                                    </p>
+                                    <div style="margin-top: 16px;">
+                                        <span style="display: inline-block; width: 4px; height: 4px; background: #27272a; border-radius: 50%; margin: 0 4px;"></span>
+                                        <span style="display: inline-block; width: 4px; height: 4px; background: #3f3f46; border-radius: 50%; margin: 0 4px;"></span>
+                                        <span style="display: inline-block; width: 4px; height: 4px; background: #27272a; border-radius: 50%; margin: 0 4px;"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <!-- Mini Branding Bottom -->
+                        <p style="text-align: center; margin-top: 24px; color: #3f3f46; font-size: 12px; font-family: monospace;">
+                            SECURED BY WASSIDEV
+                        </p>
+
+                    </td>
+                </tr>
+            </table>
         </body>
         </html>
         `;
@@ -126,7 +173,7 @@ export default async function handler(req, res) {
             }),
             // 2. Auto-Reply (To User)
             resend.emails.send({
-                from: 'Wassim Maataoui <contact@wassidev.fr>',
+                from: 'Wassidev <contact@wassidev.fr>',
                 to: [email],
                 subject: userSubject,
                 html: userHtml,
