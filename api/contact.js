@@ -62,7 +62,7 @@ export default async function handler(req, res) {
         const ticketId = 'REQ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
         const timestamp = new Date().toISOString().replace('T', ' ').substr(0, 16).replace(/:/g, 'h');
 
-        // Professional Neutral Email Template (Minimalist Dark)
+        // Dark Terminal Lite Theme (Professional x Geek)
         const userHtml = `
         <!DOCTYPE html>
         <html>
@@ -71,89 +71,84 @@ export default async function handler(req, res) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Wassidev Notification</title>
         </head>
-        <body style="margin: 0; padding: 0; background-color: #f4f4f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+        <body style="margin: 0; padding: 0; background-color: #09090b; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
             
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f4f5; width: 100%; text-align: center;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #09090b; width: 100%; text-align: center;">
                 <tr>
                     <td align="center" style="padding: 40px 10px;">
                         
-                        <!-- Main Card -->
-                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); border: 1px solid #e4e4e7;">
+                        <!-- Terminal Window Card -->
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #18181b; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); border: 1px solid #27272a;">
                             
-                            <!-- Header (Simple & Clean) -->
+                            <!-- Window Header (Traffic Lights & Title) -->
                             <tr>
-                                <td style="padding: 32px 32px 0 32px; text-align: left;">
-                                    <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #18181b; letter-spacing: -0.5px;">
-                                        Wassidev<span style="color: #6366f1;">.</span>
-                                    </h1>
+                                <td style="padding: 16px 24px; background-color: #27272a; border-bottom: 1px solid #3f3f46;">
+                                    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="width: 60px;">
+                                                <span style="display: inline-block; width: 10px; height: 10px; background-color: #ef4444; border-radius: 50%; margin-right: 6px;"></span>
+                                                <span style="display: inline-block; width: 10px; height: 10px; background-color: #eab308; border-radius: 50%; margin-right: 6px;"></span>
+                                                <span style="display: inline-block; width: 10px; height: 10px; background-color: #22c55e; border-radius: 50%;"></span>
+                                            </td>
+                                            <td style="text-align: center; color: #a1a1aa; font-family: 'Courier New', Courier, monospace; font-size: 12px; letter-spacing: 1px;">
+                                                wassidev-auto-reply
+                                            </td>
+                                            <td style="width: 60px;"></td> <!-- Spacer for centering -->
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
 
                             <!-- Content Area -->
                             <tr>
-                                <td style="padding: 32px; text-align: left;">
+                                <td style="padding: 40px 32px; text-align: left;">
                                     
-                                    <!-- Status Badge (Neutral) -->
-                                    <div style="margin-bottom: 24px;">
-                                        <span style="background-color: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 6px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; font-family: monospace;">
-                                            ● ${isFr ? 'Reçu / Confirmed' : 'Received / Confirmed'}
-                                        </span>
-                                    </div>
+                                    <!-- Brand Header -->
+                                    <h1 style="margin: 0 0 24px 0; font-size: 28px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px;">
+                                        Wassidev<span style="color: #6366f1;">.</span>
+                                    </h1>
 
                                     ${isFr ? `
-                                        <p style="color: #3f3f46; font-size: 16px; margin-bottom: 16px;">Bonjour <strong>${firstName}</strong>,</p>
-                                        <p style="color: #52525b; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                                            Merci pour votre message. Je l'ai bien reçu et je vais le traiter dans les plus brefs délais.<br>
-                                            En général, je réponds sous 24 heures.
+                                        <p style="color: #e4e4e7; font-size: 16px; margin-bottom: 12px; font-family: 'Courier New', Courier, monospace;">
+                                            > Message reçu.
                                         </p>
-                                        
-                                        <!-- Tech Details Block (Minimal) -->
-                                        <div style="background-color: #fafafa; border: 1px solid #f4f4f5; border-radius: 8px; padding: 16px; margin-bottom: 32px;">
-                                            <p style="margin: 0; color: #71717a; font-size: 12px; font-family: monospace; line-height: 1.6;">
-                                                Ticket: <span style="color: #18181b;">${ticketId}</span><br>
-                                                Date: <span style="color: #18181b;">${timestamp}</span>
-                                            </p>
-                                        </div>
-
-                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-                                                <td align="left">
-                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 12px 24px; background-color: #18181b; color: #ffffff; text-decoration: none; font-weight: 500; border-radius: 6px; font-size: 14px;">Retour au site</a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 32px;">
+                                            Merci <strong>${firstName}</strong>. J'ai bien reçu ton message. Je réponds généralement sous 24h, sauf si je suis en train de debugger un truc impossible.
+                                        </p>
                                     ` : `
-                                        <p style="color: #3f3f46; font-size: 16px; margin-bottom: 16px;">Hello <strong>${firstName}</strong>,</p>
-                                        <p style="color: #52525b; font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
-                                            Thanks for reaching out. I have received your message and will review it shortly.<br>
-                                            I typically reply within 24 hours.
+                                        <p style="color: #e4e4e7; font-size: 16px; margin-bottom: 12px; font-family: 'Courier New', Courier, monospace;">
+                                            > Message received.
                                         </p>
-
-                                        <!-- Tech Details Block (Minimal) -->
-                                        <div style="background-color: #fafafa; border: 1px solid #f4f4f5; border-radius: 8px; padding: 16px; margin-bottom: 32px;">
-                                            <p style="margin: 0; color: #71717a; font-size: 12px; font-family: monospace; line-height: 1.6;">
-                                                Ticket: <span style="color: #18181b;">${ticketId}</span><br>
-                                                Date: <span style="color: #18181b;">${timestamp}</span>
-                                            </p>
-                                        </div>
-
-                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-                                                <td align="left">
-                                                    <a href="https://wassidev.fr" style="display: inline-block; padding: 12px 24px; background-color: #18181b; color: #ffffff; text-decoration: none; font-weight: 500; border-radius: 6px; font-size: 14px;">Return to portfolio</a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <p style="color: #a1a1aa; font-size: 15px; line-height: 1.6; margin-bottom: 32px;">
+                                            Thanks <strong>${firstName}</strong>. I got your message. I usually reply within 24 hours, unless I'm stuck debugging something impossible.
+                                        </p>
                                     `}
+                                        
+                                    <!-- Tech Details Block (Dark & Clean) -->
+                                    <div style="background-color: #09090b; border: 1px solid #27272a; border-radius: 6px; padding: 16px; margin-bottom: 32px; font-family: 'Courier New', Courier, monospace;">
+                                        <p style="margin: 0; color: #71717a; font-size: 12px; line-height: 1.6;">
+                                            <span style="color: #52525b;">ID:</span> <span style="color: #22c55e;">${ticketId}</span><br>
+                                            <span style="color: #52525b;">TIME:</span> <span style="color: #d4d4d8;">${timestamp}</span>
+                                        </p>
+                                    </div>
+
+                                    <table role="presentation" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left">
+                                                <a href="https://wassidev.fr" style="display: inline-block; padding: 12px 24px; background-color: #ffffff; color: #000000; text-decoration: none; font-weight: 600; border-radius: 4px; font-size: 14px; transition: opacity 0.2s;">
+                                                    ${isFr ? 'Retour au site' : 'Return to portfolio'}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
 
-                            <!-- Footer (Minimal) -->
+                            <!-- Footer -->
                             <tr>
-                                <td style="background-color: #ffffff; padding: 24px 32px; border-top: 1px solid #f4f4f5;">
-                                    <p style="color: #a1a1aa; font-size: 12px; margin: 0; font-family: -apple-system, sans-serif;">
-                                        &copy; ${new Date().getFullYear()} Wassim Maataoui • France<br>
-                                        <span style="color: #d4d4d8;">Automated Notification System</span>
+                                <td style="background-color: #18181b; padding: 24px 32px; border-top: 1px solid #27272a;">
+                                    <p style="color: #52525b; font-size: 12px; margin: 0; font-family: 'Courier New', Courier, monospace;">
+                                        &copy; ${new Date().getFullYear()} Wassim Maataoui <span style="color: #3f3f46;">//</span> Dev
                                     </p>
                                 </td>
                             </tr>
