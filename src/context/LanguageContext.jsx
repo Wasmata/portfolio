@@ -381,7 +381,33 @@ export const translations = {
       ]
     },
     pricing: {
-      // ... offers ...
+      title: "My",
+      title_highlight: "Offers",
+      subtitle: "Solutions adapted to every stage of your growth.",
+      showcase: {
+        title: "Showcase Site",
+        price: "On Quotation",
+        desc: "Ideal to present your activity and reassure your prospects.",
+        features: ["Premium & Unique Design", "Mobile First", "Basic SEO Optimization", "Contact Form"]
+      },
+      custom: {
+        title: "Custom App",
+        price: "On Quotation",
+        desc: "For complex projects requiring specific features.",
+        features: ["Scalable Architecture", "Admin Dashboard", "Database", "API & Integrations"]
+      },
+      freelance: {
+        title: "Freelance Mission",
+        price: "TJM €300",
+        desc: "Technical reinforcement for your team or agency.",
+        features: ["React / Django / Node", "Pixel Perfect Integration", "Clean & Maintainable Code", "Deadline Respect"]
+      },
+      maintenance: {
+        title: "Maintenance & Hosting",
+        price: "€50-150 /month",
+        desc: "Total peace of mind: I take care of everything to keep your site online and secure.",
+        features: ["High Performance Hosting", "Security Updates", "Daily Backups", "7/7 Support (Bugs & Outage)"]
+      },
       cta: "Request a Quote",
       simulator: {
         title: "Estimate your project",
