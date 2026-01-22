@@ -3,6 +3,8 @@ import Hero from '../components/Hero'
 import Projects from '../components/Projects'
 import Services from '../components/Services'
 import Contact from '../components/Contact'
+import Process from '../components/Process'
+import FAQ from '../components/FAQ'
 
 const Home = () => {
     return (
@@ -14,7 +16,9 @@ const Home = () => {
         >
             <Hero />
             <Projects />
+            <Process />
             <Services />
+            <FAQ />
             <Contact />
         </motion.main>
     )
