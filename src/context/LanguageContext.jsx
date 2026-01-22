@@ -74,9 +74,25 @@ export const translations = {
       legal: "Mentions Légales",
       legal_modal: {
         title: "Mentions Légales",
-        editor: "Éditeur du site",
-        host: "Hébergement",
-        contact: "Contact"
+        close: "Fermer",
+        content: `
+          <h3>1. Édition du site</h3>
+          <p>Le présent site, accessible à l'URL www.wassidev.fr (le « Site »), est édité par :</p>
+          <p><strong>Wassim Maataoui</strong>, résidant en France, de nationalité Française (France), né(e) le [Date], inscrit au R.C.S. de [Ville] sous le numéro <strong>930 611 165</strong> (SIRET : 930 611 165 00018).</p>
+          
+          <h3>2. Hébergement</h3>
+          <p>Le Site est hébergé par la société <strong>Vercel Inc.</strong>, située 340 S Lemon Ave #4133 Walnut, CA 91789, USA, (contact téléphonique ou email : https://vercel.com/contact).</p>
+          
+          <h3>3. Directeur de publication</h3>
+          <p>Le Directeur de la publication du Site est <strong>Wassim Maataoui</strong>.</p>
+          
+          <h3>4. Nous contacter</h3>
+          <p>Par email : <strong>contact@wassidev.fr</strong></p>
+          <p>Par téléphone : <strong>07 68 31 27 68</strong></p>
+
+          <h3>5. Données personnelles</h3>
+          <p>Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).</p>
+        `
       }
     },
     pricing: {
@@ -97,9 +113,9 @@ export const translations = {
       },
       freelance: {
         title: "Mission Freelance",
-        price: "TJM 350€",
+        price: "TJM 300€",
         desc: "Renfort technique pour votre équipe ou agence.",
-        features: ["React / Next.js / Node", "Intégration Pixel Perfect", "Code Clean & Maintenable", "Respect des délais"]
+        features: ["React / Django / Nord", "Intégration Pixel Perfect", "Code Clean & Maintenable", "Respect des délais"]
       },
       cta: "Demander un devis"
     },
@@ -196,9 +212,21 @@ export const translations = {
       legal: "Legal Notice",
       legal_modal: {
         title: "Legal Notice",
-        editor: "Site Editor",
-        host: "Hosting",
-        contact: "Contact"
+        close: "Close",
+        content: `
+          <h3>1. Site Editing</h3>
+          <p>The present site, accessible at www.wassidev.fr (the "Site"), is edited by:</p>
+          <p><strong>Wassim Maataoui</strong>, residing in France, French nationality, registered with the R.C.S. under number <strong>930 611 165</strong> (SIRET: 930 611 165 00018).</p>
+          
+          <h3>2. Hosting</h3>
+          <p>The Site is hosted by <strong>Vercel Inc.</strong>, located at 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</p>
+          
+          <h3>3. Publication Director</h3>
+          <p>The Publication Director of the Site is <strong>Wassim Maataoui</strong>.</p>
+          
+          <h3>4. Contact Us</h3>
+          <p>By email: <strong>contact@wassidev.fr</strong></p>
+        `
       }
     },
     pricing: {
@@ -219,9 +247,9 @@ export const translations = {
       },
       freelance: {
         title: "Freelance Mission",
-        price: "Daily Rate €350",
+        price: "Daily Rate €300",
         desc: "Technical reinforcement for your team or agency.",
-        features: ["React / Next.js / Node", "Pixel Perfect Integration", "Clean & Maintainable Code", "Deadline Respect"]
+        features: ["React / Django / Node", "Pixel Perfect Integration", "Clean & Maintainable Code", "Deadline Respect"]
       },
       cta: "Request a Quote"
     },
