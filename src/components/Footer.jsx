@@ -7,7 +7,7 @@ const Footer = () => {
     const { playClick, playHover } = useSound()
 
     return (
-        <footer className="py-8 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black transition-colors">
+        <footer className="py-8 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-black transition-colors relative z-10">
             <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
                     <Code className="text-primary-500" />
@@ -16,7 +16,7 @@ const Footer = () => {
 
                 <div className="text-gray-500 text-sm flex flex-col items-center gap-1">
                     <p>{t.footer.made_by} <Heart size={14} className="text-red-500 fill-red-500 inline" /> by Wassim Maataoui © 2026</p>
-                    <p className="text-xs text-gray-600">SIRET: 930 611 165 00018 • SIREN: 930 611 165</p>
+                    <p className="text-xs text-gray-600">SIRET: 930 611 165 00018 • <button onClick={() => alert("Mentions Légales (Modal à venir)")} className="hover:text-primary-500 underline decoration-dotted underline-offset-2">{t.footer.legal}</button></p>
                 </div>
 
                 <div className="flex justify-center gap-6 mb-4 text-slate-500 dark:text-gray-400">

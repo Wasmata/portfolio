@@ -12,6 +12,8 @@ import ScrollProgress from './components/Showcase/ScrollProgress'
 import SmoothScroll from './components/Showcase/SmoothScroll'
 import FPSCounter from './components/Effects/FPSCounter'
 import VisualEffects from './components/Effects/VisualEffects'
+import Process from './components/Process';
+import FAQ from './components/FAQ';
 import { useTheme } from './context/ThemeContext'
 import Home from './pages/Home'
 import ProjectDetails from './pages/ProjectDetails'
@@ -56,6 +58,9 @@ function App() {
           <Route path="/project/:id" element={<ProjectDetails />} />
         </Routes>
       </AnimatePresence>
+
+      <Process />
+      <FAQ />
 
       <Footer />
       <DigitalCard isOpen={isCardOpen} onClose={() => setIsCardOpen(false)} />

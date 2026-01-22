@@ -70,7 +70,59 @@ export const translations = {
       cta_btn: "Discutons-en"
     },
     footer: {
-      made_by: "Fait avec"
+      made_by: "Fait avec",
+      legal: "Mentions Légales",
+      legal_modal: {
+        title: "Mentions Légales",
+        editor: "Éditeur du site",
+        host: "Hébergement",
+        contact: "Contact"
+      }
+    },
+    pricing: {
+      title: "Mes",
+      title_highlight: "Offres",
+      subtitle: "Des solutions adaptées à chaque étape de votre croissance.",
+      showcase: {
+        title: "Site Vitrine",
+        price: "Sur devis",
+        desc: "Idéal pour présenter votre activité et rassurer vos prospects.",
+        features: ["Design Premium & Unique", "Mobile First", "Optimisation SEO de base", "Formulaire de Contact"]
+      },
+      custom: {
+        title: "App Sur Mesure",
+        price: "Sur devis",
+        desc: "Pour les projets complexes nécessitant des fonctionnalités spécifiques.",
+        features: ["Architecture Scalable", "Dashboard Admin", "Base de données", "API & Intégrations"]
+      },
+      freelance: {
+        title: "Mission Freelance",
+        price: "TJM 350€",
+        desc: "Renfort technique pour votre équipe ou agence.",
+        features: ["React / Next.js / Node", "Intégration Pixel Perfect", "Code Clean & Maintenable", "Respect des délais"]
+      },
+      cta: "Demander un devis"
+    },
+    process: {
+      title: "Mon",
+      title_highlight: "Processus",
+      subtitle: "Une méthodologie éprouvée pour garantir le succès de votre projet.",
+      steps: [
+        { title: "1. Découverte", desc: "On analyse vos besoins et on définit ensemble les objectifs du projet." },
+        { title: "2. Design", desc: "Je conçois les maquettes et l'expérience utilisateur (UI/UX)." },
+        { title: "3. Développement", desc: "Je code votre site avec les meilleures technologies actuelles." },
+        { title: "4. Lancement", desc: "Mise en ligne, tests finaux et formation si nécessaire." }
+      ]
+    },
+    faq: {
+      title: "Questions",
+      title_highlight: "Fréquentes",
+      items: [
+        { question: "Combien de temps pour créer un site ?", answer: "Cela dépend de la complexité. Un site vitrine prend généralement 1 à 2 semaines, une application complexe peut prendre 1 mois ou plus." },
+        { question: "Le site sera-t-il optimisé pour Google (SEO) ?", answer: "Oui, tous mes sites respectent les bonnes pratiques SEO (structure, rapidité, balises) pour un bon référencement naturel base." },
+        { question: "Proposez-vous l'hébergement ?", answer: "Je peux configurer l'hébergement pour vous (Vercel, VPS, etc.) et vous conseiller, mais la facturation reste généralement à votre nom pour que vous restiez propriétaire." },
+        { question: "Et si j'ai besoin de modifications après ?", answer: "Je propose une garantie post-livraison pour les bugs. Pour les évolutions, nous pouvons partir sur une maintenance ou un nouveau devis." }
+      ]
     }
   },
   en: {
@@ -140,7 +192,59 @@ export const translations = {
       cta_btn: "Let's Talk"
     },
     footer: {
-      made_by: "Made with"
+      made_by: "Made with",
+      legal: "Legal Notice",
+      legal_modal: {
+        title: "Legal Notice",
+        editor: "Site Editor",
+        host: "Hosting",
+        contact: "Contact"
+      }
+    },
+    pricing: {
+      title: "My",
+      title_highlight: "Offers",
+      subtitle: "Tailored solutions for every stage of your growth.",
+      showcase: {
+        title: "Showcase Site",
+        price: "On Quote",
+        desc: "Ideal for presenting your business and reassuring prospects.",
+        features: ["Premium & Unique Design", "Mobile First", "Basic SEO Optimization", "Contact Form"]
+      },
+      custom: {
+        title: "Custom App",
+        price: "On Quote",
+        desc: "For complex projects requiring specific features.",
+        features: ["Scalable Architecture", "Admin Dashboard", "Database", "API & Integrations"]
+      },
+      freelance: {
+        title: "Freelance Mission",
+        price: "Daily Rate €350",
+        desc: "Technical reinforcement for your team or agency.",
+        features: ["React / Next.js / Node", "Pixel Perfect Integration", "Clean & Maintainable Code", "Deadline Respect"]
+      },
+      cta: "Request a Quote"
+    },
+    process: {
+      title: "My",
+      title_highlight: "Process",
+      subtitle: "A proven methodology to ensure your project's success.",
+      steps: [
+        { title: "1. Discovery", desc: "We analyze your needs and define the project goals together." },
+        { title: "2. Design", desc: "I design the mockups and user experience (UI/UX)." },
+        { title: "3. Development", desc: "I code your site using the best current technologies." },
+        { title: "4. Launch", desc: "Deployment, final tests, and training if necessary." }
+      ]
+    },
+    faq: {
+      title: "Frequent",
+      title_highlight: "Questions",
+      items: [
+        { question: "How long to build a site?", answer: "It depends on complexity. A showcase site usually takes 1-2 weeks, a complex app can take 1 month or more." },
+        { question: "Will the site be SEO optimized?", answer: "Yes, all my sites follow SEO best practices (structure, speed, tags) for good organic ranking." },
+        { question: "Do you offer hosting?", answer: "I can set up hosting for you (Vercel, VPS, etc.) and advise you, but billing is usually in your name so you remain the owner." },
+        { question: "What if I need changes later?", answer: "I offer a post-delivery warranty for bugs. For evolutions, we can discuss a maintenance plan or a new quote." }
+      ]
     }
   }
 };
