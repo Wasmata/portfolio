@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calculator, ArrowRight, ArrowLeft, Check, Smartphone, Globe, ShoppingCart, Layout, Monitor, PenTool, Database, Shield, Zap, Search, FileText } from 'lucide-react'
+import { X, Calculator, ArrowRight, ArrowLeft, Check, Smartphone, Globe, ShoppingCart, Layout, Monitor, PenTool, Database, Shield, Zap, Search, FileText, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SpotlightCard from './Showcase/SpotlightCard'
 
@@ -69,7 +69,6 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
         } else {
             // Single select logic
             setAnswers({ ...answers, [key]: option })
-            // Auto advance for single select? No, let's keep manual validation
         }
     }
 
@@ -136,131 +135,145 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
     // Icons mapping
     const getIcon = (value) => {
         switch (value) {
-            case 'showcase': return <Globe size={28} />
-            case 'ecommerce': return <ShoppingCart size={28} />
-            case 'app': return <Smartphone size={28} />
-            case 'landing': return <Zap size={28} />
-            case 'standard': return <Layout size={28} />
-            case 'custom': return <PenTool size={28} />
-            case 'premium': return <Monitor size={28} />
-            case 'seo': return <Search size={24} />
-            case 'content': return <FileText size={24} />
-            case 'branding': return <PenTool size={24} />
-            case 'maintenance': return <Shield size={24} />
-            case 'auth': return <Database size={24} />
-            default: return <Check size={24} />
+            case 'showcase': return <Globe size={32} />
+            case 'ecommerce': return <ShoppingCart size={32} />
+            case 'app': return <Smartphone size={32} />
+            case 'landing': return <Zap size={32} />
+            case 'standard': return <Layout size={32} />
+            case 'custom': return <PenTool size={32} />
+            case 'premium': return <Monitor size={32} />
+            case 'seo': return <Search size={28} />
+            case 'content': return <FileText size={28} />
+            case 'branding': return <PenTool size={28} />
+            case 'maintenance': return <Shield size={28} />
+            case 'auth': return <Database size={28} />
+            default: return <Check size={28} />
         }
     }
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop - Sharper Blur */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={onClose}
-                className="absolute inset-0 bg-black/50 dark:bg-black/80 backdrop-blur-md"
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
 
             <motion.div
-                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                initial={{ scale: 0.95, opacity: 0, y: 30 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.95, opacity: 0, y: 20 }}
-                className="relative w-full max-w-4xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:h-[600px]"
+                exit={{ scale: 0.95, opacity: 0, y: 30 }}
+                transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                className="relative w-full max-w-5xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[90vh] md:h-[650px]"
             >
-                {/* Close Button Mobile */}
-                <button onClick={onClose} className="absolute top-4 right-4 z-10 p-2 bg-slate-100 dark:bg-slate-800/50 rounded-full text-slate-500 dark:text-slate-400 md:hidden hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 z-20 p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
                     <X size={20} />
                 </button>
 
-                {/* Left Panel (Progress & Info) */}
+                {/* Left Panel (Progress & Title) */}
                 {(step > 0 && step <= totalSteps) && (
-                    <div className="md:w-1/3 bg-slate-50 dark:bg-slate-900/50 p-5 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 shrink-0">
+                    <div className="md:w-1/3 bg-slate-50 dark:bg-[#0F172A] p-6 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 shrink-0">
                         <div>
-                            <div className="hidden md:flex items-center gap-3 mb-8 text-primary-500">
-                                <Calculator size={24} />
-                                <span className="font-bold tracking-wide uppercase text-sm">Simulateur</span>
+                            <div className="flex items-center gap-2 mb-8 text-primary-600 dark:text-primary-500 font-bold uppercase tracking-wider text-xs">
+                                <Calculator size={16} />
+                                <span>Simulateur</span>
                             </div>
 
-                            <div className="mb-2 flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">
-                                <span>Progression</span>
-                                <span>{Math.round(progress)}%</span>
-                            </div>
-                            <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mb-4 md:mb-8">
-                                <motion.div
-                                    className="h-full bg-primary-500"
-                                    initial={{ width: 0 }}
-                                    animate={{ width: `${progress}%` }}
-                                    transition={{ duration: 0.5 }}
-                                />
+                            <div className="space-y-4">
+                                <div className="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                    <span>Progression</span>
+                                    <span>{Math.round(progress)}%</span>
+                                </div>
+                                <div className="h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <motion.div
+                                        className="h-full bg-gradient-to-r from-primary-600 to-primary-400"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${progress}%` }}
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    />
+                                </div>
                             </div>
 
-                            <h3 className="text-xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
-                                {currentQuestion.question}
-                            </h3>
-                            {currentQuestion.multi && (
-                                <p className="text-xs md:text-sm text-primary-600 dark:text-primary-400 font-medium bg-primary-50 dark:bg-primary-500/10 inline-block px-3 py-1 rounded-full border border-primary-100 dark:border-transparent">
-                                    Choix multiples possibles
-                                </p>
-                            )}
+                            <div className="mt-8">
+                                <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                                    {currentQuestion.question}
+                                </h3>
+                                {currentQuestion.multi && (
+                                    <div className="mt-4 inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-500/10 text-primary-700 dark:text-primary-300 px-3 py-1.5 rounded-md text-xs font-semibold border border-primary-100 dark:border-primary-500/20">
+                                        <Check size={12} /> Choix multiples
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <div className="hidden md:block">
-                            <button onClick={onClose} className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-medium">
-                                <X size={16} /> Fermer
-                            </button>
+                            <p className="text-xs text-slate-400 dark:text-slate-500 leading-relaxed">
+                                Les estimations sont basées sur les tarifs standards du marché et mon expertise.
+                            </p>
                         </div>
                     </div>
                 )}
 
                 {/* Right Panel (Content) */}
-                <div className={`flex-1 flex flex-col relative overflow-hidden ${step === 0 || step === 7 ? 'md:col-span-2' : ''}`}>
-                    <div className="flex-1 overflow-y-auto custom-scrollbar p-4 md:p-8" data-lenis-prevent>
+                <div className={`flex-1 flex flex-col relative ${step === 0 || step === 7 ? 'md:col-span-2 w-full' : ''} bg-white dark:bg-[#0B1120]`}>
+
+                    {/* Grid Background Effect */}
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 relative z-10" data-lenis-prevent>
                         <AnimatePresence mode="wait">
-                            {/* INTRO STEP */}
+                            {/* INTRO STEP - PREMIUM REDESIGN */}
                             {step === 0 && (
                                 <motion.div
                                     key="intro"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="h-full flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 py-8"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 1.05 }}
+                                    className="h-full flex flex-col items-center justify-center text-center space-y-10"
                                 >
                                     <div className="relative">
-                                        <div className="absolute inset-0 bg-primary-500 blur-3xl opacity-20 rounded-full" />
-                                        <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-tr from-slate-100 to-white dark:from-slate-800 dark:to-slate-700 border border-slate-200 dark:border-slate-600 rounded-2xl flex items-center justify-center text-slate-900 dark:text-white shadow-xl rotate-3 hover:rotate-6 transition-transform duration-500">
-                                            <Calculator size={40} className="text-primary-500 md:w-12 md:h-12" />
+                                        <div className="absolute -inset-4 bg-primary-500/20 rounded-full blur-2xl animate-pulse"></div>
+                                        <div className="relative w-24 h-24 bg-gradient-to-br from-white to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-3xl shadow-2xl shadow-primary-500/10 border border-white/50 dark:border-slate-700 flex items-center justify-center transform hover:rotate-6 transition-transform duration-500 rotate-3">
+                                            <Calculator size={48} className="text-primary-600 dark:text-primary-400" />
                                         </div>
                                     </div>
 
-                                    <div className="max-w-md mx-auto px-4">
-                                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-3 md:mb-4 tracking-tight">
+                                    <div className="max-w-xl mx-auto space-y-4">
+                                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                                             {simulator.title}
                                         </h2>
-                                        <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                                        <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mx-auto">
                                             {simulator.subtitle}
                                         </p>
                                     </div>
 
                                     <button
                                         onClick={() => setStep(1)}
-                                        className="group relative px-6 py-3 md:px-8 md:py-4 bg-primary-600 hover:bg-primary-500 text-white font-bold text-lg rounded-xl overflow-hidden transition-all shadow-lg hover:shadow-primary-500/25 hover:-translate-y-1 w-full md:w-auto max-w-xs"
+                                        className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-300 bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/25 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
                                     >
-                                        <span className="relative z-10 flex items-center justify-center gap-3">
-                                            Commencer <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                                        </span>
+                                        <span className="mr-3">Commencer l'estimation</span>
+                                        <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                                     </button>
                                 </motion.div>
                             )}
 
-                            {/* QUESTION STEPS */}
+                            {/* QUESTION STEPS - SHARP REDESIGN */}
                             {step > 0 && step <= totalSteps && (
                                 <motion.div
                                     key={`step-${step}`}
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
-                                    className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pb-20 md:pb-0"
+                                    transition={{ duration: 0.3 }}
+                                    className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-20 md:pb-0 max-w-3xl mx-auto"
                                 >
                                     {currentQuestion.options.map((option) => {
                                         const isSelected = currentQuestion.multi
@@ -268,102 +281,94 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                             : answers[currentQuestionKey]?.value === option.value
 
                                         return (
-                                            <SpotlightCard
+                                            <div
                                                 key={option.value}
-                                                spotlightColor="rgba(99, 102, 241, 0.25)"
-                                                className={`cursor-pointer group relative transition-all duration-300 border 
-                                                ${isSelected
-                                                        ? 'ring-2 ring-primary-500 border-transparent bg-primary-50 dark:bg-slate-800/80'
-                                                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/40 hover:border-slate-300 dark:hover:bg-slate-800/60'
-                                                    }`}
+                                                onClick={() => handleOptionSelect(currentQuestionKey, option)}
+                                                className={`
+                                                    cursor-pointer group relative p-6 rounded-2xl border-2 transition-all duration-200
+                                                    ${isSelected
+                                                        ? 'border-primary-600 dark:border-primary-500 bg-primary-50/50 dark:bg-primary-900/10 shadow-[0_0_0_1px_rgba(79,70,229,0.1)]'
+                                                        : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-slate-50 dark:hover:bg-slate-800'
+                                                    }
+                                                `}
                                             >
-                                                <div
-                                                    onClick={() => handleOptionSelect(currentQuestionKey, option)}
-                                                    className="p-4 md:p-5 h-full flex flex-col"
-                                                >
-                                                    <div className="flex justify-between items-start mb-3 md:mb-4">
-                                                        <div className={`p-2 md:p-3 rounded-lg transition-colors ${isSelected ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 group-hover:text-slate-700 dark:group-hover:text-white'}`}>
-                                                            {getIcon(option.value)}
-                                                        </div>
-                                                        {currentQuestion.multi && (
-                                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'bg-primary-500 border-primary-500 scale-110' : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-transparent'}`}>
-                                                                {isSelected && <Check size={14} className="text-white" />}
-                                                            </div>
-                                                        )}
+                                                <div className="flex items-start justify-between mb-4">
+                                                    <div className={`p-3 rounded-xl transition-colors ${isSelected ? 'bg-primary-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400'}`}>
+                                                        {getIcon(option.value)}
                                                     </div>
-
-                                                    <h4 className={`font-bold text-base md:text-lg mb-1 ${isSelected ? 'text-primary-700 dark:text-white' : 'text-slate-900 dark:text-slate-200'}`}>
-                                                        {option.label}
-                                                    </h4>
-
-                                                    {option.desc && (
-                                                        <p className="text-sm text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">
-                                                            {option.desc}
-                                                        </p>
-                                                    )}
+                                                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-primary-600 bg-primary-600 scale-110' : 'border-slate-300 dark:border-slate-700'}`}>
+                                                        {isSelected && <Check size={14} className="text-white" />}
+                                                    </div>
                                                 </div>
-                                            </SpotlightCard>
+
+                                                <h4 className={`text-lg font-bold mb-2 ${isSelected ? 'text-primary-900 dark:text-primary-100' : 'text-slate-900 dark:text-white'}`}>
+                                                    {option.label}
+                                                </h4>
+
+                                                {option.desc && (
+                                                    <p className={`text-sm leading-relaxed ${isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-slate-500 dark:text-slate-400'}`}>
+                                                        {option.desc}
+                                                    </p>
+                                                )}
+                                            </div>
                                         )
                                     })}
                                 </motion.div>
                             )}
 
-                            {/* RESULT STEP */}
+                            {/* RESULT STEP - CLEAN REDESIGN */}
                             {step === 7 && (
                                 <motion.div
                                     key="result"
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="h-full flex flex-col items-center justify-center text-center space-y-6 md:space-y-8"
+                                    className="h-full flex flex-col items-center justify-center text-center space-y-8"
                                 >
-                                    <div className="w-full max-w-sm bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 p-6 md:p-8 rounded-3xl relative overflow-hidden">
-                                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50" />
+                                    <div className="w-full max-w-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500"></div>
 
-                                        <h3 className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-semibold uppercase tracking-wider mb-2">Estimation Finale</h3>
-                                        <div className="flex items-baseline justify-center gap-1 mb-4 md:mb-6">
-                                            <span className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tighter">
+                                        <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Estimation du budget</p>
+
+                                        <div className="flex items-center justify-center mb-8">
+                                            <span className="text-6xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter">
                                                 {totalPrice}
                                             </span>
-                                            <span className="text-xl md:text-2xl text-primary-500 font-bold">{simulator.currency}</span>
+                                            <span className="text-3xl text-primary-500 font-bold ml-2">{simulator.currency}</span>
                                         </div>
 
-                                        <div className="space-y-2 md:space-y-3">
-                                            <div className="flex items-center justify-between text-sm py-2 border-b border-slate-200 dark:border-slate-700/50">
-                                                <span className="text-slate-500 dark:text-slate-400">Projet</span>
-                                                <span className="text-slate-900 dark:text-white font-medium">{answers.type?.label}</span>
-                                            </div>
-                                            <div className="flex items-center justify-between text-sm py-2 border-b border-slate-200 dark:border-slate-700/50">
-                                                <span className="text-slate-500 dark:text-slate-400">Design</span>
-                                                <span className="text-slate-900 dark:text-white font-medium">{answers.design?.label}</span>
-                                            </div>
-                                            <div className="flex items-center justify-between text-sm py-2">
-                                                <span className="text-slate-500 dark:text-slate-400">Délai</span>
-                                                <span className="text-slate-900 dark:text-white font-medium">{answers.deadline?.label}</span>
-                                            </div>
+                                        <div className="space-y-3 bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4">
+                                            {[
+                                                { label: "Type", value: answers.type?.label },
+                                                { label: "Design", value: answers.design?.label },
+                                                { label: "Délai", value: answers.deadline?.label }
+                                            ].map((item) => (
+                                                <div key={item.label} className="flex items-center justify-between text-sm">
+                                                    <span className="text-slate-500 dark:text-slate-400">{item.label}</span>
+                                                    <span className="font-semibold text-slate-900 dark:text-white">{item.value}</span>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
 
-                                    <div className="max-w-md px-4">
-                                        <p className="text-xs md:text-sm text-yellow-600 dark:text-yellow-500/90 bg-yellow-50 dark:bg-yellow-500/10 p-3 md:p-4 rounded-xl border border-yellow-200 dark:border-yellow-500/20 mb-6">
-                                            ⚠️ {simulator.result.disclaimer}
-                                        </p>
-
-                                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-                                            <a
-                                                href="#contact"
-                                                onClick={onClose}
-                                                className="px-6 py-3 md:px-8 md:py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-xl hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors shadow-lg"
-                                            >
-                                                {simulator.result.cta}
-                                            </a>
-                                            <button
-                                                onClick={() => setStep(0)}
-                                                className="px-6 py-3 md:px-8 md:py-4 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white font-medium transition-colors"
-                                            >
-                                                Relancer
-                                            </button>
-                                        </div>
+                                    <div className="flex flex-col sm:flex-row w-full max-w-md gap-3">
+                                        <a
+                                            href="#contact"
+                                            onClick={onClose}
+                                            className="flex-1 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-primary-600/25 flex items-center justify-center gap-2"
+                                        >
+                                            {simulator.result.cta} <ArrowRight size={20} />
+                                        </a>
+                                        <button
+                                            onClick={() => setStep(0)}
+                                            className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                        >
+                                            Relancer
+                                        </button>
                                     </div>
+
+                                    <p className="text-xs text-slate-400 max-w-xs mx-auto">
+                                        {simulator.result.disclaimer}
+                                    </p>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -371,23 +376,25 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
 
                     {/* Footer Actions (Only for Questions) */}
                     {step > 0 && step <= totalSteps && (
-                        <div className="p-4 md:p-6 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 flex justify-between items-center md:rounded-br-3xl bg-opacity-90 backdrop-blur-sm z-10">
+                        <div className="p-6 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0B1120]/90 backdrop-blur-md flex justify-between items-center z-20">
                             <button
                                 onClick={prevStep}
-                                className="flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white font-medium transition-colors px-3 py-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg text-sm md:text-base"
+                                className="group flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white font-medium transition-colors px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
                             >
-                                <ArrowLeft size={18} /> <span className="hidden sm:inline">Retour</span>
+                                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                                <span className="hidden sm:inline">Retour</span>
                             </button>
                             <button
                                 onClick={nextStep}
                                 disabled={!isStepValid()}
-                                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all shadow-lg text-sm md:text-base
+                                className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg
                                     ${isStepValid()
-                                        ? 'bg-slate-900 dark:bg-white text-white dark:text-black hover:scale-105 hover:bg-slate-800 dark:hover:bg-slate-200'
-                                        : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
+                                        ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:scale-105 hover:shadow-xl'
+                                        : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed shadow-none'
                                     }`}
                             >
-                                {step === totalSteps ? 'Voir le prix' : 'Suivant'} {step !== totalSteps && <ArrowRight size={18} />}
+                                {step === totalSteps ? 'Voir le prix' : 'Suivant'}
+                                {step !== totalSteps && <ChevronRight size={20} />}
                             </button>
                         </div>
                     )}
