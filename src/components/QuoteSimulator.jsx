@@ -260,7 +260,7 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
-                                    className="grid grid-cols-1 gap-3 md:gap-4 pb-20 md:pb-0"
+                                    className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pb-20 md:pb-0"
                                 >
                                     {currentQuestion.options.map((option) => {
                                         const isSelected = currentQuestion.multi

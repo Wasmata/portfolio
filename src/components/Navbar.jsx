@@ -38,22 +38,29 @@ const Navbar = ({ onOpenCard }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleNavClick = (e, hash) => {
+    const handleNavClick = (e, target) => {
         e.preventDefault();
-        if (location.pathname === '/') {
-            const elem = document.querySelector(hash);
-            if (elem) {
-                const headerOffset = 80;
-                const elementPosition = elem.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+
+        if (target.startsWith('#')) {
+            if (location.pathname === '/') {
+                const elem = document.querySelector(target);
+                if (elem) {
+                    const headerOffset = 80;
+                    const elementPosition = elem.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            } else {
+                navigate(`/${target}`);
             }
         } else {
-            navigate(`/${hash}`);
+            navigate(target);
+            window.scrollTo(0, 0);
         }
+
         setIsMobileMenuOpen(false);
         setShowMobileSettings(false);
     };
@@ -119,6 +126,7 @@ const Navbar = ({ onOpenCard }) => {
                             <a href="#about" onClick={(e) => handleNavClick(e, '#about')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.about}</a>
                             <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.projects}</a>
                             <a href="#services" onClick={(e) => handleNavClick(e, '#services')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.services}</a>
+                            <a href="/blog" onClick={(e) => handleNavClick(e, '/blog')} onMouseEnter={playHover} className="hover:text-primary-500 dark:hover:text-white transition-colors">{t.nav.blog}</a>
                         </div>
 
                         {/* Mobile Menu Toggle */}
@@ -286,12 +294,12 @@ const Navbar = ({ onOpenCard }) => {
                     >
                         {/* MAIN LINKS */}
                         <div className="flex-1 flex flex-col justify-start gap-6">
-                            {['hero', 'about', 'projects', 'services', 'contact'].map((item) => (
+                            {['hero', 'about', 'projects', 'services', 'blog', 'contact'].map((item) => (
                                 <motion.a
                                     key={item}
-                                    href={`#${item}`}
+                                    href={item === 'blog' ? '/blog' : `#${item}`}
                                     variants={itemVariants}
-                                    onClick={(e) => handleNavClick(e, `#${item}`)}
+                                    onClick={(e) => handleNavClick(e, item === 'blog' ? '/blog' : `#${item}`)}
                                     className={`text-4xl xs:text-5xl font-black uppercase tracking-tighter ${item === 'contact' ? 'text-primary-500' : 'text-slate-900 dark:text-white'} transition-colors`}
                                 >
                                     {t.nav[item === 'cta' ? 'contact' : item] || (item === 'hero' ? 'Home' : item)}

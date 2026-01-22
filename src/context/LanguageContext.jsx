@@ -8,8 +8,17 @@ export const translations = {
       about: "À propos",
       projects: "Projets",
       services: "Services",
+      blog: "Blog",
       contact: "Contact",
       cta: "Discutons"
+    },
+    blog: {
+      title: "Articles &",
+      title_highlight: "Ressources",
+      subtitle: "Partage d'expérience, de veille technologique et de conseils pour digitaliser votre activité.",
+      read_more: "Lire l'article",
+      back: "Retour aux articles",
+      read_time: "min de lecture"
     },
     hero: {
       role: "Développeur Full Stack & Créatif",
@@ -108,6 +117,17 @@ export const translations = {
           }
         ]
       }
+    },
+    testimonials: {
+      title: "Ils m'ont fait",
+      title_highlight: "confiance",
+      subtitle: "La satisfaction de mes clients est ma meilleure carte de visite.",
+      items: [
+        { name: "Thomas R.", role: "Fondateur, TechStart", text: "Wassim a su transformer notre vision en une plateforme performante et esthétique. Un vrai pro !" },
+        { name: "Sarah L.", role: "Directrice Marketing", text: "Communication fluide, délais respectés et un résultat au-delà de nos espérances. Je recommande." },
+        { name: "Julien D.", role: "E-commerçant", text: "Mon site est passé à la vitesse supérieure. Les ventes ont augmenté grâce à l'optimisation UX." },
+        { name: "Marie C.", role: "Artiste", text: "Un portfolio qui met parfaitement en valeur mon travail. Le design est épuré et moderne." }
+      ]
     },
     pricing: {
       title: "Mes",
@@ -229,6 +249,17 @@ export const translations = {
     // ... card ...
     // ... project_details ...
     // ... footer ...
+    testimonials: {
+      title: "Trusted",
+      title_highlight: "By",
+      subtitle: "Client satisfaction is my top priority.",
+      items: [
+        { name: "Thomas R.", role: "Founder, TechStart", text: "Wassim turned our vision into a high-performance, beautiful platform. A true professional!" },
+        { name: "Sarah L.", role: "Marketing Director", text: "Smooth communication, on-time delivery, and a result beyond our expectations. Highly recommended." },
+        { name: "Julien D.", role: "E-commerce Owner", text: "My site speed improved drastically. Sales increased thanks to the UX optimization." },
+        { name: "Marie C.", role: "Artist", text: "A portfolio that perfectly showcases my work. The design is clean and modern." }
+      ]
+    },
     pricing: {
       // ... offers ...
       cta: "Request a Quote",
