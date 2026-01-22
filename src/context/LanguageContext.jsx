@@ -75,28 +75,38 @@ export const translations = {
       legal_modal: {
         title: "Mentions Légales",
         close: "Fermer",
-        content: `
-          <h3>1. Édition du site</h3>
-          <p>Le présent site, accessible à l'URL www.wassidev.fr (le « Site »), est édité par :</p>
-          <p><strong>Wassim Maataoui</strong>, résidant en France, de nationalité Française (France), né(e) le 25/09/2005, inscrit au R.C.S. de Perpignan sous le numéro <strong>930 611 165</strong> (SIRET : 930 611 165 00018).</p>
-          
-          <h3>2. Hébergement</h3>
-          <p>Le Site est co-hébergé par :</p>
-          <ul>
-            <li><strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</li>
-            <li><strong>WassiHost</strong>, infrastructure propre de l'éditeur Wassim Maataoui.</li>
-          </ul>
-          
-          <h3>3. Directeur de publication</h3>
-          <p>Le Directeur de la publication du Site est <strong>Wassim Maataoui</strong>.</p>
-          
-          <h3>4. Nous contacter</h3>
-          <p>Par email : <strong>contact@wassidev.fr</strong></p>
-          <p>Par téléphone : <strong>07 68 31 27 68</strong></p>
-
-          <h3>5. Données personnelles</h3>
-          <p>Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»).</p>
-        `
+        sections: [
+          {
+            id: "editor",
+            title: "1. Édition du site",
+            icon: "PenTool",
+            content: "Le présent site, accessible à l'URL www.wassidev.fr (le « Site »), est édité par : **Wassim Maataoui**, résidant en France, de nationalité Française (France), né(e) le 25/09/2005, inscrit au R.C.S. de Perpignan sous le numéro **930 611 165** (SIRET : 930 611 165 00018)."
+          },
+          {
+            id: "hosting",
+            title: "2. Hébergement",
+            icon: "Server",
+            content: "Le Site est co-hébergé par :\n• **Vercel Inc.**, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.\n• **WassiHost**, infrastructure propre de l'éditeur Wassim Maataoui."
+          },
+          {
+            id: "director",
+            title: "3. Directeur de publication",
+            icon: "User",
+            content: "Le Directeur de la publication du Site est **Wassim Maataoui**."
+          },
+          {
+            id: "contact",
+            title: "4. Nous contacter",
+            icon: "Mail",
+            content: "Par email : **contact@wassidev.fr**\nPar téléphone : **07 68 31 27 68**"
+          },
+          {
+            id: "privacy",
+            title: "5. Données personnelles",
+            icon: "Shield",
+            content: "Le traitement de vos données à caractère personnel est régi par notre Charte du respect de la vie privée, conformément au Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016 («RGPD»)."
+          }
+        ]
       }
     },
     pricing: {
@@ -217,20 +227,32 @@ export const translations = {
       legal_modal: {
         title: "Legal Notice",
         close: "Close",
-        content: `
-          <h3>1. Site Editing</h3>
-          <p>The present site, accessible at www.wassidev.fr (the "Site"), is edited by:</p>
-          <p><strong>Wassim Maataoui</strong>, residing in France, French nationality, registered with the R.C.S. under number <strong>930 611 165</strong> (SIRET: 930 611 165 00018).</p>
-          
-          <h3>2. Hosting</h3>
-          <p>The Site is hosted by <strong>Vercel Inc.</strong>, located at 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</p>
-          
-          <h3>3. Publication Director</h3>
-          <p>The Publication Director of the Site is <strong>Wassim Maataoui</strong>.</p>
-          
-          <h3>4. Contact Us</h3>
-          <p>By email: <strong>contact@wassidev.fr</strong></p>
-        `
+        sections: [
+          {
+            id: "editor",
+            title: "1. Site Editing",
+            icon: "PenTool",
+            content: "The present site, accessible at www.wassidev.fr (the \"Site\"), is edited by: **Wassim Maataoui**, residing in France, French nationality, registered with the R.C.S. of Perpignan under number **930 611 165** (SIRET: 930 611 165 00018)."
+          },
+          {
+            id: "hosting",
+            title: "2. Hosting",
+            icon: "Server",
+            content: "The Site is co-hosted by:\n• **Vercel Inc.**, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.\n• **WassiHost**, proprietary infrastructure of the editor Wassim Maataoui."
+          },
+          {
+            id: "director",
+            title: "3. Publication Director",
+            icon: "User",
+            content: "The Publication Director of the Site is **Wassim Maataoui**."
+          },
+          {
+            id: "contact",
+            title: "4. Contact Us",
+            icon: "Mail",
+            content: "By email: **contact@wassidev.fr**"
+          }
+        ]
       }
     },
     pricing: {
