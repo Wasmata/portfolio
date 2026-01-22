@@ -145,41 +145,61 @@ export const translations = {
         steps: {
           type: {
             question: "Quel est votre type de projet ?",
+            multi: false,
             options: [
-              { label: "Site Vitrine", value: "showcase", price: 400, desc: "Présenter mon activité" },
-              { label: "Site E-commerce", value: "ecommerce", price: 1200, desc: "Vendre des produits" },
-              { label: "App Web / SaaS", value: "app", price: 1500, desc: "Outil métier complexe" },
-              { label: "Autre", value: "other", price: 0, desc: "Projet spécifique" }
+              { label: "Site Vitrine", value: "showcase", price: 600, desc: "Présenter mon activité" },
+              { label: "Site E-commerce", value: "ecommerce", price: 1800, desc: "Vendre des produits" },
+              { label: "App Web / SaaS", value: "app", price: 2500, desc: "Outil métier complexe" },
+              { label: "Landing Page", value: "landing", price: 450, desc: "Page unique de conversion" }
             ]
           },
           design: {
             question: "Quel niveau de design souhaitez-vous ?",
+            multi: false,
             options: [
               { label: "Standard", value: "standard", price: 0, desc: "Propre et efficace" },
-              { label: "Sur-Mesure", value: "custom", price: 300, desc: "Identité graphique unique" },
-              { label: "Premium (Wow)", value: "premium", price: 600, desc: "Animations, 3D, Immersion" }
+              { label: "Sur-Mesure", value: "custom", price: 500, desc: "Identité graphique unique" },
+              { label: "Premium (Wow)", value: "premium", price: 1000, desc: "Animations, 3D, Immersion" }
             ]
           },
           pages: {
             question: "Combien de pages environ ?",
+            multi: false,
             options: [
-              { label: "One Page", value: "1", price: -100, desc: "Tout sur une page" },
-              { label: "Standard (1-5)", value: "5", price: 0, desc: "Accueil, Services, Contact..." },
-              { label: "Complet (5-10)", value: "10", price: 300, desc: "Contenu dense" },
-              { label: "Complexe (10+)", value: "plus", price: 600, desc: "Gros volume de contenu" }
+              { label: "One Page", value: "1", price: 0, desc: "Tout sur une page" },
+              { label: "Standard (1-5)", value: "5", price: 300, desc: "Accueil, Services, Contact..." },
+              { label: "Complet (5-10)", value: "10", price: 600, desc: "Contenu dense" },
+              { label: "Complexe (10+)", value: "plus", price: 1000, desc: "Gros volume de contenu" }
             ]
           },
           features: {
             question: "Fonctionnalités spécifiques ?",
+            multi: true,
+            columns: 2,
             options: [
-              { label: "Espace Membre", value: "auth", price: 200 },
-              { label: "Paiement", value: "payment", price: 300 },
-              { label: "Blog / CMS", value: "cms", price: 150 },
-              { label: "Multilingue", value: "multi", price: 150 }
+              { label: "Espace Membre", value: "auth", price: 400 },
+              { label: "Paiement en ligne", value: "payment", price: 500 },
+              { label: "Blog / Actualités", value: "cms", price: 300 },
+              { label: "Multilingue", value: "multi", price: 300 },
+              { label: "Réservation / Agenda", value: "booking", price: 400 },
+              { label: "Aucune / Je ne sais pas", value: "none", price: 0, exclusive: true }
+            ]
+          },
+          services: {
+            question: "Services complémentaires ?",
+            multi: true,
+            columns: 2,
+            options: [
+              { label: "Rédaction Contenu", value: "content", price: 250, desc: "Textes optimisés" },
+              { label: "SEO Avancé", value: "seo", price: 400, desc: "Audit et stratégie" },
+              { label: "Logo & Branding", value: "branding", price: 300, desc: "Identité visuelle" },
+              { label: "Maintenance (1 an)", value: "maintenance", price: 600, desc: "Hébergement inclu" },
+              { label: "Rien pour l'instant", value: "none", price: 0, exclusive: true }
             ]
           },
           deadline: {
             question: "Quelle est votre urgence ?",
+            multi: false,
             options: [
               { label: "Standard", value: "standard", multiplier: 1, desc: "2-4 semaines" },
               { label: "Urgent", value: "rush", multiplier: 1.3, desc: "Moins de 2 semaines" }
@@ -355,41 +375,61 @@ export const translations = {
         steps: {
           type: {
             question: "What is your project type?",
+            multi: false,
             options: [
-              { label: "Showcase Site", value: "showcase", price: 400, desc: "Present my business" },
-              { label: "E-commerce", value: "ecommerce", price: 1200, desc: "Sell products online" },
-              { label: "Web App / SaaS", value: "app", price: 1500, desc: "Complex business tool" },
-              { label: "Other", value: "other", price: 0, desc: "Specific project" }
+              { label: "Showcase Site", value: "showcase", price: 600, desc: "Present my business" },
+              { label: "E-commerce", value: "ecommerce", price: 1800, desc: "Sell products online" },
+              { label: "Web App / SaaS", value: "app", price: 2500, desc: "Complex business tool" },
+              { label: "Landing Page", value: "landing", price: 450, desc: "Single conversion page" }
             ]
           },
           design: {
             question: "What design level do you need?",
+            multi: false,
             options: [
               { label: "Standard", value: "standard", price: 0, desc: "Clean and effective" },
-              { label: "Custom", value: "custom", price: 300, desc: "Unique brand identity" },
-              { label: "Premium (Wow)", value: "premium", price: 600, desc: "Animations, 3D, Immersive" }
+              { label: "Custom", value: "custom", price: 500, desc: "Unique brand identity" },
+              { label: "Premium (Wow)", value: "premium", price: 1000, desc: "Animations, 3D, Immersive" }
             ]
           },
           pages: {
             question: "How many pages approximately?",
+            multi: false,
             options: [
-              { label: "One Page", value: "1", price: -100, desc: "Everything on one page" },
-              { label: "Standard (1-5)", value: "5", price: 0, desc: "Home, Services, Contact..." },
-              { label: "Complete (5-10)", value: "10", price: 300, desc: "Dense content" },
-              { label: "Complex (10+)", value: "plus", price: 600, desc: "Large volume" }
+              { label: "One Page", value: "1", price: 0, desc: "Everything on one page" },
+              { label: "Standard (1-5)", value: "5", price: 300, desc: "Home, Services, Contact..." },
+              { label: "Complete (5-10)", value: "10", price: 600, desc: "Dense content" },
+              { label: "Complex (10+)", value: "plus", price: 1000, desc: "Large volume" }
             ]
           },
           features: {
             question: "Specific features?",
+            multi: true,
+            columns: 2,
             options: [
-              { label: "Member Area", value: "auth", price: 200 },
-              { label: "Payments", value: "payment", price: 300 },
-              { label: "Blog / CMS", value: "cms", price: 150 },
-              { label: "Multi-language", value: "multi", price: 150 }
+              { label: "Member Area", value: "auth", price: 400 },
+              { label: "Payments", value: "payment", price: 500 },
+              { label: "Blog / News", value: "cms", price: 300 },
+              { label: "Multi-language", value: "multi", price: 300 },
+              { label: "Booking System", value: "booking", price: 400 },
+              { label: "None / Not sure", value: "none", price: 0, exclusive: true }
+            ]
+          },
+          services: {
+            question: "Additional Services?",
+            multi: true,
+            columns: 2,
+            options: [
+              { label: "Content Writing", value: "content", price: 250, desc: "Optimized texts" },
+              { label: "Advanced SEO", value: "seo", price: 400, desc: "Audit and strategy" },
+              { label: "Logo & Branding", value: "branding", price: 300, desc: "Visual identity" },
+              { label: "Maintenance (1 yr)", value: "maintenance", price: 600, desc: "Hosting included" },
+              { label: "None for now", value: "none", price: 0, exclusive: true }
             ]
           },
           deadline: {
             question: "How urgent is it?",
+            multi: false,
             options: [
               { label: "Standard", value: "standard", multiplier: 1, desc: "2-4 weeks" },
               { label: "Urgent", value: "rush", multiplier: 1.3, desc: "Less than 2 weeks" }

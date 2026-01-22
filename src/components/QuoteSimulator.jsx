@@ -23,43 +23,69 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
     if (!isOpen) return null
 
     const simulator = t.pricing.simulator
-    const questions = ['type', 'design', 'pages', 'features', 'deadline']
+    const questions = ['type', 'design', 'pages', 'features', 'services', 'deadline']
     const currentQuestionKey = questions[step - 1]
-    const currentQuestion = step > 0 && step <= 5 ? simulator.steps[currentQuestionKey] : null
+    const currentQuestion = step > 0 && step <= 6 ? simulator.steps[currentQuestionKey] : null
 
     const handleOptionSelect = (key, option) => {
-        const newAnswers = { ...answers, [key]: option }
-        setAnswers(newAnswers)
+        if (currentQuestion.multi) {
+            // Multi-select logic
+            let currentSelections = answers[key] || []
 
-        // Calculate price immediately for "instant feel" or just wait for result?
-        // Let's recalculate total on every step to be safe
+            if (option.exclusive) {
+                // If exclusive option (None), clear others or toggle off
+                if (currentSelections.some(s => s.value === option.value)) {
+                    setAnswers({ ...answers, [key]: [] })
+                } else {
+                    setAnswers({ ...answers, [key]: [option] })
+                }
+            } else {
+                // Remove exclusive option if selecting normal option
+                currentSelections = currentSelections.filter(s => !s.exclusive)
+
+                // Toggle selection
+                if (currentSelections.some(s => s.value === option.value)) {
+                    const newSelections = currentSelections.filter(s => s.value !== option.value)
+                    setAnswers({ ...answers, [key]: newSelections })
+                } else {
+                    setAnswers({ ...answers, [key]: [...currentSelections, option] })
+                }
+            }
+        } else {
+            // Single select logic
+            setAnswers({ ...answers, [key]: option })
+            // Auto advance for single select? No, let's keep manual validation
+        }
     }
 
     const calculateTotal = () => {
         let base = 0
         let multiplier = 1
 
-        if (answers.type) base += answers.type.price
-        // Logic: specific to type? For now additive is simple and robust
+        Object.keys(answers).forEach(key => {
+            const answer = answers[key]
+            if (!answer) return
 
-        if (answers.design) base += answers.design.price
-
-        if (answers.pages) base += answers.pages.price
-
-        // Features can be multiple? For now let's assume single select per category for simplicity of the wizard, 
-        // OR we could make features a multi-select step. 
-        // Based on LanguageContext structure, it looks like single select options for now.
-        if (answers.features) base += answers.features.price
-
-        if (answers.deadline) multiplier = answers.deadline.multiplier
+            if (Array.isArray(answer)) {
+                // Multi-select sum
+                answer.forEach(item => { base += item.price })
+            } else {
+                // Single select
+                if (key === 'deadline') {
+                    multiplier = answer.multiplier || 1
+                } else {
+                    base += answer.price || 0
+                }
+            }
+        })
 
         return Math.round(base * multiplier)
     }
 
     const nextStep = () => {
-        if (step === 5) {
+        if (step === 6) {
             setTotalPrice(calculateTotal())
-            setStep(6)
+            setStep(7)
         } else {
             setStep(step + 1)
         }
@@ -67,6 +93,14 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
 
     const prevStep = () => {
         if (step > 0) setStep(step - 1)
+    }
+
+    // Check if current step is valid to proceed
+    const isStepValid = () => {
+        const answer = answers[currentQuestionKey]
+        if (!answer) return false
+        if (Array.isArray(answer) && answer.length === 0) return false
+        return true
     }
 
     // Icons mapping
@@ -95,10 +129,10 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="relative bg-white dark:bg-[#0a0a0a] w-full max-w-2xl rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden"
+                className="relative bg-white dark:bg-[#0a0a0a] w-full max-w-3xl rounded-2xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden flex flex-col max-h-[90vh]"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-white/5">
+                <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-white/5 shrink-0">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-primary-500/10 rounded-lg text-primary-500">
                             <Calculator size={20} />
@@ -113,7 +147,7 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 min-h-[400px] flex flex-col">
+                <div className="p-6 overflow-y-auto custom-scrollbar flex-1">
                     <AnimatePresence mode="wait">
                         {step === 0 && (
                             <motion.div
@@ -121,7 +155,7 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="flex-1 flex flex-col items-center justify-center text-center space-y-6"
+                                className="h-full flex flex-col items-center justify-center text-center space-y-6"
                             >
                                 <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/25">
                                     <Calculator size={40} />
@@ -143,56 +177,68 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                             </motion.div>
                         )}
 
-                        {step > 0 && step <= 5 && (
+                        {step > 0 && step <= 6 && (
                             <motion.div
                                 key={`step-${step}`}
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="flex-1 flex flex-col"
+                                className="flex flex-col h-full"
                             >
-                                <div className="mb-8">
-                                    <span className="text-xs font-bold text-primary-500 uppercase tracking-wider">Step {step}/5</span>
+                                <div className="mb-8 shrink-0">
+                                    <span className="text-xs font-bold text-primary-500 uppercase tracking-wider">Step {step}/6</span>
                                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mt-2">
                                         {currentQuestion.question}
                                     </h3>
+                                    {currentQuestion.multi && (
+                                        <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">
+                                            (Multi-sélection possible)
+                                        </p>
+                                    )}
                                 </div>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    {currentQuestion.options.map((option) => (
-                                        <button
-                                            key={option.value}
-                                            onClick={() => {
-                                                handleOptionSelect(currentQuestionKey, option)
-                                                // Auto advance after short delay for better UX? Or manual next?
-                                                // For "quiz" feel, manual next or improved immediate feedback is good. 
-                                                // Let's just select and user clicks next, OR auto-next. 
-                                                // Let's keep it manual selection, auto-highlight.
-                                            }}
-                                            className={`p-4 rounded-xl border text-left transition-all relative overflow-hidden group
-                                                ${answers[currentQuestionKey]?.value === option.value
-                                                    ? 'border-primary-500 bg-primary-500/5 ring-1 ring-primary-500'
-                                                    : 'border-slate-200 dark:border-white/10 hover:border-primary-500/50 hover:bg-slate-50 dark:hover:bg-white/5'
-                                                }`}
-                                        >
-                                            <div className="flex items-center gap-3 mb-2">
-                                                <div className={`p-2 rounded-lg ${answers[currentQuestionKey]?.value === option.value ? 'bg-primary-500 text-white' : 'bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 group-hover:bg-primary-500 group-hover:text-white transition-colors'}`}>
-                                                    {getIcon(option.value)}
+                                <div className={`grid gap-4 ${currentQuestion.columns === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1'}`}>
+                                    {currentQuestion.options.map((option) => {
+                                        const isSelected = currentQuestion.multi
+                                            ? (answers[currentQuestionKey] || []).some(s => s.value === option.value)
+                                            : answers[currentQuestionKey]?.value === option.value
+
+                                        return (
+                                            <button
+                                                key={option.value}
+                                                onClick={() => handleOptionSelect(currentQuestionKey, option)}
+                                                className={`p-4 rounded-xl border text-left transition-all relative overflow-hidden group
+                                                    ${isSelected
+                                                        ? 'border-primary-500 bg-primary-500/5 ring-1 ring-primary-500'
+                                                        : 'border-slate-200 dark:border-white/10 hover:border-primary-500/50 hover:bg-slate-50 dark:hover:bg-white/5'
+                                                    }`}
+                                            >
+                                                <div className="flex items-center gap-3 mb-2">
+                                                    {!currentQuestion.multi && (
+                                                        <div className={`p-2 rounded-lg ${isSelected ? 'bg-primary-500 text-white' : 'bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 group-hover:bg-primary-500 group-hover:text-white transition-colors'}`}>
+                                                            {getIcon(option.value)}
+                                                        </div>
+                                                    )}
+                                                    {currentQuestion.multi && (
+                                                        <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${isSelected ? 'bg-primary-500 border-primary-500 text-white' : 'border-slate-300 dark:border-slate-600'}`}>
+                                                            {isSelected && <Check size={14} />}
+                                                        </div>
+                                                    )}
+                                                    <span className="font-bold text-slate-900 dark:text-white">{option.label}</span>
                                                 </div>
-                                                <span className="font-bold text-slate-900 dark:text-white">{option.label}</span>
-                                            </div>
-                                            {option.desc && (
-                                                <p className="text-sm text-slate-500 dark:text-gray-400 ml-1">
-                                                    {option.desc}
-                                                </p>
-                                            )}
-                                        </button>
-                                    ))}
+                                                {option.desc && (
+                                                    <p className="text-sm text-slate-500 dark:text-gray-400 ml-1">
+                                                        {option.desc}
+                                                    </p>
+                                                )}
+                                            </button>
+                                        )
+                                    })}
                                 </div>
                             </motion.div>
                         )}
 
-                        {step === 6 && (
+                        {step === 7 && (
                             <motion.div
                                 key="result"
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -227,8 +273,8 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Footer / Navigation */}
-                {step > 0 && step <= 5 && (
-                    <div className="p-6 border-t border-slate-100 dark:border-white/5 flex justify-between items-center">
+                {step > 0 && step <= 6 && (
+                    <div className="p-6 border-t border-slate-100 dark:border-white/5 flex justify-between items-center shrink-0">
                         <button
                             onClick={prevStep}
                             className="text-slate-500 hover:text-slate-900 dark:hover:text-white font-medium transition-colors"
@@ -237,9 +283,9 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                         </button>
                         <button
                             onClick={nextStep}
-                            disabled={!answers[currentQuestionKey]}
+                            disabled={!isStepValid()}
                             className={`flex items-center gap-2 px-6 py-2 rounded-lg font-bold transition-all
-                                ${answers[currentQuestionKey]
+                                ${isStepValid()
                                     ? 'bg-slate-900 dark:bg-white text-white dark:text-black transform hover:scale-105'
                                     : 'bg-slate-100 dark:bg-white/5 text-slate-400 cursor-not-allowed'
                                 }`}
