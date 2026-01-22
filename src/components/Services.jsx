@@ -24,11 +24,8 @@ const Services = () => {
                 >
                     <div>
                         <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t.pricing.title} <span className="gradient-text">{t.pricing.title_highlight}</span></h2>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full font-bold text-sm mb-4 shadow-lg shadow-orange-500/20 animate-pulse">
-                            <span className="text-lg">🚀</span> {t.pricing.subtitle}
-                        </div>
-                        <p className="text-slate-600 dark:text-gray-400 max-w-xl">
-                            {t.pricing.description || (t.pricing.subtitle.includes("OFFRE") ? "Profitez de tarifs avantageux pour le lancement de mon activité." : "Take advantage of special rates for the launch of my activity.")}
+                        <p className="text-xl font-bold bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent max-w-xl">
+                            {t.pricing.subtitle}
                         </p>
                     </div>
 
