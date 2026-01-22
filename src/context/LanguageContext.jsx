@@ -190,7 +190,7 @@ export const translations = {
           title: "Estimation de votre projet",
           duree: "Durée estimée :",
           cta: "Réserver ce tarif",
-          disclaimer: "Cette estimation est indicative et non contractuelle."
+          disclaimer: "Attention : ce prix est une simple estimation. Le montant final peut varier considérablement selon les spécificités de votre demande."
         }
       }
     },
@@ -400,7 +400,7 @@ export const translations = {
           title: "Project Estimation",
           duree: "Estimated time:",
           cta: "Book this rate",
-          disclaimer: "This estimate is indicative and non-binding."
+          disclaimer: "Note: this price is a simple estimate. The final amount may vary significantly depending on your specific requirements."
         }
       }
     },
