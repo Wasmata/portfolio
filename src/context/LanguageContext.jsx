@@ -137,7 +137,62 @@ export const translations = {
         desc: "Sérénité totale : je m'occupe de tout pour que votre site reste en ligne et sécurisé.",
         features: ["Hébergement Performant", "Mises à jour de sécurité", "Sauvegardes journalières", "Support 7j/7 (Bugs & Panne)"]
       },
-      cta: "Demander un devis"
+      cta: "Demander un devis",
+      simulator: {
+        title: "Estimez votre projet",
+        subtitle: "Répondez à quelques questions pour obtenir une fourchette de prix.",
+        currency: "€",
+        steps: {
+          type: {
+            question: "Quel est votre type de projet ?",
+            options: [
+              { label: "Site Vitrine", value: "showcase", price: 400, desc: "Présenter mon activité" },
+              { label: "Site E-commerce", value: "ecommerce", price: 1200, desc: "Vendre des produits" },
+              { label: "App Web / SaaS", value: "app", price: 1500, desc: "Outil métier complexe" },
+              { label: "Autre", value: "other", price: 0, desc: "Projet spécifique" }
+            ]
+          },
+          design: {
+            question: "Quel niveau de design souhaitez-vous ?",
+            options: [
+              { label: "Standard", value: "standard", price: 0, desc: "Propre et efficace" },
+              { label: "Sur-Mesure", value: "custom", price: 300, desc: "Identité graphique unique" },
+              { label: "Premium (Wow)", value: "premium", price: 600, desc: "Animations, 3D, Immersion" }
+            ]
+          },
+          pages: {
+            question: "Combien de pages environ ?",
+            options: [
+              { label: "One Page", value: "1", price: -100, desc: "Tout sur une page" },
+              { label: "Standard (1-5)", value: "5", price: 0, desc: "Accueil, Services, Contact..." },
+              { label: "Complet (5-10)", value: "10", price: 300, desc: "Contenu dense" },
+              { label: "Complexe (10+)", value: "plus", price: 600, desc: "Gros volume de contenu" }
+            ]
+          },
+          features: {
+            question: "Fonctionnalités spécifiques ?",
+            options: [
+              { label: "Espace Membre", value: "auth", price: 200 },
+              { label: "Paiement", value: "payment", price: 300 },
+              { label: "Blog / CMS", value: "cms", price: 150 },
+              { label: "Multilingue", value: "multi", price: 150 }
+            ]
+          },
+          deadline: {
+            question: "Quelle est votre urgence ?",
+            options: [
+              { label: "Standard", value: "standard", multiplier: 1, desc: "2-4 semaines" },
+              { label: "Urgent", value: "rush", multiplier: 1.3, desc: "Moins de 2 semaines" }
+            ]
+          }
+        },
+        result: {
+          title: "Estimation de votre projet",
+          duree: "Durée estimée :",
+          cta: "Réserver ce tarif",
+          disclaimer: "Cette estimation est indicative et non contractuelle."
+        }
+      }
     },
     process: {
       title: "Mon",
@@ -292,7 +347,62 @@ export const translations = {
         desc: "Total peace of mind: I handle everything to keep your site online and secure.",
         features: ["High Performance Hosting", "Security Updates", "Daily Backups", "7/7 Support (Bugs & Downtime)"]
       },
-      cta: "Request a Quote"
+      cta: "Request a Quote",
+      simulator: {
+        title: "Estimate your project",
+        subtitle: "Answer a few questions to get a price range.",
+        currency: "€",
+        steps: {
+          type: {
+            question: "What is your project type?",
+            options: [
+              { label: "Showcase Site", value: "showcase", price: 400, desc: "Present my business" },
+              { label: "E-commerce", value: "ecommerce", price: 1200, desc: "Sell products online" },
+              { label: "Web App / SaaS", value: "app", price: 1500, desc: "Complex business tool" },
+              { label: "Other", value: "other", price: 0, desc: "Specific project" }
+            ]
+          },
+          design: {
+            question: "What design level do you need?",
+            options: [
+              { label: "Standard", value: "standard", price: 0, desc: "Clean and effective" },
+              { label: "Custom", value: "custom", price: 300, desc: "Unique brand identity" },
+              { label: "Premium (Wow)", value: "premium", price: 600, desc: "Animations, 3D, Immersive" }
+            ]
+          },
+          pages: {
+            question: "How many pages approximately?",
+            options: [
+              { label: "One Page", value: "1", price: -100, desc: "Everything on one page" },
+              { label: "Standard (1-5)", value: "5", price: 0, desc: "Home, Services, Contact..." },
+              { label: "Complete (5-10)", value: "10", price: 300, desc: "Dense content" },
+              { label: "Complex (10+)", value: "plus", price: 600, desc: "Large volume" }
+            ]
+          },
+          features: {
+            question: "Specific features?",
+            options: [
+              { label: "Member Area", value: "auth", price: 200 },
+              { label: "Payments", value: "payment", price: 300 },
+              { label: "Blog / CMS", value: "cms", price: 150 },
+              { label: "Multi-language", value: "multi", price: 150 }
+            ]
+          },
+          deadline: {
+            question: "How urgent is it?",
+            options: [
+              { label: "Standard", value: "standard", multiplier: 1, desc: "2-4 weeks" },
+              { label: "Urgent", value: "rush", multiplier: 1.3, desc: "Less than 2 weeks" }
+            ]
+          }
+        },
+        result: {
+          title: "Project Estimation",
+          duree: "Estimated time:",
+          cta: "Book this rate",
+          disclaimer: "This estimate is indicative and non-binding."
+        }
+      }
     },
     process: {
       title: "My",

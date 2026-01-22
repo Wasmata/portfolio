@@ -1,24 +1,43 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Layout, Smartphone, Database, Globe } from 'lucide-react'
+import { Layout, Smartphone, Database, Globe, Calculator } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import SpotlightCard from './Showcase/SpotlightCard'
+import QuoteSimulator from './QuoteSimulator'
 
 const Services = () => {
     const { t } = useLanguage()
 
+
+    const [isSimulatorOpen, setIsSimulatorOpen] = useState(false)
+
     return (
         <section id="services" className="py-20 relative">
+            <QuoteSimulator isOpen={isSimulatorOpen} onClose={() => setIsSimulatorOpen(false)} />
+
             <div className="container mx-auto px-4">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t.pricing.title} <span className="gradient-text">{t.pricing.title_highlight}</span></h2>
-                    <p className="text-slate-600 dark:text-gray-400 max-w-xl">
-                        {t.pricing.subtitle}
-                    </p>
+                    <div>
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t.pricing.title} <span className="gradient-text">{t.pricing.title_highlight}</span></h2>
+                        <p className="text-slate-600 dark:text-gray-400 max-w-xl">
+                            {t.pricing.subtitle}
+                        </p>
+                    </div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsSimulatorOpen(true)}
+                        className="px-6 py-3 bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 rounded-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 hover:border-primary-500 transition-colors shadow-sm"
+                    >
+                        <Calculator size={20} className="text-primary-500" />
+                        {t.pricing.simulator.title}
+                    </motion.button>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
