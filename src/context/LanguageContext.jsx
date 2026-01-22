@@ -78,7 +78,7 @@ export const translations = {
         content: `
           <h3>1. Édition du site</h3>
           <p>Le présent site, accessible à l'URL www.wassidev.fr (le « Site »), est édité par :</p>
-          <p><strong>Wassim Maataoui</strong>, résidant en France, de nationalité Française (France), né(e) le [Date], inscrit au R.C.S. de [Ville] sous le numéro <strong>930 611 165</strong> (SIRET : 930 611 165 00018).</p>
+          <p><strong>Wassim Maataoui</strong>, résidant en France, de nationalité Française (France), né(e) le 25/09/2005, inscrit au R.C.S. de Perpignan sous le numéro <strong>930 611 165</strong> (SIRET : 930 611 165 00018).</p>
           
           <h3>2. Hébergement</h3>
           <p>Le Site est hébergé par la société <strong>Vercel Inc.</strong>, située 340 S Lemon Ave #4133 Walnut, CA 91789, USA, (contact téléphonique ou email : https://vercel.com/contact).</p>
