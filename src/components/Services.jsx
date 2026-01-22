@@ -24,7 +24,7 @@ const Services = () => {
                 >
                     <div>
                         <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">{t.pricing.title} <span className="gradient-text">{t.pricing.title_highlight}</span></h2>
-                        <p className="text-lg font-semibold text-amber-600 dark:text-amber-400 max-w-xl">
+                        <p className="text-slate-600 dark:text-gray-400 max-w-xl">
                             {t.pricing.subtitle}
                         </p>
                     </div>
