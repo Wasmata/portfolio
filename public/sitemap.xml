@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wassidev.fr/</loc>
-    <lastmod>2026-01-20</lastmod>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wassidev.fr/#projects</loc>
-    <lastmod>2026-01-20</lastmod>
+    <loc>https://wassidev.fr/project/sma</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wassidev.fr/#about</loc>
-    <lastmod>2026-01-20</lastmod>
+    <loc>https://wassidev.fr/project/jeuxcracks</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wassidev.fr/#contact</loc>
-    <lastmod>2026-01-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://wassidev.fr/project/wassihost</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
