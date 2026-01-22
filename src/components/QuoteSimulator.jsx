@@ -167,19 +167,19 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.95, opacity: 0, y: 30 }}
                 transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                className="relative w-full max-w-5xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[90vh] md:h-[650px]"
+                className="relative w-full max-w-5xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] h-auto md:h-[650px]"
             >
                 {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 z-20 p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                    className="absolute top-3 right-3 z-30 p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shadow-sm"
                 >
-                    <X size={20} />
+                    <X size={18} />
                 </button>
 
-                {/* Left Panel (Progress & Title) */}
+                {/* Left Panel (Progress & Title) - Hidden on Mobile */}
                 {(step > 0 && step <= totalSteps) && (
-                    <div className="md:w-1/3 bg-slate-50 dark:bg-[#0F172A] p-6 md:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 shrink-0">
+                    <div className="hidden md:flex md:w-1/3 bg-slate-50 dark:bg-[#0F172A] p-6 md:p-8 flex-col justify-between border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 shrink-0">
                         <div>
                             <div className="flex items-center gap-2 mb-8 text-primary-600 dark:text-primary-500 font-bold uppercase tracking-wider text-xs">
                                 <Calculator size={16} />
@@ -221,14 +221,33 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                     </div>
                 )}
 
+                {/* Mobile Header (Progress only) */}
+                {(step > 0 && step <= totalSteps) && (
+                    <div className="md:hidden px-4 py-3 bg-slate-50 dark:bg-[#0F172A] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
+                        <div className="flex flex-col gap-1 w-full mr-8">
+                            <div className="flex justify-between text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 tracking-wider">
+                                <span>{currentQuestion.question}</span>
+                                <span>{Math.round(progress)}%</span>
+                            </div>
+                            <div className="h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden w-full">
+                                <motion.div
+                                    className="h-full bg-primary-500"
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${progress}%` }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* Right Panel (Content) */}
-                <div className={`flex-1 flex flex-col relative ${step === 0 || step === 7 ? 'md:col-span-2 w-full' : ''} bg-white dark:bg-[#0B1120]`}>
+                <div className={`flex-1 flex flex-col relative w-full overflow-hidden ${step === 0 || step === 7 ? 'md:col-span-2 w-full' : ''} bg-white dark:bg-[#0B1120]`}>
 
                     {/* Grid Background Effect */}
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
 
-                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-10 relative z-10" data-lenis-prevent>
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-5 md:p-10 relative z-10" data-lenis-prevent>
                         <AnimatePresence mode="wait">
                             {/* INTRO STEP - PREMIUM REDESIGN */}
                             {step === 0 && (
@@ -237,27 +256,27 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 1.05 }}
-                                    className="h-full flex flex-col items-center justify-center text-center space-y-10"
+                                    className="min-h-full flex flex-col items-center justify-center text-center space-y-6 md:space-y-10 py-6"
                                 >
                                     <div className="relative">
                                         <div className="absolute -inset-4 bg-primary-500/20 rounded-full blur-2xl animate-pulse"></div>
-                                        <div className="relative w-24 h-24 bg-gradient-to-br from-white to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-3xl shadow-2xl shadow-primary-500/10 border border-white/50 dark:border-slate-700 flex items-center justify-center transform hover:rotate-6 transition-transform duration-500 rotate-3">
-                                            <Calculator size={48} className="text-primary-600 dark:text-primary-400" />
+                                        <div className="relative w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-white to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-3xl shadow-2xl shadow-primary-500/10 border border-white/50 dark:border-slate-700 flex items-center justify-center transform hover:rotate-6 transition-transform duration-500 rotate-3">
+                                            <Calculator size={40} className="text-primary-600 dark:text-primary-400 md:w-12 md:h-12" />
                                         </div>
                                     </div>
 
-                                    <div className="max-w-xl mx-auto space-y-4">
-                                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+                                    <div className="max-w-xl mx-auto space-y-2 md:space-y-4 px-2">
+                                        <h2 className="text-3xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                                             {simulator.title}
                                         </h2>
-                                        <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mx-auto">
+                                        <p className="text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-lg mx-auto">
                                             {simulator.subtitle}
                                         </p>
                                     </div>
 
                                     <button
                                         onClick={() => setStep(1)}
-                                        className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-300 bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/25 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+                                        className="group relative inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 text-base md:text-lg font-bold text-white transition-all duration-300 bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/25 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 w-full md:w-auto"
                                     >
                                         <span className="mr-3">Commencer l'estimation</span>
                                         <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -273,7 +292,7 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
                                     transition={{ duration: 0.3 }}
-                                    className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-20 md:pb-0 max-w-3xl mx-auto"
+                                    className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 pb-10 md:pb-0 max-w-3xl mx-auto"
                                 >
                                     {currentQuestion.options.map((option) => {
                                         const isSelected = currentQuestion.multi
@@ -285,28 +304,28 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                                 key={option.value}
                                                 onClick={() => handleOptionSelect(currentQuestionKey, option)}
                                                 className={`
-                                                    cursor-pointer group relative p-6 rounded-2xl border-2 transition-all duration-200
+                                                    cursor-pointer group relative p-4 md:p-6 rounded-2xl border-2 transition-all duration-200
                                                     ${isSelected
                                                         ? 'border-primary-600 dark:border-primary-500 bg-primary-50/50 dark:bg-primary-900/10 shadow-[0_0_0_1px_rgba(79,70,229,0.1)]'
                                                         : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-slate-50 dark:hover:bg-slate-800'
                                                     }
                                                 `}
                                             >
-                                                <div className="flex items-start justify-between mb-4">
-                                                    <div className={`p-3 rounded-xl transition-colors ${isSelected ? 'bg-primary-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400'}`}>
+                                                <div className="flex items-start justify-between mb-3 md:mb-4">
+                                                    <div className={`p-2 md:p-3 rounded-xl transition-colors ${isSelected ? 'bg-primary-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400'}`}>
                                                         {getIcon(option.value)}
                                                     </div>
-                                                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-primary-600 bg-primary-600 scale-110' : 'border-slate-300 dark:border-slate-700'}`}>
-                                                        {isSelected && <Check size={14} className="text-white" />}
+                                                    <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-primary-600 bg-primary-600 scale-110' : 'border-slate-300 dark:border-slate-700'}`}>
+                                                        {isSelected && <Check size={12} className="text-white" />}
                                                     </div>
                                                 </div>
 
-                                                <h4 className={`text-lg font-bold mb-2 ${isSelected ? 'text-primary-900 dark:text-primary-100' : 'text-slate-900 dark:text-white'}`}>
+                                                <h4 className={`text-base md:text-lg font-bold mb-1 md:mb-2 ${isSelected ? 'text-primary-900 dark:text-primary-100' : 'text-slate-900 dark:text-white'}`}>
                                                     {option.label}
                                                 </h4>
 
                                                 {option.desc && (
-                                                    <p className={`text-sm leading-relaxed ${isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-slate-500 dark:text-slate-400'}`}>
+                                                    <p className={`text-xs md:text-sm leading-relaxed ${isSelected ? 'text-primary-700 dark:text-primary-300' : 'text-slate-500 dark:text-slate-400'}`}>
                                                         {option.desc}
                                                     </p>
                                                 )}
@@ -322,27 +341,27 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                     key="result"
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    className="h-full flex flex-col items-center justify-center text-center space-y-8"
+                                    className="h-full flex flex-col items-center justify-center text-center space-y-6 md:space-y-8 py-6"
                                 >
-                                    <div className="w-full max-w-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+                                    <div className="w-full max-w-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
                                         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500"></div>
 
                                         <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Estimation du budget</p>
 
-                                        <div className="flex items-center justify-center mb-8">
-                                            <span className="text-6xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter">
+                                        <div className="flex items-center justify-center mb-6 md:mb-8">
+                                            <span className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter">
                                                 {totalPrice}
                                             </span>
-                                            <span className="text-3xl text-primary-500 font-bold ml-2">{simulator.currency}</span>
+                                            <span className="text-2xl md:text-3xl text-primary-500 font-bold ml-2">{simulator.currency}</span>
                                         </div>
 
-                                        <div className="space-y-3 bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4">
+                                        <div className="space-y-2 md:space-y-3 bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4">
                                             {[
                                                 { label: "Type", value: answers.type?.label },
                                                 { label: "Design", value: answers.design?.label },
                                                 { label: "Délai", value: answers.deadline?.label }
                                             ].map((item) => (
-                                                <div key={item.label} className="flex items-center justify-between text-sm">
+                                                <div key={item.label} className="flex items-center justify-between text-xs md:text-sm">
                                                     <span className="text-slate-500 dark:text-slate-400">{item.label}</span>
                                                     <span className="font-semibold text-slate-900 dark:text-white">{item.value}</span>
                                                 </div>
@@ -354,19 +373,19 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
                                         <a
                                             href="#contact"
                                             onClick={onClose}
-                                            className="flex-1 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-primary-600/25 flex items-center justify-center gap-2"
+                                            className="flex-1 px-6 py-3 md:px-8 md:py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-primary-600/25 flex items-center justify-center gap-2 text-sm md:text-base"
                                         >
-                                            {simulator.result.cta} <ArrowRight size={20} />
+                                            {simulator.result.cta} <ArrowRight size={18} />
                                         </a>
                                         <button
                                             onClick={() => setStep(0)}
-                                            className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                            className="px-6 py-3 md:px-8 md:py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-sm md:text-base"
                                         >
                                             Relancer
                                         </button>
                                     </div>
 
-                                    <p className="text-xs text-slate-400 max-w-xs mx-auto">
+                                    <p className="text-[10px] md:text-xs text-slate-400 max-w-xs mx-auto">
                                         {simulator.result.disclaimer}
                                     </p>
                                 </motion.div>
@@ -376,25 +395,25 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
 
                     {/* Footer Actions (Only for Questions) */}
                     {step > 0 && step <= totalSteps && (
-                        <div className="p-6 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0B1120]/90 backdrop-blur-md flex justify-between items-center z-20">
+                        <div className="p-4 md:p-6 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-[#0B1120]/90 backdrop-blur-md flex justify-between items-center z-20 shrink-0">
                             <button
                                 onClick={prevStep}
-                                className="group flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white font-medium transition-colors px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+                                className="group flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white font-medium transition-colors px-3 py-2 md:px-4 md:py-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-sm md:text-base"
                             >
-                                <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                                 <span className="hidden sm:inline">Retour</span>
                             </button>
                             <button
                                 onClick={nextStep}
                                 disabled={!isStepValid()}
-                                className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg
+                                className={`flex items-center gap-2 px-6 py-3 md:px-8 md:py-3 rounded-xl font-bold transition-all shadow-lg text-sm md:text-base
                                     ${isStepValid()
                                         ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:scale-105 hover:shadow-xl'
                                         : 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed shadow-none'
                                     }`}
                             >
                                 {step === totalSteps ? 'Voir le prix' : 'Suivant'}
-                                {step !== totalSteps && <ChevronRight size={20} />}
+                                {step !== totalSteps && <ChevronRight size={18} />}
                             </button>
                         </div>
                     )}
@@ -402,6 +421,3 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
             </motion.div>
         </div>
     )
-}
-
-export default QuoteSimulator
