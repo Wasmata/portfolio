@@ -112,7 +112,7 @@ const TiltCard = ({ isFlipped, onFlip }) => {
         <>
             <motion.div
                 ref={ref}
-                className="relative w-full aspect-[1.586/1] cursor-pointer"
+                className="relative w-full aspect-[1.586/1] cursor-pointer will-change-transform"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 onClick={onFlip}
@@ -138,9 +138,8 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         transitionDelay: isFlipped ? '0s' : '0.2s'
                     }}
                 >
-                    {/* Holographic Background - Base Layer */}
-                    <div className="absolute inset-0 opacity-30 dark:opacity-25 bg-gradient-to-br from-primary-500/20 via-purple-500/20 to-blue-500/20 dark:from-[#AA771C]/20 dark:via-[#FFF8DC]/10 dark:to-[#8B6508]/20 mix-blend-overlay w-full h-full rounded-2xl"></div>
-                    <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] filter contrast-150 brightness-100 w-full h-full rounded-2xl"></div>
+                    {/* Holographic Background - Optimized: Single layer if possible, or simple opacity */}
+                    <div className="absolute inset-0 opacity-20 dark:opacity-25 bg-gradient-to-br from-primary-500/20 via-purple-500/20 to-blue-500/20 dark:from-[#AA771C]/20 dark:via-[#FFF8DC]/10 dark:to-[#8B6508]/20 w-full h-full rounded-2xl"></div>
 
                     {/* Content Container - LEVITATING */}
                     <div
@@ -148,10 +147,10 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         style={{ transform: "translateZ(40px)" }}
                     >
                         <div className="flex justify-between items-start">
-                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 dark:border-[#594212]/30 flex items-center justify-center bg-white/5 backdrop-blur-sm shadow-xl dark:bg-black/5">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 dark:border-[#594212]/30 flex items-center justify-center bg-white/5 shadow-xl dark:bg-black/5">
                                 <span className="font-bold text-lg md:text-xl text-white dark:text-[#3E2F1B]">W.</span>
                             </div>
-                            <div className="px-3 py-1 rounded-full border border-white/10 dark:border-[#594212]/20 bg-white/5 backdrop-blur-md text-[10px] uppercase tracking-widest text-white/50 dark:text-[#3E2F1B]/70 dark:bg-black/5 shadow-lg"
+                            <div className="px-3 py-1 rounded-full border border-white/10 dark:border-[#594212]/20 bg-white/5 text-[10px] uppercase tracking-widest text-white/50 dark:text-[#3E2F1B]/70 dark:bg-black/5 shadow-lg"
                                 style={{ transform: "translateZ(20px)" }}>
                                 Premium Dev
                             </div>
@@ -173,12 +172,9 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         </div>
                     </div>
 
-                    {/* Simulated Thickness/Edge Light */}
-                    <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-white/30 to-transparent dark:from-[#FCF6BA]/50 dark:to-[#AA771C]/50 opacity-50 z-20 pointer-events-none mix-blend-overlay"></div>
-
-                    {/* Glare Effect */}
+                    {/* Glare Effect - Optimized */}
                     <motion.div
-                        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 dark:via-white/30 to-transparent z-30 pointer-events-none rounded-2xl"
+                        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 dark:via-white/30 to-transparent z-30 pointer-events-none rounded-2xl will-change-transform"
                         style={{
                             background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.3) 0%, transparent 100%)`,
                             transform: "translateZ(1px)" // Slightly above background

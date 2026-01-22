@@ -14,9 +14,9 @@ const Hero = () => {
 
     return (
         <section id="hero" className="min-h-screen flex items-center relative overflow-hidden pt-24 pb-12 lg:pt-32">
-            {/* Background Effects - Scaled down blur for better performance/vis on smaller screens */}
-            <div className="absolute top-0 left-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-primary-600 rounded-full mix-blend-multiply filter blur-[96px] opacity-20 animate-blob"></div>
-            <div className="absolute bottom-0 right-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[96px] opacity-20 animate-blob animation-delay-2000"></div>
+            {/* Background Effects - Optimized for performance */}
+            <div className="absolute top-0 left-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-primary-600 rounded-full mix-blend-multiply filter blur-[64px] opacity-20 animate-blob will-change-transform"></div>
+            <div className="absolute bottom-0 right-1/4 w-64 h-64 lg:w-96 lg:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[64px] opacity-20 animate-blob animation-delay-2000 will-change-transform"></div>
 
             {/* Hidden Anchor for Navigation */}
             <div id="about" className="absolute top-0 left-0 w-full h-1"></div>
@@ -29,7 +29,7 @@ const Hero = () => {
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center lg:text-left flex flex-col items-center lg:items-start"
+                        className="text-center lg:text-left flex flex-col items-center lg:items-start will-change-transform"
                     >
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
