@@ -263,14 +263,112 @@ export const translations = {
     },
   },
   en: {
-    // ... nav ...
-    // ... hero ...
-    // ... projects ...
-    // ... services ...
-    // ... contact ...
-    // ... card ...
-    // ... project_details ...
-    // ... footer ...
+    nav: {
+      about: "About",
+      projects: "Projects",
+      services: "Services",
+      blog: "Blog",
+      contact: "Contact",
+      cta: "Let's Talk"
+    },
+    hero: {
+      role: "Creative Full Stack Developer",
+      headline_1: "Crafting Unique",
+      headline_2: "Digital Experiences",
+      description_pre: "Hi, I'm",
+      description_post: ". I help businesses and creators build high-performance, custom web solutions.",
+      cta_projects: "View My Work",
+      cta_contact: "Discuss Your Project"
+    },
+    projects: {
+      title: "Selected",
+      title_highlight: "Projects",
+      description: "Here is a selection of my recent work. Each project is optimized for performance and user experience."
+    },
+    services: {
+      title: "My",
+      title_highlight: "Expertise",
+      description: "End-to-end expertise: from Backend to Frontend, including SEO, deployment, and high-traffic management (millions of visitors).",
+      items: [
+        { title: "Custom Sites & Apps", desc: "No generic templates. A unique solution, coded to exactly match your business needs." },
+        { title: "Performance & Speed", desc: "Ultra-fast sites that improve your SEO and convert visitors better." },
+        { title: "Visibility & SEO", desc: "Optimized structure so your business is easily found on Google." },
+        { title: "Hosting & Peace of Mind", desc: "I handle all the technical details (Servers, Security, Updates). Sleep sweet, the site runs." }
+      ]
+    },
+    contact: {
+      title: "Let's Work",
+      title_highlight: "Together",
+      description: "Have a project in mind? I'd love to discuss it with you.",
+      firstname: "First Name",
+      lastname: "Last Name",
+      email: "Email",
+      message: "Message",
+      send: "Send Message",
+      placeholder_firstname: "John",
+      placeholder_lastname: "Doe",
+      placeholder_msg: "Tell me about your project...",
+      success_msg: "Message sent! I'll reply within 24h.",
+      error_msg: "An error occurred."
+    },
+    card: {
+      my_card: "My Card",
+      flip: "Flip",
+      share: "Share",
+      copied: "Copied!",
+      role: "Full Stack Developer",
+      scan_me: "Scan Me"
+    },
+    project_details: {
+      back: "Back",
+      about: "About the project",
+      challenge: "Challenge",
+      solution: "Solution",
+      tech_stack: "Technologies",
+      cta_title: "Need a similar project?",
+      cta_desc: "I can help you build performant web applications like this one.",
+      cta_btn: "Let's Talk"
+    },
+    footer: {
+      made_by: "Made with",
+      legal: "Legal Notice",
+      legal_modal: {
+        title: "Legal Notice",
+        close: "Close",
+        sections: [
+          {
+            id: "editor",
+            title: "1. Site Edition",
+            icon: "PenTool",
+            content: "The present site, accessible at www.wassidev.fr (the \"Site\"), is edited by: **Wassim Maataoui**, residing in France, of French nationality, born on 09/25/2005, registered with the R.C.S. of Perpignan under number **930 611 165** (SIRET: 930 611 165 00018)."
+          },
+          {
+            id: "hosting",
+            title: "2. Hosting",
+            icon: "Server",
+            content: "The Site is co-hosted by:\n• **Vercel Inc.**, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.\n• **WassiHost**, own infrastructure of the editor Wassim Maataoui."
+          },
+          {
+            id: "director",
+            title: "3. Publication Director",
+            icon: "User",
+            content: "The Publication Director of the Site is **Wassim Maataoui**."
+          },
+          {
+            id: "contact",
+            title: "4. Contact Us",
+            icon: "Mail",
+            content: "By email: **contact@wassidev.fr**\nBy phone: **07 68 31 27 68**"
+          },
+          {
+            id: "privacy",
+            title: "5. Personal Data",
+            icon: "Shield",
+            content: "The processing of your personal data is governed by our Privacy Policy, in accordance with the General Data Protection Regulation 2016/679 of April 27, 2016 (\"GDPR\")."
+          }
+        ]
+      }
+    },
     testimonials: {
       title: "Trusted",
       title_highlight: "By",
