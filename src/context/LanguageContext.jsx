@@ -237,8 +237,30 @@ export const translations = {
         }
       }
     },
-    // ... process ...
-    // ... faq ...
+    process: {
+      title: "Mon",
+      title_highlight: "Processus",
+      subtitle: "Une méthodologie éprouvée pour garantir le succès de votre projet.",
+      steps: [
+        { title: "1. Découverte", desc: "Nous analysons vos besoins et définissons les objectifs ensemble." },
+        { title: "2. Design", desc: "Je conçois les maquettes et l'expérience utilisateur (UI/UX)." },
+        { title: "3. Développement", desc: "Je code votre site en utilisant les meilleures technologies actuelles." },
+        { title: "4. Lancement", desc: "Déploiement, derniers tests et formation si nécessaire." }
+      ]
+    },
+    faq: {
+      title: "Questions",
+      title_highlight: "Fréquentes",
+      items: [
+        { question: "Combien de temps pour créer un site ?", answer: "Cela dépend de la complexité. Un site vitrine prend généralement 1 à 2 semaines, une app plus complexe peut prendre 1 mois ou plus." },
+        { question: "Le site sera-t-il optimisé pour Google (SEO) ?", answer: "Oui, tous mes sites respectent les bonnes pratiques SEO (structure, rapidité, balises) pour un bon référencement naturel." },
+        { question: "Que comprend l'abonnement de maintenance ?", answer: "Il garantit la pérennité de votre site : hébergement performant, mises à jour de sécurité et intervention en cas de panne. Notez qu'il n'inclut pas les changements visuels ou fonctionnels, mais assure que l'existant tourne parfaitement." },
+        { question: "Suis-je propriétaire de mon site ?", answer: "Absolument. Une fois le paiement final effectué, vous êtes propriétaire à 100% du code et du contenu. L'abonnement de maintenance est optionnel (mais recommandé)." },
+        { question: "Puis-je modifier le contenu moi-même ?", answer: "Oui, je peux intégrer un panneau d'administration simple (CMS) pour que vous changiez textes et images sans toucher au code." },
+        { question: "Proposez-vous l'hébergement ?", answer: "Je peux configurer l'hébergement pour vous (Vercel, VPS, etc.) et vous conseiller, mais la facturation est généralement à votre nom pour que vous restiez propriétaire." },
+        { question: "Et si j'ai besoin de modifications plus tard ?", answer: "J'offre une garantie post-livraison pour les bugs. Pour les évolutions, nous pouvons discuter d'un forfait maintenance ou d'un nouveau devis." }
+      ]
+    },
   },
   en: {
     // ... nav ...
