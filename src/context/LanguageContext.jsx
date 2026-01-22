@@ -132,7 +132,7 @@ export const translations = {
     pricing: {
       title: "Mes",
       title_highlight: "Offres",
-      subtitle: "Des solutions adaptées à chaque étape de votre croissance.",
+      subtitle: "🚀 OFFRE DE LANCEMENT : Tarifs réduits pour les premiers clients.",
       showcase: {
         title: "Site Vitrine",
         price: "Sur devis",
@@ -383,7 +383,7 @@ export const translations = {
     pricing: {
       title: "My",
       title_highlight: "Offers",
-      subtitle: "Solutions adapted to every stage of your growth.",
+      subtitle: "🚀 LAUNCH OFFER: Special rates for the first clients.",
       showcase: {
         title: "Showcase Site",
         price: "On Quotation",
