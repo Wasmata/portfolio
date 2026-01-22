@@ -55,7 +55,10 @@ const LegalModal = ({ isOpen, onClose }) => {
                         </div>
 
                         {/* Scrollable Content */}
-                        <div className="p-6 overflow-y-auto custom-scrollbar text-slate-600 dark:text-gray-300 space-y-6 text-sm leading-relaxed">
+                        <div
+                            className="p-6 overflow-y-auto custom-scrollbar text-slate-600 dark:text-gray-300 space-y-6 text-sm leading-relaxed overscroll-y-contain"
+                            data-lenis-prevent
+                        >
                             <div dangerouslySetInnerHTML={{ __html: t.footer.legal_modal.content }} className="prose dark:prose-invert max-w-none" />
                         </div>
 

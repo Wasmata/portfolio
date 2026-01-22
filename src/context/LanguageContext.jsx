@@ -81,7 +81,11 @@ export const translations = {
           <p><strong>Wassim Maataoui</strong>, résidant en France, de nationalité Française (France), né(e) le 25/09/2005, inscrit au R.C.S. de Perpignan sous le numéro <strong>930 611 165</strong> (SIRET : 930 611 165 00018).</p>
           
           <h3>2. Hébergement</h3>
-          <p>Le Site est hébergé par la société <strong>Vercel Inc.</strong>, située 340 S Lemon Ave #4133 Walnut, CA 91789, USA, (contact téléphonique ou email : https://vercel.com/contact).</p>
+          <p>Le Site est co-hébergé par :</p>
+          <ul>
+            <li><strong>Vercel Inc.</strong>, 340 S Lemon Ave #4133 Walnut, CA 91789, USA.</li>
+            <li><strong>WassiHost</strong>, infrastructure propre de l'éditeur Wassim Maataoui.</li>
+          </ul>
           
           <h3>3. Directeur de publication</h3>
           <p>Le Directeur de la publication du Site est <strong>Wassim Maataoui</strong>.</p>
