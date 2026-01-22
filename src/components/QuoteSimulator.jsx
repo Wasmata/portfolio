@@ -421,3 +421,6 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
             </motion.div>
         </div>
     )
+}
+
+export default QuoteSimulator
