@@ -131,6 +131,12 @@ export const translations = {
         desc: "Renfort technique pour votre équipe ou agence.",
         features: ["React / Django / Nord", "Intégration Pixel Perfect", "Code Clean & Maintenable", "Respect des délais"]
       },
+      maintenance: {
+        title: "Maintenance & Hébergement",
+        price: "50-150€ /mois",
+        desc: "Sérénité totale : je m'occupe de tout pour que votre site reste en ligne et sécurisé.",
+        features: ["Hébergement Performant", "Mises à jour de sécurité", "Sauvegardes journalières", "Support 7j/7 (Bugs & Panne)"]
+      },
       cta: "Demander un devis"
     },
     process: {
@@ -150,6 +156,9 @@ export const translations = {
       items: [
         { question: "Combien de temps pour créer un site ?", answer: "Cela dépend de la complexité. Un site vitrine prend généralement 1 à 2 semaines, une application complexe peut prendre 1 mois ou plus." },
         { question: "Le site sera-t-il optimisé pour Google (SEO) ?", answer: "Oui, tous mes sites respectent les bonnes pratiques SEO (structure, rapidité, balises) pour un bon référencement naturel base." },
+        { question: "En quoi consiste l'abonnement de maintenance ?", answer: "Il assure la pérennité de votre site : hébergement haute performance, mises à jour de sécurité, et intervention en cas de panne. Notez qu'il ne comprend pas les modifications visuelles ou fonctionnelles, mais garantit que l'existant tourne parfaitement." },
+        { question: "Suis-je propriétaire de mon site ?", answer: "Absolument. Une fois le paiement final effectué, vous êtes propriétaire à 100% du code et du contenu. L'abonnement de maintenance est optionnel (mais recommandé)." },
+        { question: "Puis-je modifier le contenu moi-même ?", answer: "Oui, je peux intégrer un panneau d'administration (CMS) simple pour que vous puissiez changer textes et images sans toucher au code." },
         { question: "Proposez-vous l'hébergement ?", answer: "Je peux configurer l'hébergement pour vous (Vercel, VPS, etc.) et vous conseiller, mais la facturation reste généralement à votre nom pour que vous restiez propriétaire." },
         { question: "Et si j'ai besoin de modifications après ?", answer: "Je propose une garantie post-livraison pour les bugs. Pour les évolutions, nous pouvons partir sur une maintenance ou un nouveau devis." }
       ]
@@ -277,6 +286,12 @@ export const translations = {
         desc: "Technical reinforcement for your team or agency.",
         features: ["React / Django / Node", "Pixel Perfect Integration", "Clean & Maintainable Code", "Deadline Respect"]
       },
+      maintenance: {
+        title: "Maintenance & Hosting",
+        price: "€50-150 /month",
+        desc: "Total peace of mind: I handle everything to keep your site online and secure.",
+        features: ["High Performance Hosting", "Security Updates", "Daily Backups", "7/7 Support (Bugs & Downtime)"]
+      },
       cta: "Request a Quote"
     },
     process: {
@@ -296,6 +311,9 @@ export const translations = {
       items: [
         { question: "How long to build a site?", answer: "It depends on complexity. A showcase site usually takes 1-2 weeks, a complex app can take 1 month or more." },
         { question: "Will the site be SEO optimized?", answer: "Yes, all my sites follow SEO best practices (structure, speed, tags) for good organic ranking." },
+        { question: "What does the maintenance subscription include?", answer: "It ensures your site's longevity: high-performance hosting, security updates, and intervention in case of downtime. Note that it does not include visual or functional changes, but ensures the existing runs perfectly." },
+        { question: "Do I own my site?", answer: "Absolutely. Once the final payment is made, you own 100% of the code and content. The maintenance subscription is optional (but recommended)." },
+        { question: "Can I change content myself?", answer: "Yes, I can integrate a simple admin panel (CMS) so you can change texts and images without touching the code." },
         { question: "Do you offer hosting?", answer: "I can set up hosting for you (Vercel, VPS, etc.) and advise you, but billing is usually in your name so you remain the owner." },
         { question: "What if I need changes later?", answer: "I offer a post-delivery warranty for bugs. For evolutions, we can discuss a maintenance plan or a new quote." }
       ]
