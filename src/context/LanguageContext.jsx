@@ -147,10 +147,10 @@ export const translations = {
             question: "Quel est votre type de projet ?",
             multi: false,
             options: [
-              { label: "Site Vitrine", value: "showcase", price: 600, desc: "Présenter mon activité" },
-              { label: "Site E-commerce", value: "ecommerce", price: 1800, desc: "Vendre des produits" },
-              { label: "App Web / SaaS", value: "app", price: 2500, desc: "Outil métier complexe" },
-              { label: "Landing Page", value: "landing", price: 450, desc: "Page unique de conversion" }
+              { label: "Site Vitrine", value: "showcase", price: 400, desc: "Présenter mon activité" },
+              { label: "Site E-commerce", value: "ecommerce", price: 1500, desc: "Vendre des produits" },
+              { label: "App Web / SaaS", value: "app", price: 2000, desc: "Outil métier complexe" },
+              { label: "Landing Page", value: "landing", price: 300, desc: "Page unique de conversion" }
             ]
           },
           design: {
@@ -158,17 +158,17 @@ export const translations = {
             multi: false,
             options: [
               { label: "Standard", value: "standard", price: 0, desc: "Propre et efficace" },
-              { label: "Sur-Mesure", value: "custom", price: 500, desc: "Identité graphique unique" },
-              { label: "Premium (Wow)", value: "premium", price: 1000, desc: "Animations, 3D, Immersion" }
+              { label: "Sur-Mesure", value: "custom", price: 400, desc: "Identité graphique unique" },
+              { label: "Premium (Wow)", value: "premium", price: 800, desc: "Animations, 3D, Immersion" }
             ]
           },
           pages: {
             question: "Combien de pages environ ?",
             multi: false,
             options: [
-              { label: "One Page", value: "1", price: 0, desc: "Tout sur une page" },
-              { label: "Standard (1-5)", value: "5", price: 300, desc: "Accueil, Services, Contact..." },
-              { label: "Complet (5-10)", value: "10", price: 600, desc: "Contenu dense" },
+              { label: "One Page", value: "1", price: -100, desc: "Tout sur une page" },
+              { label: "Standard (1-5)", value: "5", price: 200, desc: "Accueil, Services, Contact..." },
+              { label: "Complet (5-10)", value: "10", price: 500, desc: "Contenu dense" },
               { label: "Complexe (10+)", value: "plus", price: 1000, desc: "Gros volume de contenu" }
             ]
           },
@@ -377,10 +377,10 @@ export const translations = {
             question: "What is your project type?",
             multi: false,
             options: [
-              { label: "Showcase Site", value: "showcase", price: 600, desc: "Present my business" },
-              { label: "E-commerce", value: "ecommerce", price: 1800, desc: "Sell products online" },
-              { label: "Web App / SaaS", value: "app", price: 2500, desc: "Complex business tool" },
-              { label: "Landing Page", value: "landing", price: 450, desc: "Single conversion page" }
+              { label: "Showcase Site", value: "showcase", price: 400, desc: "Present my business" },
+              { label: "E-commerce", value: "ecommerce", price: 1500, desc: "Sell products online" },
+              { label: "Web App / SaaS", value: "app", price: 2000, desc: "Complex business tool" },
+              { label: "Landing Page", value: "landing", price: 300, desc: "Single conversion page" }
             ]
           },
           design: {
@@ -388,17 +388,17 @@ export const translations = {
             multi: false,
             options: [
               { label: "Standard", value: "standard", price: 0, desc: "Clean and effective" },
-              { label: "Custom", value: "custom", price: 500, desc: "Unique brand identity" },
-              { label: "Premium (Wow)", value: "premium", price: 1000, desc: "Animations, 3D, Immersive" }
+              { label: "Custom", value: "custom", price: 400, desc: "Unique brand identity" },
+              { label: "Premium (Wow)", value: "premium", price: 800, desc: "Animations, 3D, Immersive" }
             ]
           },
           pages: {
             question: "How many pages approximately?",
             multi: false,
             options: [
-              { label: "One Page", value: "1", price: 0, desc: "Everything on one page" },
-              { label: "Standard (1-5)", value: "5", price: 300, desc: "Home, Services, Contact..." },
-              { label: "Complete (5-10)", value: "10", price: 600, desc: "Dense content" },
+              { label: "One Page", value: "1", price: -100, desc: "Everything on one page" },
+              { label: "Standard (1-5)", value: "5", price: 200, desc: "Home, Services, Contact..." },
+              { label: "Complete (5-10)", value: "10", price: 500, desc: "Dense content" },
               { label: "Complex (10+)", value: "plus", price: 1000, desc: "Large volume" }
             ]
           },
