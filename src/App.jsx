@@ -15,8 +15,6 @@ import VisualEffects from './components/Effects/VisualEffects'
 import { useTheme } from './context/ThemeContext'
 import Home from './pages/Home'
 import ProjectDetails from './pages/ProjectDetails'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
 
 function App() {
   const [isCardOpen, setIsCardOpen] = useState(false)
@@ -56,8 +54,6 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
       </AnimatePresence>
 
