@@ -414,9 +414,35 @@ export const translations = {
         subtitle: "Answer a few questions to get a realistic price range.",
         currency: "€",
         steps: {
-          // ... type ...
-          // ... design ...
-          // ... pages ...
+          type: {
+            question: "What type of project?",
+            multi: false,
+            options: [
+              { label: "Showcase Site", value: "showcase", price: 500, desc: "Present my activity" },
+              { label: "E-commerce Site", value: "ecommerce", price: 1500, desc: "Sell products" },
+              { label: "Web App / SaaS", value: "app", price: 2000, desc: "Complex business tool" },
+              { label: "Landing Page", value: "landing", price: 350, desc: "Single conversion page" }
+            ]
+          },
+          design: {
+            question: "What design level?",
+            multi: false,
+            options: [
+              { label: "Standard", value: "standard", price: 0, desc: "Clean and effective" },
+              { label: "Custom", value: "custom", price: 400, desc: "Unique brand identity" },
+              { label: "Premium (Wow)", value: "premium", price: 800, desc: "Animations, 3D, Immersive" }
+            ]
+          },
+          pages: {
+            question: "How many pages approximately?",
+            multi: false,
+            options: [
+              { label: "One Page", value: "1", price: -50, desc: "All on one page" },
+              { label: "Standard (1-5)", value: "5", price: 200, desc: "Home, Services, Contact..." },
+              { label: "Complete (5-10)", value: "10", price: 500, desc: "Dense content" },
+              { label: "Complex (10+)", value: "plus", price: 1000, desc: "High volume of content" }
+            ]
+          },
           features: {
             question: "Specific Features?",
             multi: true,
