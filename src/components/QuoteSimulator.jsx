@@ -72,29 +72,33 @@ const QuoteSimulator = ({ isOpen, onClose }) => {
         }
     }
 
+    const HOURLY_RATE = 36 // €/h brut
+    const HOURS_BUFFER = 1.2 // 20% buffer on total hours
+
     const calculateTotal = () => {
-        let base = 0
-        let multiplier = 1
+        let totalHours = 0
+        let deadlineMultiplier = 1
 
         Object.keys(answers).forEach(key => {
             const answer = answers[key]
             if (!answer) return
 
             if (Array.isArray(answer)) {
-                // Multi-select sum
-                answer.forEach(item => { base += item.price })
+                // Multi-select: sum hours
+                answer.forEach(item => { totalHours += item.hours || 0 })
             } else {
-                // Single select
                 if (key === 'deadline') {
-                    multiplier = answer.multiplier || 1
+                    deadlineMultiplier = answer.multiplier || 1
                 } else {
-                    base += answer.price || 0
+                    totalHours += answer.hours || 0
                 }
             }
         })
 
-        const total = Math.round(base * multiplier)
-        return total < 400 ? 400 : total
+        // Apply 1.2x buffer on total hours, then multiply by rate and deadline
+        const bufferedHours = totalHours * HOURS_BUFFER
+        const total = Math.round(bufferedHours * HOURLY_RATE * deadlineMultiplier)
+        return total < 300 ? 300 : total
     }
 
     const nextStep = () => {

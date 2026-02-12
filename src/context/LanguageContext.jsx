@@ -167,29 +167,29 @@ export const translations = {
             question: "Quel est votre type de projet ?",
             multi: false,
             options: [
-              { label: "Site Vitrine", value: "showcase", price: 500, desc: "Présenter mon activité" },
-              { label: "Site E-commerce", value: "ecommerce", price: 1500, desc: "Vendre des produits" },
-              { label: "App Web / SaaS", value: "app", price: 2000, desc: "Outil métier complexe" },
-              { label: "Landing Page", value: "landing", price: 350, desc: "Page unique de conversion" }
+              { label: "Site Vitrine", value: "showcase", hours: 18, desc: "Présenter mon activité" },
+              { label: "Site E-commerce", value: "ecommerce", hours: 50, desc: "Vendre des produits" },
+              { label: "App Web / SaaS", value: "app", hours: 65, desc: "Outil métier complexe" },
+              { label: "Landing Page", value: "landing", hours: 10, desc: "Page unique de conversion" }
             ]
           },
           design: {
             question: "Quel niveau de design souhaitez-vous ?",
             multi: false,
             options: [
-              { label: "Standard", value: "standard", price: 0, desc: "Propre et efficace" },
-              { label: "Sur-Mesure", value: "custom", price: 400, desc: "Identité graphique unique" },
-              { label: "Premium (Wow)", value: "premium", price: 800, desc: "Animations, 3D, Immersion" }
+              { label: "Standard", value: "standard", hours: 0, desc: "Propre et efficace" },
+              { label: "Sur-Mesure", value: "custom", hours: 12, desc: "Identité graphique unique" },
+              { label: "Premium (Wow)", value: "premium", hours: 25, desc: "Animations, 3D, Immersion" }
             ]
           },
           pages: {
             question: "Combien de pages environ ?",
             multi: false,
             options: [
-              { label: "One Page", value: "1", price: -50, desc: "Tout sur une page" },
-              { label: "Standard (1-5)", value: "5", price: 200, desc: "Accueil, Services, Contact..." },
-              { label: "Complet (5-10)", value: "10", price: 500, desc: "Contenu dense" },
-              { label: "Complexe (10+)", value: "plus", price: 1000, desc: "Gros volume de contenu" }
+              { label: "One Page", value: "1", hours: 0, desc: "Tout sur une page" },
+              { label: "Standard (1-5)", value: "5", hours: 8, desc: "Accueil, Services, Contact..." },
+              { label: "Complet (5-10)", value: "10", hours: 18, desc: "Contenu dense" },
+              { label: "Complexe (10+)", value: "plus", hours: 35, desc: "Gros volume de contenu" }
             ]
           },
           features: {
@@ -197,13 +197,13 @@ export const translations = {
             multi: true,
             columns: 2,
             options: [
-              { label: "Espace Membre / Connexion", value: "auth", price: 400, desc: "Utilisateurs inscrits" },
-              { label: "Paiement en ligne (Stripe)", value: "payment", price: 500, desc: "Vente de produits/services" },
-              { label: "Blog / Actualités (CMS)", value: "cms", price: 300, desc: "Gérez vos articles" },
-              { label: "Multilingue (FR/EN...)", value: "multi", price: 300, desc: "Site traduit" },
-              { label: "Réservation / Agenda", value: "booking", price: 400, desc: "Prise de RDV en ligne" },
-              { label: "Intégration API / Externe", value: "api", price: 500, desc: "Connexion outils tiers" },
-              { label: "Aucune / Je ne sais pas", value: "none", price: 0, exclusive: true }
+              { label: "Espace Membre / Connexion", value: "auth", hours: 14, desc: "Utilisateurs inscrits" },
+              { label: "Paiement en ligne (Stripe)", value: "payment", hours: 16, desc: "Vente de produits/services" },
+              { label: "Blog / Actualités (CMS)", value: "cms", hours: 10, desc: "Gérez vos articles" },
+              { label: "Multilingue (FR/EN...)", value: "multi", hours: 10, desc: "Site traduit" },
+              { label: "Réservation / Agenda", value: "booking", hours: 14, desc: "Prise de RDV en ligne" },
+              { label: "Intégration API / Externe", value: "api", hours: 18, desc: "Connexion outils tiers" },
+              { label: "Aucune / Je ne sais pas", value: "none", hours: 0, exclusive: true }
             ]
           },
           services: {
@@ -211,12 +211,12 @@ export const translations = {
             multi: true,
             columns: 2,
             options: [
-              { label: "Rédaction Contenu & Texte", value: "content", price: 250, desc: "Optimisé pour la vente" },
-              { label: "Référencement SEO Avancé", value: "seo", price: 400, desc: "Audit & Stratégie Mots-clés" },
-              { label: "Logo & Identité Visuelle", value: "branding", price: 300, desc: "Charte graphique complète" },
-              { label: "Maintenance & Sécurité (1 an)", value: "maintenance", price: 600, desc: "Mises à jour & Sauvegardes" },
-              { label: "Formation Prise en Main", value: "training", price: 150, desc: "Apprendre à gérer votre site" },
-              { label: "Rien pour l'instant", value: "none", price: 0, exclusive: true }
+              { label: "Rédaction Contenu & Texte", value: "content", hours: 8, desc: "Optimisé pour la vente" },
+              { label: "Référencement SEO Avancé", value: "seo", hours: 12, desc: "Audit & Stratégie Mots-clés" },
+              { label: "Logo & Identité Visuelle", value: "branding", hours: 10, desc: "Charte graphique complète" },
+              { label: "Maintenance & Sécurité (1 an)", value: "maintenance", hours: 18, desc: "Mises à jour & Sauvegardes" },
+              { label: "Formation Prise en Main", value: "training", hours: 4, desc: "Apprendre à gérer votre site" },
+              { label: "Rien pour l'instant", value: "none", hours: 0, exclusive: true }
             ]
           },
           deadline: {
@@ -224,7 +224,7 @@ export const translations = {
             multi: false,
             options: [
               { label: "Standard (Flexible)", value: "standard", multiplier: 1, desc: "3-5 semaines" },
-              { label: "Urgent (Prioritaire)", value: "rush", multiplier: 1.25, desc: "Moins de 3 semaines" },
+              { label: "Urgent (Prioritaire)", value: "rush", multiplier: 1.3, desc: "Moins de 3 semaines" },
               { label: "Pas pressé (Relax)", value: "slow", multiplier: 0.9, desc: "Plus de 2 mois (Remise 10%)" }
             ]
           }
@@ -418,29 +418,29 @@ export const translations = {
             question: "What type of project?",
             multi: false,
             options: [
-              { label: "Showcase Site", value: "showcase", price: 500, desc: "Present my activity" },
-              { label: "E-commerce Site", value: "ecommerce", price: 1500, desc: "Sell products" },
-              { label: "Web App / SaaS", value: "app", price: 2000, desc: "Complex business tool" },
-              { label: "Landing Page", value: "landing", price: 350, desc: "Single conversion page" }
+              { label: "Showcase Site", value: "showcase", hours: 18, desc: "Present my activity" },
+              { label: "E-commerce Site", value: "ecommerce", hours: 50, desc: "Sell products" },
+              { label: "Web App / SaaS", value: "app", hours: 65, desc: "Complex business tool" },
+              { label: "Landing Page", value: "landing", hours: 10, desc: "Single conversion page" }
             ]
           },
           design: {
             question: "What design level?",
             multi: false,
             options: [
-              { label: "Standard", value: "standard", price: 0, desc: "Clean and effective" },
-              { label: "Custom", value: "custom", price: 400, desc: "Unique brand identity" },
-              { label: "Premium (Wow)", value: "premium", price: 800, desc: "Animations, 3D, Immersive" }
+              { label: "Standard", value: "standard", hours: 0, desc: "Clean and effective" },
+              { label: "Custom", value: "custom", hours: 12, desc: "Unique brand identity" },
+              { label: "Premium (Wow)", value: "premium", hours: 25, desc: "Animations, 3D, Immersive" }
             ]
           },
           pages: {
             question: "How many pages approximately?",
             multi: false,
             options: [
-              { label: "One Page", value: "1", price: -50, desc: "All on one page" },
-              { label: "Standard (1-5)", value: "5", price: 200, desc: "Home, Services, Contact..." },
-              { label: "Complete (5-10)", value: "10", price: 500, desc: "Dense content" },
-              { label: "Complex (10+)", value: "plus", price: 1000, desc: "High volume of content" }
+              { label: "One Page", value: "1", hours: 0, desc: "All on one page" },
+              { label: "Standard (1-5)", value: "5", hours: 8, desc: "Home, Services, Contact..." },
+              { label: "Complete (5-10)", value: "10", hours: 18, desc: "Dense content" },
+              { label: "Complex (10+)", value: "plus", hours: 35, desc: "High volume of content" }
             ]
           },
           features: {
@@ -448,13 +448,13 @@ export const translations = {
             multi: true,
             columns: 2,
             options: [
-              { label: "User Accounts / Login", value: "auth", price: 400, desc: "Registered users" },
-              { label: "Online Payment (Stripe)", value: "payment", price: 500, desc: "Sell products/services" },
-              { label: "Blog / News (CMS)", value: "cms", price: 300, desc: "Manage your own content" },
-              { label: "Multi-language", value: "multi", price: 300, desc: "Translated site" },
-              { label: "Booking System", value: "booking", price: 400, desc: "Online appointments" },
-              { label: "API / External Integration", value: "api", price: 500, desc: "Connect 3rd party tools" },
-              { label: "None / Not sure", value: "none", price: 0, exclusive: true }
+              { label: "User Accounts / Login", value: "auth", hours: 14, desc: "Registered users" },
+              { label: "Online Payment (Stripe)", value: "payment", hours: 16, desc: "Sell products/services" },
+              { label: "Blog / News (CMS)", value: "cms", hours: 10, desc: "Manage your own content" },
+              { label: "Multi-language", value: "multi", hours: 10, desc: "Translated site" },
+              { label: "Booking System", value: "booking", hours: 14, desc: "Online appointments" },
+              { label: "API / External Integration", value: "api", hours: 18, desc: "Connect 3rd party tools" },
+              { label: "None / Not sure", value: "none", hours: 0, exclusive: true }
             ]
           },
           services: {
@@ -462,12 +462,12 @@ export const translations = {
             multi: true,
             columns: 2,
             options: [
-              { label: "Copywriting & Content", value: "content", price: 250, desc: "Sales optimized" },
-              { label: "Advanced SEO Strategy", value: "seo", price: 400, desc: "Audit & Keywords" },
-              { label: "Logo & Brand Identity", value: "branding", price: 300, desc: "Full visual charter" },
-              { label: "Maintenance & Security (1 yr)", value: "maintenance", price: 600, desc: "Updates & Backups" },
-              { label: "Training Session", value: "training", price: 150, desc: "Learn to manage your site" },
-              { label: "None for now", value: "none", price: 0, exclusive: true }
+              { label: "Copywriting & Content", value: "content", hours: 8, desc: "Sales optimized" },
+              { label: "Advanced SEO Strategy", value: "seo", hours: 12, desc: "Audit & Keywords" },
+              { label: "Logo & Brand Identity", value: "branding", hours: 10, desc: "Full visual charter" },
+              { label: "Maintenance & Security (1 yr)", value: "maintenance", hours: 18, desc: "Updates & Backups" },
+              { label: "Training Session", value: "training", hours: 4, desc: "Learn to manage your site" },
+              { label: "None for now", value: "none", hours: 0, exclusive: true }
             ]
           },
           deadline: {
@@ -475,7 +475,7 @@ export const translations = {
             multi: false,
             options: [
               { label: "Standard (Flexible)", value: "standard", multiplier: 1, desc: "3-5 weeks" },
-              { label: "Urgent (Priority)", value: "rush", multiplier: 1.25, desc: "Less than 3 weeks" },
+              { label: "Urgent (Priority)", value: "rush", multiplier: 1.3, desc: "Less than 3 weeks" },
               { label: "Not Rushed (Relax)", value: "slow", multiplier: 0.9, desc: "More than 2 months (-10%)" }
             ]
           }
