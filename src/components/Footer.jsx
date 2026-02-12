@@ -18,8 +18,10 @@ const Footer = () => {
                         <span>Wassidev<span className="text-primary-500">.</span>fr</span>
                     </div>
 
-                    <div className="text-gray-500 text-sm flex flex-col items-center gap-1">
-                        <p>{t.footer.made_by} <Heart size={14} className="text-red-500 fill-red-500 inline" /> by Wassim Maataoui © 2026</p>
+                    <div className="flex flex-col items-center gap-2 text-center">
+                        <a href="mailto:contact@wassidev.fr" className="text-primary-400 hover:text-primary-300 font-medium transition-colors flex items-center gap-2 text-sm">
+                            <Mail size={16} /> contact@wassidev.fr
+                        </a>
                         <p className="text-xs text-gray-600">SIRET: 930 611 165 00018 • <button onClick={() => setIsLegalOpen(true)} className="hover:text-primary-500 underline decoration-dotted underline-offset-2">{t.footer.legal}</button></p>
                     </div>
 
