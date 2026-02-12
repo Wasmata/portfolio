@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { ArrowRight, Github, Linkedin, Instagram } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Instagram, Mail } from 'lucide-react'
 import TiltCard from './TiltCard'
 import { useLanguage } from '../context/LanguageContext'
 import TextReveal from './Showcase/TextReveal'
@@ -62,9 +62,14 @@ const Hero = () => {
                             </a>
                         </div>
 
-                        <div className="mt-10 flex items-center gap-6 text-slate-400 dark:text-gray-500">
-                            <a href="https://github.com/Wasmata" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-600 dark:hover:text-white transition-colors transform hover:scale-110 duration-200"><Github size={22} /></a>
-                            <a href="https://www.linkedin.com/in/wassim-maataoui-113395267/" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-600 dark:hover:text-white transition-colors transform hover:scale-110 duration-200"><Linkedin size={22} /></a>
+                        <div className="mt-8 flex flex-col gap-4">
+                            <a href="mailto:contact@wassidev.fr" onMouseEnter={playHover} onClick={playClick} className="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 font-medium transition-colors text-sm md:text-base">
+                                <Mail size={18} /> contact@wassidev.fr
+                            </a>
+                            <div className="flex items-center gap-5 text-slate-400 dark:text-gray-500">
+                                <a href="https://github.com/Wasmata" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-600 dark:hover:text-white transition-colors transform hover:scale-110 duration-200"><Github size={20} /></a>
+                                <a href="https://www.linkedin.com/in/wassim-maataoui-113395267/" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-600 dark:hover:text-white transition-colors transform hover:scale-110 duration-200"><Linkedin size={20} /></a>
+                            </div>
                         </div>
                     </motion.div>
 
