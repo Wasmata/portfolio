@@ -19,16 +19,16 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col items-center gap-2 text-center">
-                        <a href="mailto:contact@wassidev.fr" className="text-primary-400 hover:text-primary-300 font-medium transition-colors flex items-center gap-2 text-sm">
+                        <a href="mailto:contact@wassidev.fr" aria-label="Envoyer un email à contact@wassidev.fr" className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors flex items-center gap-2 text-sm">
                             <Mail size={16} /> contact@wassidev.fr
                         </a>
-                        <p className="text-xs text-gray-600">SIRET: 930 611 165 00018 • <button onClick={() => setIsLegalOpen(true)} className="hover:text-primary-500 underline decoration-dotted underline-offset-2">{t.footer.legal}</button></p>
+                        <p className="text-xs text-slate-700 dark:text-gray-400">SIRET: 930 611 165 00018 • <button onClick={() => setIsLegalOpen(true)} className="hover:text-primary-500 underline decoration-dotted underline-offset-2">{t.footer.legal}</button></p>
                     </div>
 
                     <div className="flex justify-center gap-6 mb-4 text-slate-500 dark:text-gray-400">
-                        <a href="https://github.com/Wasmata" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Github size={20} /></a>
-                        <a href="https://www.linkedin.com/in/wassim-maataoui-113395267/" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Linkedin size={20} /></a>
-                        <a href="mailto:contact@wassidev.fr" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Mail size={20} /></a>
+                        <a href="https://github.com/Wasmata" aria-label="GitHub de Wassim" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Github size={20} /></a>
+                        <a href="https://www.linkedin.com/in/wassim-maataoui-113395267/" aria-label="LinkedIn de Wassim" target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Linkedin size={20} /></a>
+                        <a href="mailto:contact@wassidev.fr" aria-label="Email de Wassim" onMouseEnter={playHover} onClick={playClick} className="hover:text-primary-500 dark:hover:text-white transition-colors transform hover:scale-110"><Mail size={20} /></a>
                     </div>
                 </div>
             </footer>

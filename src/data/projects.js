@@ -5,8 +5,8 @@ export const projectsData = {
             title: "SMA Anime",
             category: "Streaming & Big Data",
             image: {
-                light: "/projects/sma_dark.png",
-                dark: "/projects/sma_dark.png"
+                light: "/projects/sma_dark.webp",
+                dark: "/projects/sma_dark.webp"
             },
             tags: ["Django", "Python", "FFmpeg", "Mobile Apps"],
             links: { demo: "https://up.sma-anime.com/", github: null },
@@ -19,8 +19,8 @@ export const projectsData = {
             title: "JeuxCracks",
             category: "Gaming & Infrastructure",
             image: {
-                light: "/projects/jeuxcracks_dark.png",
-                dark: "/projects/jeuxcracks_dark.png"
+                light: "/projects/jeuxcracks_dark.webp",
+                dark: "/projects/jeuxcracks_dark.webp"
             },
             tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
             links: { demo: "https://jeuxcracks.fr/", github: null },
@@ -49,8 +49,8 @@ export const projectsData = {
             title: "SMA Anime",
             category: "Streaming & Big Data",
             image: {
-                light: "/projects/sma_dark.png",
-                dark: "/projects/sma_dark.png"
+                light: "/projects/sma_dark.webp",
+                dark: "/projects/sma_dark.webp"
             },
             tags: ["Django", "Python", "FFmpeg", "Mobile Apps"],
             links: { demo: "https://up.sma-anime.com/", github: null },
@@ -63,8 +63,8 @@ export const projectsData = {
             title: "JeuxCracks",
             category: "Gaming & Infrastructure",
             image: {
-                light: "/projects/jeuxcracks_dark.png",
-                dark: "/projects/jeuxcracks_dark.png"
+                light: "/projects/jeuxcracks_dark.webp",
+                dark: "/projects/jeuxcracks_dark.webp"
             },
             tags: ["Nuxt", "Vue.js", "Django", "Node.js", "Redis", "Cloudflare"],
             links: { demo: "https://jeuxcracks.fr/", github: null },

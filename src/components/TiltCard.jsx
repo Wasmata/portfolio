@@ -157,9 +157,9 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         </div>
 
                         <div style={{ transform: "translateZ(30px)" }}>
-                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-display tracking-wide glow-text drop-shadow-lg dark:text-[#282012] dark:glow-none dark:drop-shadow-none">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 font-display tracking-wide glow-text drop-shadow-lg dark:text-[#282012] dark:glow-none dark:drop-shadow-none">
                                 WASSIM M.
-                            </h3>
+                            </h2>
                             <p className="text-primary-400 dark:text-[#5c4a2b] text-xs md:text-sm font-medium tracking-[0.2em] uppercase dark:font-bold">
                                 {t.card.role}
                             </p>
@@ -227,6 +227,7 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         <button
                             onClick={handleDownload}
                             disabled={isDownloading}
+                            aria-label={isDownloading ? "Téléchargement en cours" : (copied ? "Carte sauvegardée" : "Sauvegarder la carte")}
                             className="flex items-center gap-1.5 px-4 py-1.5 md:px-5 md:py-2 rounded-full bg-white/10 border border-white/10 hover:bg-white/20 transition-all text-white text-[9px] md:text-[10px] font-bold uppercase tracking-wider shadow-lg dark:text-[#3E2F1B] dark:bg-black/5 dark:border-[#3E2F1B]/10 dark:hover:bg-black/10 mt-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isDownloading ? (
@@ -264,9 +265,9 @@ const TiltCard = ({ isFlipped, onFlip }) => {
                         </div>
 
                         <div>
-                            <h3 className="text-3xl font-bold text-white mb-2 tracking-wide whitespace-nowrap">
+                            <h2 className="text-3xl font-bold text-white mb-2 tracking-wide whitespace-nowrap">
                                 WASSIM M.
-                            </h3>
+                            </h2>
                             <p className="text-primary-400 text-sm font-medium tracking-[0.2em] uppercase whitespace-nowrap">
                                 {t.card.role}
                             </p>

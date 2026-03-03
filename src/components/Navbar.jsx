@@ -146,6 +146,7 @@ const Navbar = ({ onOpenCard }) => {
                         <button
                             onClick={() => { playClick(); setShowTerminal(true); }}
                             onMouseEnter={playHover}
+                            aria-label="Ouvrir le terminal"
                             className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                         >
                             <TerminalIcon size={18} />
@@ -154,6 +155,7 @@ const Navbar = ({ onOpenCard }) => {
                         <button
                             onClick={() => { playClick(); toggleMode(); }}
                             onMouseEnter={playHover}
+                            aria-label="Basculer le thème"
                             className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                         >
                             {mode === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -163,6 +165,7 @@ const Navbar = ({ onOpenCard }) => {
                             <button
                                 onClick={() => { playClick(); setShowThemes(!showThemes); }}
                                 onMouseEnter={playHover}
+                                aria-label="Paramètres d'affichage"
                                 className="flex items-center justify-center w-8 h-8 rounded-full text-slate-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
                             >
                                 <motion.div
