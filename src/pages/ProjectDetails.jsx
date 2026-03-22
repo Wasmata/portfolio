@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink, Github, Zap, Target, Cpu, ArrowUpRight, Sparkl
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
 import { projectsData } from '../data/projects'
+import { useSEO } from '../hooks/useSEO'
 
 // --- STANDARD PREMIUM CARD (Clean Hover) ---
 const BentoCard = ({ children, className = "", delay = 0 }) => {
@@ -40,6 +41,14 @@ const ProjectDetails = () => {
     }, [id])
 
     const project = projectsData[language]?.find(p => p.id === id)
+
+    // Dynamic SEO
+    useSEO({
+        title: project ? `Projet ${project.title} — Wassim Maataoui` : 'Projet introuvable',
+        description: project ? project.description.substring(0, 155) + '...' : 'Découvrez mes projets Full Stack.',
+        url: `https://www.wassidev.fr/project/${id}`,
+        image: project ? `https://www.wassidev.fr${project.image.light}` : null,
+    });
 
     if (!project) return null;
 
