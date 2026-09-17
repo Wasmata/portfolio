@@ -72,7 +72,9 @@ const Projects = () => {
                                             ))}
                                         </div>
                                         <div className="flex gap-2">
+                                            {project.links.demo && (
                                             <a href={project.links.demo} aria-label={`Voir le site ${project.title}`} target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="p-2 text-slate-500 hover:text-primary-500 transition-colors"><ExternalLink size={18} /></a>
+                                            )}
                                             {project.links.github && (
                                                 <a href={project.links.github} aria-label={`Code source de ${project.title}`} target="_blank" rel="noopener noreferrer" onMouseEnter={playHover} onClick={playClick} className="p-2 text-slate-500 hover:text-white transition-colors"><Github size={18} /></a>
                                             )}

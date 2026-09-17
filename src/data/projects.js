@@ -37,52 +37,24 @@ export const projectsData = {
                 dark: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop"
             },
             tags: ["Docker", "Linux", "Networking", "Self-Hosting"],
-            links: { demo: "https://panel.wassihost.com/", github: null },
+            links: { demo: null, github: null },
             description: "Projet né d'une frustration : les limitations des hébergeurs classiques. Ce qui devait être une simple solution pour mes projets perso est devenu mon laboratoire d'apprentissage infrastructure.",
             challenge: "S'émanciper des solutions clés en main pour comprendre ce qui se passe sous le capot. Gérer la sécurité, les reverse-proxies, les certificats SSL et l'orchestration de conteneurs manuellement.",
             solution: "J'ai acquis une maîtrise totale de la chaîne de mise en production : du serveur 'bare metal' à la configuration réseau avancée, transformant une contrainte en une véritable expertise DevOps aujourd'hui applicable à n'importe quel projet."
         },
         {
-            id: "artisan-plombier",
-            title: "Artisan Plombier",
-            category: "Showcase Website",
+            id: "ezekel",
+            title: "Ezekel",
+            category: "Creative & 3D Visual",
             image: {
-                light: "/projects/plomberie.webp",
-                dark: "/projects/plomberie.webp"
+                light: "/projects/ezekel.webp",
+                dark: "/projects/ezekel.webp"
             },
-            tags: ["React", "Tailwind CSS", "Framer Motion", "SEO"],
-            links: { demo: "https://demo1.wassidev.fr/", github: null },
-            description: "Site vitrine moderne pour un artisan plombier, mettant l'accent sur la conversion et l'expérience utilisateur mobile.",
-            challenge: "Créer une interface qui inspire confiance tout en restant extrêmement rapide et facile à naviguer sur mobile pour des interventions d'urgence.",
-            solution: "Utilisation de React + Vite pour la performance, Tailwind pour un design épuré, et Framer Motion pour des animations subtiles (compteurs, fade-in). Optimisation SEO locale complète."
-        },
-        {
-            id: "cabinet-avocat",
-            title: "Cabinet d'Avocat",
-            category: "Luxury Showcase",
-            image: {
-                light: "/projects/avocat.webp",
-                dark: "/projects/avocat.webp"
-            },
-            tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-            links: { demo: "https://demo2.wassidev.fr/", github: null },
-            description: "Plateforme haut de gamme pour un cabinet d'avocats d'affaires, alliant sobriété et prestige.",
-            challenge: "Retranscrire l'image de marque prestigieuse d'un cabinet parisien à travers un design minimaliste et des typographies élégantes.",
-            solution: "Mise en place d'une palette de couleurs sobre (noir, or, blanc cassé) avec Playfair Display pour la typographie. Transitions ultra-fluides avec Framer Motion."
-        },
-        {
-            id: "association-humain",
-            title: "Association Humaine",
-            category: "NGO / Non-Profit",
-            image: {
-                light: "/projects/association.webp",
-                dark: "/projects/association.webp"
-            },
-            tags: ["React", "Tailwind CSS", "Framer Motion", "Accessibility"],
-            links: { demo: "https://demo3.wassidev.fr/", github: null },
-            description: "Site web engagé pour une association d'aide alimentaire locale, conçu pour faciliter l'engagement et les dons.",
-            challenge: "Concevoir un site accessible (normes WCAG AA) et émotionnellement fort pour encourager le bénévolat et les dons alimentaires.",
-            solution: "Design centré sur l'humain avec des animations de compteurs pour l'impact. Optimisation maximale de l'accessibilité et SEO Schema.org NGO."
+            tags: ["Three.js", "WebGL", "JavaScript", "GLSL"],
+            links: { demo: "https://ezekel.space/", github: null },
+            description: "Expérience visuelle immersive construite avec Three.js. Un projet artistique et technique qui repousse les limites du rendu 3D dans le navigateur.",
+            challenge: "Créer une expérience 3D fluide et visuellement impressionnante directement dans le navigateur, tout en maintenant des performances optimales sur différents appareils.",
+            solution: "Utilisation avancée de Three.js avec des shaders GLSL personnalisés, des effets de post-processing et des animations procédurales pour créer un univers visuel unique et interactif."
         }
     ],
     en: [
@@ -123,52 +95,25 @@ export const projectsData = {
                 dark: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop"
             },
             tags: ["Docker", "Linux", "Networking", "Self-Hosting"],
-            links: { demo: "https://panel.wassihost.com/", github: null },
+            links: { demo: null, github: null },
             description: "Born from frustration with classic hosting limitations. What started as a personal solution for my own apps became my infrastructure learning lab.",
             challenge: "Breaking free from turnkey solutions (Vercel, Heroku) to truly understand what happens under the hood. Managing security, reverse-proxies, SSL certificates, and container orchestration manually.",
             solution: "I gained complete mastery of the production pipeline: from 'bare metal' servers to advanced network configuration, turning a constraint into real DevOps expertise now applicable to any project."
         },
         {
-            id: "artisan-plombier",
-            title: "Artisan Plumber",
-            category: "Showcase Website",
+            id: "ezekel",
+            title: "Ezekel",
+            category: "Creative & 3D Visual",
             image: {
-                light: "/projects/plomberie.webp",
-                dark: "/projects/plomberie.webp"
+                light: "/projects/ezekel.webp",
+                dark: "/projects/ezekel.webp"
             },
-            tags: ["React", "Tailwind CSS", "Framer Motion", "SEO"],
-            links: { demo: "https://demo1.wassidev.fr/", github: null },
-            description: "Modern showcase website for a professional plumber, focusing on conversion and mobile user experience.",
-            challenge: "Creating an interface that builds trust while being extremely fast and easy to navigate on mobile for emergency calls.",
-            solution: "Using React + Vite for performance, Tailwind for a clean design, and Framer Motion for subtle animations. Full local SEO optimization."
-        },
-        {
-            id: "cabinet-avocat",
-            title: "Law Firm",
-            category: "Luxury Showcase",
-            image: {
-                light: "/projects/avocat.webp",
-                dark: "/projects/avocat.webp"
-            },
-            tags: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-            links: { demo: "https://demo2.wassidev.fr/", github: null },
-            description: "High-end platform for a business law firm, combining sobriety and prestige.",
-            challenge: "Reflecting the prestigious brand image of a Parisian law firm through minimalist design and elegant typography.",
-            solution: "Implemented a sober color palette (black, gold, off-white) with Playfair Display. Ultra-smooth transitions using Framer Motion."
-        },
-        {
-            id: "association-humain",
-            title: "Human Association",
-            category: "NGO / Non-Profit",
-            image: {
-                light: "/projects/association.webp",
-                dark: "/projects/association.webp"
-            },
-            tags: ["React", "Tailwind CSS", "Framer Motion", "Accessibility"],
-            links: { demo: "https://demo3.wassidev.fr/", github: null },
-            description: "Dedicated website for a local food aid association, designed to facilitate engagement and donations.",
-            challenge: "Designing an accessible website (WCAG AA standards) with strong emotional impact to encourage volunteering and food donations.",
-            solution: "Human-centered design with animated counters for impact. Maximum accessibility optimization and NGO Schema.org SEO."
+            tags: ["Three.js", "WebGL", "JavaScript", "GLSL"],
+            links: { demo: "https://ezekel.space/", github: null },
+            description: "Immersive visual experience built with Three.js. An artistic and technical project pushing the boundaries of 3D rendering in the browser.",
+            challenge: "Creating a smooth, visually stunning 3D experience directly in the browser while maintaining optimal performance across different devices.",
+            solution: "Advanced use of Three.js with custom GLSL shaders, post-processing effects, and procedural animations to create a unique and interactive visual universe."
         }
     ]
 }
+

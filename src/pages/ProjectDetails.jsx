@@ -106,9 +106,11 @@ const ProjectDetails = () => {
 
                         {/* Buttons - Stacked on Mobile */}
                         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-2 px-4 md:px-0">
+                            {project.links.demo && (
                             <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-bold text-base md:text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
                                 Live Site <ArrowUpRight size={18} />
                             </a>
+                            )}
                             {project.links.github && (
                                 <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 rounded-full font-bold text-base md:text-lg bg-white dark:bg-black border border-slate-200 dark:border-white/20 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
                                     <Github size={18} /> Code
