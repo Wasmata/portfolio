@@ -1,20 +1,6 @@
 export const projectsData = {
     fr: [
         {
-            id: "sma-anime",
-            title: "SMA Anime",
-            category: "Streaming & Big Data",
-            image: {
-                light: "/projects/sma_dark.webp",
-                dark: "/projects/sma_dark.webp"
-            },
-            tags: ["Django", "Python", "FFmpeg", "Mobile Apps"],
-            links: { demo: "https://up.sma-anime.com/", github: null },
-            description: "Né de plusieurs tentatives, ce projet est un monstre d'infrastructure entièrement géré par une seule personne. L'objectif : offrir l'accès gratuit et sans pub à la culture anime pour tous. Applications iOS & Android en préparation.",
-            challenge: "Le véritable défi est le stockage et la redondance. Avec des milliers d'épisodes de 20min (multipliés par les langues VO/VF et hébergés sur 3 à 5 serveurs différents pour la sécurité), on parle de gérer des téraoctets de données vidéo tout en assurant une disponibilité 24/7.",
-            solution: "J'ai conçu une architecture capable d'orchestrer cette redondance massive automatiquement. Le backend Django ne fait pas que servir le site, il pilote tout le pipeline d'ingestion et de distribution vidéo pour garantir qu'aucun épisode ne soit jamais hors ligne."
-        },
-        {
             id: "jeux-cracks",
             title: "JeuxCracks",
             category: "Gaming & Infrastructure",
@@ -58,20 +44,6 @@ export const projectsData = {
         }
     ],
     en: [
-        {
-            id: "sma-anime",
-            title: "SMA Anime",
-            category: "Streaming & Big Data",
-            image: {
-                light: "/projects/sma_dark.webp",
-                dark: "/projects/sma_dark.webp"
-            },
-            tags: ["Django", "Python", "FFmpeg", "Mobile Apps"],
-            links: { demo: "https://up.sma-anime.com/", github: null },
-            description: "Born from multiple attempts, this project is an infrastructure monster managed entirely solely by me. The goal: free, ad-free access to anime culture for everyone. iOS & Android apps coming soon.",
-            challenge: "The real challenge is storage and redundancy. With thousands of 20min episodes (multiplied by languages and hosted on 3-5 different servers for safety), we are talking about managing terabytes of video data while ensuring 24/7 availability.",
-            solution: "I designed an architecture capable of orchestrating this massive redundancy automatically. The Django backend doesn't just serve the site; it pilots the entire video ingestion and distribution pipeline to ensure no episode ever goes offline."
-        },
         {
             id: "jeux-cracks",
             title: "JeuxCracks",
