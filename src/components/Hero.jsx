@@ -86,7 +86,7 @@ const Hero = () => {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-indigo-500/15 rounded-full blur-[100px] animate-pulse"></div>
 
                         {/* 3D Globe Container */}
-                        <div className="w-full aspect-square max-w-[400px] md:max-w-[500px] relative z-10">
+                        <div className="w-full h-[400px] md:h-[500px] relative z-10">
                             <Suspense fallback={
                                 <div className="w-full h-full flex items-center justify-center">
                                     <div className="w-48 h-48 rounded-full border border-indigo-500/20 animate-spin" style={{ borderTopColor: 'rgb(99 102 241 / 0.6)' }}></div>

@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import { Canvas, useFrame, extend } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -35,11 +35,8 @@ function generateArcs(points, maxDistance, arcCount) {
             const dist = points[i].distanceTo(points[j])
             if (dist < maxDistance && dist > maxDistance * 0.3) {
                 used.add(key)
-
-                // Create curved arc between two points
                 const mid = new THREE.Vector3().addVectors(points[i], points[j]).multiplyScalar(0.5)
-                mid.normalize().multiplyScalar(mid.length() * 1.15) // Push outward for curve
-
+                mid.normalize().multiplyScalar(mid.length() * 1.15)
                 const curve = new THREE.QuadraticBezierCurve3(points[i], mid, points[j])
                 arcs.push(curve)
             }
@@ -48,143 +45,111 @@ function generateArcs(points, maxDistance, arcCount) {
     return arcs
 }
 
-// Dots on the globe surface
-function GlobeDots({ points, mouse }) {
+// Dots on the globe surface — static, no per-frame updates
+function GlobeDots({ points }) {
     const meshRef = useRef()
     const dummy = useMemo(() => new THREE.Object3D(), [])
-    const basePositions = useMemo(() => points.map(p => p.clone()), [points])
 
-    useFrame(() => {
+    // Set positions once, no animation needed
+    useEffect(() => {
         if (!meshRef.current) return
-
         for (let i = 0; i < points.length; i++) {
-            const p = basePositions[i]
-            dummy.position.copy(p)
-
-            // Subtle pulse based on position
-            const scale = 0.8 + Math.sin(Date.now() * 0.001 + i * 0.5) * 0.2
-            dummy.scale.setScalar(scale)
+            dummy.position.copy(points[i])
+            dummy.scale.setScalar(1)
             dummy.updateMatrix()
             meshRef.current.setMatrixAt(i, dummy.matrix)
         }
         meshRef.current.instanceMatrix.needsUpdate = true
-    })
+    }, [points, dummy])
 
     return (
         <instancedMesh ref={meshRef} args={[null, null, points.length]}>
-            <sphereGeometry args={[0.015, 6, 6]} />
-            <meshBasicMaterial color="#6366f1" transparent opacity={0.7} />
+            <sphereGeometry args={[0.018, 4, 4]} />
+            <meshBasicMaterial color="#6366f1" transparent opacity={0.6} />
         </instancedMesh>
     )
 }
 
-// Animated arcs (connections between dots)
+// Arc connections — static geometry, no per-frame updates
 function GlobeArcs({ arcs }) {
-    const linesRef = useRef([])
-
-    useFrame(() => {
-        linesRef.current.forEach((line, i) => {
-            if (line && line.material) {
-                // Subtle opacity animation
-                line.material.opacity = 0.15 + Math.sin(Date.now() * 0.0015 + i * 0.8) * 0.1
-            }
+    const geometries = useMemo(() => {
+        return arcs.map(curve => {
+            const curvePoints = curve.getPoints(16)
+            return new THREE.BufferGeometry().setFromPoints(curvePoints)
         })
-    })
+    }, [arcs])
 
     return (
         <group>
-            {arcs.map((curve, i) => {
-                const curvePoints = curve.getPoints(32)
-                const geometry = new THREE.BufferGeometry().setFromPoints(curvePoints)
-
-                return (
-                    <line_
-                        key={i}
-                        ref={el => { linesRef.current[i] = el }}
-                        geometry={geometry}
-                    >
-                        <lineBasicMaterial
-                            color="#818cf8"
-                            transparent
-                            opacity={0.2}
-                            linewidth={1}
-                        />
-                    </line_>
-                )
-            })}
+            {geometries.map((geometry, i) => (
+                <line_
+                    key={i}
+                    geometry={geometry}
+                >
+                    <lineBasicMaterial
+                        color="#818cf8"
+                        transparent
+                        opacity={0.15}
+                    />
+                </line_>
+            ))}
         </group>
     )
 }
 
-// Glowing highlight dots (fewer, brighter)
+// Glowing highlight dots — static
 function GlowDots({ points }) {
     const meshRef = useRef()
     const dummy = useMemo(() => new THREE.Object3D(), [])
 
-    // Select a subset of points for glow effect
     const glowPoints = useMemo(() => {
         const selected = []
-        for (let i = 0; i < points.length; i += 7) {
+        for (let i = 0; i < points.length; i += 10) {
             selected.push(points[i])
         }
         return selected
     }, [points])
 
-    useFrame(() => {
+    useEffect(() => {
         if (!meshRef.current) return
-
         for (let i = 0; i < glowPoints.length; i++) {
             dummy.position.copy(glowPoints[i])
-            const scale = 1.5 + Math.sin(Date.now() * 0.002 + i * 2) * 0.8
-            dummy.scale.setScalar(scale)
+            dummy.scale.setScalar(1.8)
             dummy.updateMatrix()
             meshRef.current.setMatrixAt(i, dummy.matrix)
         }
         meshRef.current.instanceMatrix.needsUpdate = true
-    })
+    }, [glowPoints, dummy])
 
     return (
         <instancedMesh ref={meshRef} args={[null, null, glowPoints.length]}>
-            <sphereGeometry args={[0.025, 8, 8]} />
-            <meshBasicMaterial color="#a5b4fc" transparent opacity={0.6} />
+            <sphereGeometry args={[0.025, 6, 6]} />
+            <meshBasicMaterial color="#a5b4fc" transparent opacity={0.5} />
         </instancedMesh>
     )
 }
 
-// Main rotating globe group
+// Main rotating globe — only rotation is animated
 function Globe() {
     const groupRef = useRef()
-    const mouseRef = useRef({ x: 0, y: 0 })
 
     const { points, arcs } = useMemo(() => {
-        const pts = generateSpherePoints(300, 2)
-        const arcsData = generateArcs(pts, 1.2, 80)
+        const pts = generateSpherePoints(200, 2)
+        const arcsData = generateArcs(pts, 1.2, 50)
         return { points: pts, arcs: arcsData }
-    }, [])
-
-    const handlePointerMove = useCallback((e) => {
-        mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1
-        mouseRef.current.y = -(e.clientY / window.innerHeight) * 2 + 1
     }, [])
 
     useFrame((state, delta) => {
         if (!groupRef.current) return
-
-        // Slow auto-rotation
+        // Only animate rotation — very cheap
         groupRef.current.rotation.y += delta * 0.08
-
-        // Subtle tilt toward mouse
-        const targetX = mouseRef.current.y * 0.15
-        const targetZ = mouseRef.current.x * 0.1
-        groupRef.current.rotation.x += (targetX - groupRef.current.rotation.x) * 0.02
-        groupRef.current.rotation.z += (targetZ - groupRef.current.rotation.z) * 0.02
     })
 
     return (
-        <group ref={groupRef} onPointerMove={handlePointerMove}>
-            {/* Wireframe sphere for structure */}
+        <group ref={groupRef} rotation={[0.3, 0, 0.1]}>
+            {/* Wireframe sphere */}
             <mesh>
-                <sphereGeometry args={[1.98, 32, 32]} />
+                <sphereGeometry args={[1.98, 24, 24]} />
                 <meshBasicMaterial
                     color="#6366f1"
                     wireframe
@@ -193,18 +158,13 @@ function Globe() {
                 />
             </mesh>
 
-            {/* Globe dots */}
-            <GlobeDots points={points} mouse={mouseRef} />
-
-            {/* Arc connections */}
+            <GlobeDots points={points} />
             <GlobeArcs arcs={arcs} />
-
-            {/* Glow highlights */}
             <GlowDots points={points} />
 
-            {/* Inner glow sphere */}
+            {/* Inner glow */}
             <mesh>
-                <sphereGeometry args={[1.9, 32, 32]} />
+                <sphereGeometry args={[1.9, 16, 16]} />
                 <meshBasicMaterial
                     color="#4f46e5"
                     transparent
@@ -215,21 +175,44 @@ function Globe() {
     )
 }
 
-// Main exported component
+// Main exported component with visibility-based rendering
 const HeroGlobe = () => {
+    const containerRef = useRef()
+    const [isVisible, setIsVisible] = useState(true)
+
+    // Pause rendering when not in viewport
+    useEffect(() => {
+        const el = containerRef.current
+        if (!el) return
+
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsVisible(entry.isIntersecting),
+            { threshold: 0.05 }
+        )
+        observer.observe(el)
+        return () => observer.disconnect()
+    }, [])
+
     return (
-        <div className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+        <div
+            ref={containerRef}
+            className="w-full h-full"
+            style={{ minHeight: '400px' }}
+        >
             <Canvas
-                camera={{ position: [0, 0, 5], fov: 45 }}
+                frameloop={isVisible ? 'always' : 'never'}
+                camera={{ position: [0, 0, 5.5], fov: 40 }}
                 dpr={[1, 1.5]}
+                resize={{ scroll: false }}
                 gl={{
-                    antialias: true,
+                    antialias: false,
                     alpha: true,
-                    powerPreference: 'high-performance'
+                    powerPreference: 'high-performance',
+                    stencil: false,
+                    depth: false
                 }}
                 style={{ background: 'transparent' }}
             >
-                <ambientLight intensity={0.5} />
                 <Globe />
             </Canvas>
         </div>
