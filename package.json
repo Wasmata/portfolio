@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.1",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "@studio-freight/lenis": "^1.0.42",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.1.0",
@@ -21,7 +23,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.3",
-    "resend": "^6.8.0"
+    "resend": "^6.8.0",
+    "three": "^0.186.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

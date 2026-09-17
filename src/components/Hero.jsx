@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import { ArrowRight, Github, Linkedin, Instagram, Mail } from 'lucide-react'
 import TiltCard from './TiltCard'
+
+const HeroGlobe = lazy(() => import('./Effects/HeroGlobe'))
 import { useLanguage } from '../context/LanguageContext'
 import TextReveal from './Showcase/TextReveal'
 
@@ -73,22 +75,25 @@ const Hero = () => {
                         </div>
                     </motion.div>
 
-                    {/* Right Column: WOW Card */}
+                    {/* Right Column: 3D Globe */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50, rotateY: 30 }}
-                        animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="relative flex justify-center items-center perspective-1000 w-full mt-12 lg:mt-0"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2, delay: 0.3 }}
+                        className="relative flex justify-center items-center w-full mt-12 lg:mt-0"
                     >
-                        {/* Card Background Glow - Reduced */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-primary-500/20 rounded-full blur-[80px] animate-pulse"></div>
+                        {/* Globe Background Glow */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-indigo-500/15 rounded-full blur-[100px] animate-pulse"></div>
 
-                        {/* Card Size Control: max-w-sm for laptops is key. No upscaling. */}
-                        <div className="w-full max-w-[300px] md:max-w-sm z-10 hover:scale-105 active:scale-95 transition-transform duration-500">
-                            <TiltCard isFlipped={isFlipped} onFlip={() => setIsFlipped(!isFlipped)} />
-                            <p className="text-center text-xs text-slate-400 dark:text-gray-500 mt-4 lg:hidden animate-bounce">
-                                Tap to flip card 👆
-                            </p>
+                        {/* 3D Globe Container */}
+                        <div className="w-full aspect-square max-w-[400px] md:max-w-[500px] relative z-10">
+                            <Suspense fallback={
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <div className="w-48 h-48 rounded-full border border-indigo-500/20 animate-spin" style={{ borderTopColor: 'rgb(99 102 241 / 0.6)' }}></div>
+                                </div>
+                            }>
+                                <HeroGlobe />
+                            </Suspense>
                         </div>
                     </motion.div>
                 </div>
